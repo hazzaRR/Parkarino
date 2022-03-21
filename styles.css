@@ -45,7 +45,7 @@ select {
 
 /*chat box styles*/
 
-.container {
+.message-box {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;
@@ -60,14 +60,14 @@ select {
   }
   
   /* Clear floats */
-  .container::after {
+  .message-box::after {
     content: "";
     clear: both;
     display: table;
   }
   
   /* Style images */
-  .container img {
+  .message-box img {
     float: left;
     max-width: 60px;
     width: 100%;
@@ -76,7 +76,7 @@ select {
   }
   
   /* Style the right image */
-  .container img.right {
+  .message-box img.right {
     float: right;
     margin-left: 20px;
     margin-right:0;
