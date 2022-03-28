@@ -136,7 +136,7 @@ const createMessage = (message) => {
     const message_div = document.createElement("div")
     
     const message_avatar = document.createElement("img");
-    message_avatar.src = "default-avatar.png";
+    message_avatar.src = "Messaging/default-avatar.png";
     const message_text = document.createElement("p");
     message_text.textContent = message.message
     const messsage_time = document.createElement("span");

@@ -1,0 +1,23 @@
+{
+  "name": "Parkarino",
+  "version": "1.0.0",
+  "description": "This is a parking system that allows a user to register to the system and will be able to book,pay for and reserve parking spaces to places they may choose. Additionally has Admin functionality that allows one to monitor space tickets, manage users,car parks/parking spaces and general system maintence.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakb27/Parkarino.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zakb27/Parkarino/issues"
+  },
+  "homepage": "https://github.com/zakb27/Parkarino#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
