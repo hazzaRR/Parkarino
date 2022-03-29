@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkerino</title>
     <link rel="stylesheet" href="../styles.css">
-    <script src="request.js" defer></script>
+    <script src="/Request/request.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,9 +17,10 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/messages">Messages</a></li>
-            <li><a href="/newRequest">Request</a></li>
-            <li><a href="/viewTicket">Ticket</a></li>
+            <li><a href="/request">Request</a></li>
+            <li><a href="/ticket">Ticket</a></li>
             <li><a href="/payment">Payment</a></li>
+            <li><a href="/login">LOG IN</a></li>
         </ul>
     </nav>
 
@@ -28,7 +29,7 @@
 
         <h2>Create a new Parking Request</h2>
 
-        <form>
+        <form action="/request" method="POST">
             <fieldset>
                 <legend>Make a Parking Request</legend>
 
@@ -37,7 +38,7 @@
 
                 <label for="location">Preferred location:</label>
 
-                <select name="locations" id="locations">
+                <select name="location" id="location">
                     <option value="Main Car Park">Main Car Park</option>
                     <option value="Sports Park">Sports Park</option>
                     <option value="New Science">New Science</option>

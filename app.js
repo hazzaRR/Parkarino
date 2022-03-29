@@ -1,41 +1,31 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
+
 const port = process.env.PORT || 3000;
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded( {extended: true}));
 
 
 
 //default end-point, where the webpage loads to.
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/index.html'));
+    res.sendFile(path.join(__dirname,'public','index.html'));
 });
 
-//tickets routes
-app.get('/viewTicket', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/ticket.html'));
-});
+const loginRouter = require('./routes/loginRouter');
+const requestRouter = require('./routes/requestRouter');
+const ticketRouter = require('./routes/ticketRouter');
+const messageRouter = require('./routes/messagesRouter');
+const paymentRouter = require('./routes/paymentRouter');
 
-//messages routes
-app.get('/messages', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/Messaging/message.html'));
-});
-
-//request routes
-app.get('/newRequest', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/Request/makeRequest.html'));
-});
-
-//user routes
-app.get('/signUp', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/login.html'));
-});
-
-//payment routes
-app.get('/payment', (req, res) => {
-    res.sendFile(path.join(__dirname+'/public/payment.html'));
-});
+app.use('/login', loginRouter);
+app.use('/request', requestRouter);
+app.use('/ticket', ticketRouter);
+app.use('/messages', messageRouter);
+app.use('/payment', paymentRouter);
 
 
 
