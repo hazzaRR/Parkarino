@@ -34,28 +34,34 @@ router.post('/',jsonParser, (req, res) => {
         for(i = 1; i < users.length; i++) {
             const user = users[i].split(',');
             if (user[1] === req.body.email && user[3] === req.body.password) {
+                //this for some reason doesnt change the actual variables
                 userDetails = {
-                    id: user[1],
-                    email: user[2],
-                    name: user[3],
-                    password: user[4],
-                    registration: user[5],
-                    street: user[6],
-                    city: user[7],
-                    postcode: user[8],
-                    userType: user[9]
+                    id: user[0],
+                    email: user[1],
+                    name: user[2],
+                    password: user[3],
+                    registration: user[4],
+                    street: user[5],
+                    city: user[6],
+                    postcode: user[7],
+                    userType: user[8]
                 }
                 isValid = true;
                 break;
             }
         }
       })
+
+      console.log(userDetails);
+      console.log(isValid);
+
+      //the responses need to be changed 
       if (isValid === true) {
         res.status(200).json(userDetails);
         res.sendFile(path.join(__dirname, '..', 'public','index.html'));
       }
       else {
-          res.status()
+          res.status(403);
       }
 });
 
