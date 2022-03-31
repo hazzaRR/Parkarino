@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login page</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="login.js" defer></script>
 </head>
 <body>
 
@@ -19,20 +20,14 @@
     </nav>
 
 <div class="container">
-  <form action="/" method="post">
-    <div class="row">
-      <div class="email_container">
-        <label for="Email">Email</label>
-        <input class="u-full-width" type="email" placeholder="Email" id="Email">
-      </div>
-      <div class="password_container">
-        <label for="Password">Password</label>
-        <input class="u-full-width" type="password" placeholder="Password" id="Password">
-      </div>
-    </div>
-      <div class = "button_container">
-          <input class="u-full-width" type="submit" placeholder="Submit" id="Submit">
-      </div>
+  <form id="loginForm" action="" method="POST">
+    <label for="Email">Email</label>
+    <input class="u-full-width" type="email" name="email" placeholder="Email" id="email">
+    <br>
+    <label for="Password">Password</label>
+    <input class="u-full-width" type="password" name="password" placeholder="Password" id="password">
+    <br>
+    <input type="submit" id="login" value="Log In">
   </form>
 </div>
 

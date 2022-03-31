@@ -28,8 +28,6 @@ app.use('/messages', messageRouter);
 app.use('/payment', paymentRouter);
 
 
-
-
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`);
 })
