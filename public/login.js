@@ -5,53 +5,43 @@ async function loginAttempt(event) {
     //selects the form element from form.hmtl
     const formData = document.querySelector('#loginForm');
 
-
     //create a new object that stores email and password
     const loginCreds = {
         email: formData.elements.namedItem('email').value,
         password: formData.elements.namedItem('password').value,
     };
 
-
     // turns loginCreds object into JSON string
     const serializedMessage = JSON.stringify(loginCreds);
 
-
     // posts JSON string to the server at the end point /login
-    await fetch('/login', { method: 'POST',
+    const response = await fetch('/login', { method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                         body: serializedMessage
                     }
                 )
-                .then(onResponse, onError)
-                .then(onJsonReady);
+
+    const json = await response.json();
 
 
-    //clears the html form
-    formData.reset();
+    if (response.status === 200) {
+        window.location.href = "/";
+        sessionStorage.setItem('email', json.email);
+        console.log(sessionStorage.getItem('email'));
+    }
+    else {
+        const incorrectDetails = document.createElement('p');
+        incorrectDetails.innerText = json;
+        document.getElementById('loginContainer').appendChild(incorrectDetails);
+
+        document.getElementById('password').value = ''; 
+    }
 
 }
-
-const onJsonReady = (json) => {
-    console.log(json.email);
-    const text = JSON.stringify(json);
-}
-
-//if prmomise is fulfilled onResponse is invoked and returns json string
-const onResponse = (response) => {
-    return response.json()
-}
-
-//logs error if promise is rejected
-const onError = (error) => {
-    console.log('Error: ${error}')
-}
-
 
 //Selects form element from form.html and adds a loginAttempt event listener
 
 const form = document.querySelector('#loginForm');
 form.addEventListener('submit', loginAttempt);
-
