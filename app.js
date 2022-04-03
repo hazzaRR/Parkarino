@@ -16,12 +16,14 @@ app.get('/', (req, res) => {
 });
 
 const loginRouter = require('./routes/loginRouter');
+const regRouter = require('./routes/regRouter');
 const requestRouter = require('./routes/requestRouter');
 const ticketRouter = require('./routes/ticketRouter');
 const messageRouter = require('./routes/messagesRouter');
 const paymentRouter = require('./routes/paymentRouter');
 
 app.use('/login', loginRouter);
+app.use('/register', regRouter);
 app.use('/request', requestRouter);
 app.use('/ticket', ticketRouter);
 app.use('/messages', messageRouter);
