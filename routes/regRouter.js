@@ -16,20 +16,22 @@ router.post('/',jsonParser, (req, res) => {
     let exists;
     for(i = 1; i < users.length; i++) {
         const user = users[i].split(',');
-        if (user[1] === req.body.email){
+        if (user[1] === req.body.email || user[2] ==req.body.username){
             exists = true;
         }
     }
     if(!exists){
         fs.appendFileSync(path.join(__dirname,'..','db.csv'), "\n"+data.length+","+
                                                                     req.body.email+","+
+                                                                    req.body.username+","+
                                                                     req.body.name+","+
                                                                     req.body.password+","+
                                                                     req.body.registration+","+
                                                                     req.body.street+","+
                                                                     req.body.city+","+
                                                                     req.body.postcode+","+
-                                                                    req.body.userType);
+                                                                    req.body.userType+","+"100"
+                                                                    );
     }
     console.log(req.body.email)
     if (success) {

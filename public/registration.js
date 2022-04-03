@@ -6,6 +6,7 @@ async function register(event) {
     const registrat = {
         email: getForm.elements.namedItem('email').value,
         name: getForm.elements.namedItem('Name').value,
+        username: getForm.elements.namedItem('Username').value,
         registration: getForm.elements.namedItem('Registration').value,
         street: getForm.elements.namedItem('Street').value,
         city:getForm.elements.namedItem('City').value,
@@ -30,7 +31,7 @@ async function register(event) {
         console.log("Email got saved");
     }
     else {
-        document.getElementById('test').innerHTML = "Email already exists!";
+        document.getElementById('test').innerHTML = "Email or username already exists!";
     }
 }
 
