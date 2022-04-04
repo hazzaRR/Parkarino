@@ -22,6 +22,8 @@ const ticketRouter = require('./routes/ticketRouter');
 const messageRouter = require('./routes/messagesRouter');
 const paymentRouter = require('./routes/paymentRouter');
 const adminRouter = require('./routes/adminRouter');
+const addCreditRouter = require('./routes/addCreditRouter');
+const removeCreditRouter = require('./routes/removeCreditRouter');
 
 app.use('/login', loginRouter);
 app.use('/register', regRouter);
@@ -30,7 +32,8 @@ app.use('/ticket', ticketRouter);
 app.use('/messages', messageRouter);
 app.use('/payment', paymentRouter);
 app.use('/admin', adminRouter);
-
+app.use('/add-credit', addCreditRouter);
+app.use('/remove-credit', removeCreditRouter);
 
 app.listen(port, () => {
     console.log(`Express app listening on port ${port}`);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
-<title>Payment page</title>
+<title>Remove Credit</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="">
 
@@ -17,10 +17,11 @@
             <li><a href="/login">LOG IN</a></li>
         </ul>
     </nav>
-
-    <div class="buttons">
-        <a href="/add-credit" class="button">Add Credit</a>
-        <a href="/remove-credit" class="button">Remove Credit</a>
+        <p>Simulate paying for something(testing)</p>
+        <form method="POST" action="/remove-credit">
+            <input type="text" name="credit"/>
+            <input type="submit" value = "remove credit"/>
+        </form>
     </div>
 
 </body>

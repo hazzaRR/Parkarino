@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Add Credit</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="">
+<script src="addCredit.js" defer></script>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/messages">Messages</a></li>
+            <li><a href="/request">Request</a></li>
+            <li><a href="/ticket">Ticket</a></li>
+            <li><a href="/payment">Payment</a></li>
+            <li><a href="/login">LOG IN</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="addCreditContainer">
+        <p>Enter how much credit you'd like to add to your account. <br>Credit transactions are <strong>non-refundable</strong> and your new balance will be processed and updated <strong>immediately</strong>.</p>
+        
+        <form id="addCreditForm" method="POST">
+            <label for="credit">Credit</label>
+            <input class="u-full-width" type="text" name="credit" placeholder="credit" id="credit">
+            <input type="submit" value = "add credit"/>
+        </form><br>
+        
+    </div>
+
+</body>
+
+</html>
