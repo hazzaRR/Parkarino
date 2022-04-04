@@ -32,10 +32,12 @@ async function loginAttempt(event) {
         sessionStorage.setItem('email', json.email);
         sessionStorage.setItem('name', json.name);
         sessionStorage.setItem('userType', json.userType);
+        sessionStorage.setItem('wallet', json.wallet);
         console.log(sessionStorage.getItem('id'));
         console.log(sessionStorage.getItem('email'));
         console.log(sessionStorage.getItem('name'));
         console.log(sessionStorage.getItem('userType'));
+        console.log(sessionStorage.getItem('wallet'));
 
         if(sessionStorage.getItem('userType').toLowerCase() === 'admin') {
             window.location.href = "/admin";

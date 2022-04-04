@@ -28,13 +28,14 @@ router.post('/',jsonParser, (req, res) => {
 
       for(i = 1; i < users.length; i++) {
         const user = users[i].split(',');
-        if (user[1] === req.body.email && user[3] === req.body.password) {
+        if (user[1] === req.body.email && user[4] === req.body.password) {
 
             userDetails = {
                 id: user[0],
                 email: user[1],
-                name: user[2],
-                userType: user[8]
+                name: user[3],
+                userType: user[9],
+                wallet: user[10]
             }
             isValid = true;
             break;
