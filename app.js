@@ -21,6 +21,7 @@ const requestRouter = require('./routes/requestRouter');
 const ticketRouter = require('./routes/ticketRouter');
 const messageRouter = require('./routes/messagesRouter');
 const paymentRouter = require('./routes/paymentRouter');
+const adminRouter = require('./routes/adminRouter');
 
 app.use('/login', loginRouter);
 app.use('/register', regRouter);
@@ -28,6 +29,7 @@ app.use('/request', requestRouter);
 app.use('/ticket', ticketRouter);
 app.use('/messages', messageRouter);
 app.use('/payment', paymentRouter);
+app.use('/admin', adminRouter);
 
 
 app.listen(port, () => {

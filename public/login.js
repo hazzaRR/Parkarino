@@ -28,8 +28,21 @@ async function loginAttempt(event) {
 
     if (response.status === 200) {
         window.location.href = "/";
+        sessionStorage.setItem('id', json.id);
         sessionStorage.setItem('email', json.email);
+        sessionStorage.setItem('name', json.name);
+        sessionStorage.setItem('userType', json.userType);
+        console.log(sessionStorage.getItem('id'));
         console.log(sessionStorage.getItem('email'));
+        console.log(sessionStorage.getItem('name'));
+        console.log(sessionStorage.getItem('userType'));
+
+        if(sessionStorage.getItem('userType').toLowerCase() === 'admin') {
+            window.location.href = "/admin";
+        }
+        else {
+            window.location.href = "/";
+        }
     }
     else {
         const incorrectDetails = document.createElement('p');

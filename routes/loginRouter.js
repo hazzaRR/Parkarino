@@ -34,11 +34,6 @@ router.post('/',jsonParser, (req, res) => {
                 id: user[0],
                 email: user[1],
                 name: user[2],
-                password: user[3],
-                registration: user[4],
-                street: user[5],
-                city: user[6],
-                postcode: user[7],
                 userType: user[8]
             }
             isValid = true;

@@ -6,6 +6,7 @@ class Request {
     date;
     arrivialTime;
     departureTime;
+    approved;
 
 
 
@@ -16,6 +17,7 @@ class Request {
         this.date = date;
         this.arrivialTime = arrivialTime;
         this.departureTime = departureTime;
+        this.approved = null;
     
     }
 
@@ -60,6 +62,12 @@ class Request {
     }
     set departureTime(value) {
         this.departureTime = value;
+    }
+    get approved() {
+        return this.approved;
+    }
+    set approved(value) {
+        this.approved = value;
     }
 
 }
