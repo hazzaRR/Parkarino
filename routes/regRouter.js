@@ -21,7 +21,7 @@ router.post('/',jsonParser, (req, res) => {
         }
     }
     if(!exists){
-        fs.appendFileSync(path.join(__dirname,'..','db.csv'), "\n"+data.length+","+
+        fs.appendFileSync(path.join(__dirname,'..','db.csv'), +data.length+","+
                                                                     req.body.email+","+
                                                                     req.body.username+","+
                                                                     req.body.name+","+
@@ -30,7 +30,7 @@ router.post('/',jsonParser, (req, res) => {
                                                                     req.body.street+","+
                                                                     req.body.city+","+
                                                                     req.body.postcode+","+
-                                                                    req.body.userType+","+"100"
+                                                                    req.body.userType+","+"100"+"\r"
                                                                     );
     }
     console.log(req.body.email)
