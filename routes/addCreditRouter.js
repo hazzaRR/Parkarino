@@ -4,6 +4,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const jsonParser = bodyParser.json();
+const users_db = path.join(__dirname,'..','users_db.json');
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','addCredit.html'));
@@ -12,45 +13,43 @@ router.get('/', (req, res) => {
 
 
 router.post('/',jsonParser, (req, res) => {
-
-    var email = req.body.email
-    var credit = req.body.wallet
-    credit = parseInt(credit);
-    let complete = false;
-    console.log("RECIEVED BY ROUTER email : " + email);
-    console.log("RECIEVED BY ROUTER credit : " + credit);
     
-
-    const data = fs.readFileSync(path.join(__dirname,'..','db.csv'), {encoding: 'utf8', flag:'r'});
+    //var email = req.body.email
+    //ar credit = req.body.wallet
+    //credit = parseInt(credit);
+    //let complete = false;
+    //console.log("RECIEVED BY ROUTER email : " + email);
+    //console.log("RECIEVED BY ROUTER credit : " + credit);
     
-    const users = data.split('\r');
+    let email = 'MonroeLane@cosmosis.com';
 
-    fs.appendFileSync(path.join(__dirname,'..','temp_db.csv'), "ID,Email Address,Username,Name,Password,Registration,Street,City,Postcode,User Type,Wallet" ,{encoding: "utf8", flag: "a+", mode: 0o666});
-    for(i = 1; i < users.length; i++) {
-        const user = users[i].split(',');
-        
-        userDetails = user;
-        
-        if (user[1] == email) { //if session user is found in db
-            console.log(parseInt(user[10]) + credit);
-            userDetails[10] = parseInt(user[10]) + credit
+    let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
+    let users = JSON.parse(data);
+
+    for(i = 0; i < users.length; i++) {
+        console.log(users["user"][i].email);
+        if (users["user"][i].email == email || users["user"][i].username == req.body.username){
             complete = true;
+            console.log("found");
+            return res.status(200);
         }
-        //json to csv ready format
-        userDetails = JSON.stringify(userDetails);
-        formattedUserDetails = userDetails.replace(/['"]/g,'');
-        formattedUserDetails = formattedUserDetails.replace(/[\[\]']/g,'');
-        console.log(formattedUserDetails);
-
-        fs.appendFileSync(path.join(__dirname,'..','temp_db.csv'), "\n" + formattedUserDetails.substring(2),{encoding: "utf8", flag: "a+", mode: 0o666});
     }
-    //copy over temp db to real
-    fs.renameSync('temp_db.csv', 'db.csv');
+    data = JSON.stringify(users,null, '\t');
+    console.log(data);
+    return res.status(200);
+    /*
+    for(i = 0; i < users.length; i++)
+    {
+        console.log(users["user"][i].email);
+        if (users["user"][i].email == req.body.email)
+        {
+            console.log("found user" );
+        }
+    }
+    */
 
-        //let rowsArr = rows.map(line=>line.split(','));
-        //let out = rowsArr.filter(line=>parseInt(line[1]) !== email).join("\n");
-        //fs.writeFileSync(__dirname,'..','db.csv', out);
-
+        /*
+    complete = true;
     if (complete == true) 
     {
         return res.status(200).json(email);
@@ -59,6 +58,7 @@ router.post('/',jsonParser, (req, res) => {
     {
         return res.status(401).json("You are not registered, log in or register!");
     }
+    */
 });
 
 
