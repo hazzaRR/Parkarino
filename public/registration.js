@@ -4,6 +4,7 @@ async function register(event) {
     const getForm = document.querySelector('#regForm');
 
     const registrat = {
+        _id: 0,
         email: getForm.elements.namedItem('email').value,
         name: getForm.elements.namedItem('Name').value,
         username: getForm.elements.namedItem('Username').value,
@@ -25,7 +26,6 @@ async function register(event) {
             body: serializedMessage
         }
     )
-
 
     if (response.status === 200) {
         console.log("Email got saved");

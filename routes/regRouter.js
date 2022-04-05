@@ -11,27 +11,21 @@ router.get('/', (req, res) => {
 
 router.post('/',jsonParser, (req, res) => {
     let success = false;
-    const data = fs.readFileSync(path.join(__dirname,'..','db.csv'), {encoding: 'utf8', flag:'r'});
-    const users = data.split('\r');
+    let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
+    let users = JSON.parse(data);
+
     let exists;
-    for(i = 1; i < users.length; i++) {
-        const user = users[i].split(',');
-        if (user[1] === req.body.email || user[2] ==req.body.username){
+
+    for(i = 0; i < users.length; i++) {
+        if (users["user"][i].email === req.body.email || users["user"][i].username ==req.body.username){
             exists = true;
         }
     }
     if(!exists){
-        fs.appendFileSync(path.join(__dirname,'..','db.csv'), +data.length+","+
-                                                                    req.body.email+","+
-                                                                    req.body.username+","+
-                                                                    req.body.name+","+
-                                                                    req.body.password+","+
-                                                                    req.body.registration+","+
-                                                                    req.body.street+","+
-                                                                    req.body.city+","+
-                                                                    req.body.postcode+","+
-                                                                    req.body.userType+","+"100"+"\r"
-                                                                    );
+        req.body._id = users["user"].length;
+        users["user"].push(req.body);
+        data = JSON.stringify(users,null, '\t');
+        fs.writeFileSync(path.join(__dirname,'..','users_db.json'), data,"utf-8");
     }
     console.log(req.body.email)
     if (success) {
