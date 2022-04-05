@@ -13,14 +13,17 @@ router.post('/',jsonParser, (req, res) => {
     let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
     let users = JSON.parse(data);
 
-    for(i = 0; i < users.length; i++) {
-        if (users["user"][i].email === req.body.email || users["user"][i].username ==req.body.username){
+    for(let i = 0; i < users.user.length; i++) {
+        console.log(users.user[i]);
+        console.log(users.user[i].email)
+        if (users.user[i].email === req.body.email || users.user[i].username ==req.body.username ){
+            console.log("Already exists");
             return res.status(300);
         }
     }
 
-    req.body._id = users["user"].length;
-    users["user"].push(req.body);
+    req.body._id = users.user.length;
+    users.user.push(req.body);
     data = JSON.stringify(users,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','users_db.json'), data,"utf-8");
     return res.status(200);
