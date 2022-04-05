@@ -1,0 +1,172 @@
+[
+    {
+      "user": [
+        {
+          "_id": 0,
+          "email": "NannieCasey@recognia.com",
+          "username": "NannieCasey990",
+          "name": "Nannie Casey",
+          "password": "Ramos123",
+          "registration": "gr11wer",
+          "street": "Nassau Avenue",
+          "city": "Bellfountain",
+          "postcode": "GY6085",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 1,
+          "email": "MonroeLane@cosmosis.com",
+          "username": "MonroeLane_9869",
+          "name": "Monroe Lane",
+          "password": "Dunlap1234",
+          "registration": "ht35acw",
+          "street": "Java Street",
+          "city": "Spokane",
+          "postcode": "SA7279",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 2,
+          "email": "ballerbetty@quonk.com",
+          "username": "BettyLancaster5980",
+          "name": "Betty Lancaster",
+          "password": "Ayal45678a",
+          "registration": "fr46hew",
+          "street": "Wolcott Street",
+          "city": "Stockdale",
+          "postcode": "PL0371",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 3,
+          "email": "crosbymcclain@geekmosis.com",
+          "username": "HelgaGonzales655",
+          "name": "Blanca George",
+          "password": "Mcknight_rah69",
+          "registration": "ht54oop",
+          "street": "Townsend Street",
+          "city": "Tyro",
+          "postcode": "JP2410",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 4,
+          "email": "kaylabritt@zilencio.com",
+          "username": "Blackburn Dorsey 4603",
+          "name": "Erica Travis",
+          "password": "Dotson255f",
+          "registration": "pp15sml",
+          "street": "Taaffe Place",
+          "city": "Somerset",
+          "postcode": "GH7847",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 5,
+          "email": "ReidHampton187@opticall.com",
+          "username": "ReidHampton187",
+          "name": "Reid Hampton",
+          "password": "Gross4564564",
+          "registration": "fr28iuy",
+          "street": "Lorimer Street",
+          "city": "Eden",
+          "postcode": "RU8862",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 6,
+          "email": "rosalyndonovan@opportech.com",
+          "username": "rosalyndonovan4873",
+          "name": "Rosalyn Donovan",
+          "password": "Wilkinson8765",
+          "registration": "ce68bag",
+          "street": "Sutter Avenue",
+          "city": "Blandburg",
+          "postcode": "GR1291",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 7,
+          "email": "Rocha_Gibbs@fossiel.com",
+          "username": "Rocha_Gibbs_9012",
+          "name": "Rocha Gibbs",
+          "password": "Schwartz987",
+          "registration": "fr44gtr",
+          "street": "Rockwell Place",
+          "city": "Riner",
+          "postcode": "SO0818",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 8,
+          "email": "odonieByrd@aeora.com",
+          "username": "OdonnellByrd6734",
+          "name": "Odonnell Byrd",
+          "password": "Briggs234",
+          "registration": "ju67tyg",
+          "street": "Carlton Avenue",
+          "city": "Cresaptown",
+          "postcode": "MC6674",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    },
+    {
+      "user": [
+        {
+          "_id": 9,
+          "email": "suarezhester@musix.com",
+          "username": "suarez9985",
+          "name": "Suarez Hester",
+          "password": "Whitley543",
+          "registration": "bg97log",
+          "street": "Prince Street",
+          "city": "Balm",
+          "postcode": "PA0178",
+          "user_Type": "Driver",
+          "wallet": 100
+        }
+      ]
+    }
+  ]
