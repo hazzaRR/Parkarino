@@ -10,29 +10,21 @@ router.get('/', (req, res) => {
 });
 
 router.post('/',jsonParser, (req, res) => {
-    let success = false;
     let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
     let users = JSON.parse(data);
 
-    let exists;
-
     for(i = 0; i < users.length; i++) {
         if (users["user"][i].email === req.body.email || users["user"][i].username ==req.body.username){
-            exists = true;
+            return res.status(300);
         }
     }
-    if(!exists){
-        req.body._id = users["user"].length;
-        users["user"].push(req.body);
-        data = JSON.stringify(users,null, '\t');
-        fs.writeFileSync(path.join(__dirname,'..','users_db.json'), data,"utf-8");
-    }
-    console.log(req.body.email)
-    if (success) {
-        return res.status(200);
-    }
-    else {
-        return res.status(300);
-    }
+
+    req.body._id = users["user"].length;
+    users["user"].push(req.body);
+    data = JSON.stringify(users,null, '\t');
+    fs.writeFileSync(path.join(__dirname,'..','users_db.json'), data,"utf-8");
+    return res.status(200);
+
+
 });
 module.exports = router;
