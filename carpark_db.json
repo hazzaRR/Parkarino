@@ -1,0 +1,404 @@
+{
+	"locations":[
+		{
+			"_id": 0,
+			"location": "UEA Big Car Park",
+			"num_Spaces" : 32,
+			"freeSpaces" : 32,
+			"space": [
+				{
+					"_id": 0,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 1,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 2,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 3,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 4,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 5,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 6,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 7,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 8,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 9,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 10,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 11,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 12,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 13,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 14,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 15,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 16,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 17,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 18,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 19,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 20,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 21,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 22,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 23,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 24,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 25,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 26,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 27,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 28,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 29,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 30,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				},
+				{
+					"_id": 31,
+					"available": true,
+					"occupier": null,
+					"location": "UEA Big Car Park"
+				}
+			]
+		},
+		{
+			"_id": 0,
+			"location": "UEA West Car Park",
+			"num_Spaces" : 32,
+			"freeSpaces" : 32,
+			"space": [
+				{
+					"_id": 0,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 1,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 2,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 3,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 4,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 5,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 6,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 7,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 8,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 9,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 10,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 11,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 12,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 13,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 14,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 15,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 16,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 17,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 18,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 19,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 20,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 21,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 22,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 23,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 24,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 25,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 26,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 27,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 28,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 29,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 30,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				},
+				{
+					"_id": 31,
+					"available": true,
+					"occupier": null,
+					"location": "UEA West Car Park"
+				}
+			]
+		}
+	]
+}

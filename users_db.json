@@ -24,7 +24,7 @@
 			"city": "Spokane",
 			"postcode": "SA7279",
 			"user_Type": "Driver",
-			"wallet": 69
+			"wallet": 228
 		},
 		{
 			"_id": 2,
@@ -37,7 +37,7 @@
 			"city": "Stockdale",
 			"postcode": "PL0371",
 			"user_Type": "Driver",
-			"wallet": 100
+			"wallet": 300
 		},
 		{
 			"_id": 3,

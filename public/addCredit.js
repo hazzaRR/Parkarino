@@ -15,19 +15,17 @@ async function addCredit(event) {
     const serializedMessage = JSON.stringify(addCredit);
 
     // posts JSON string to the server at the end point /login
-    const response = await fetch('/add-credit', { method: 'POST',
+    const response = await fetch('/add-credit/add-credit', { method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                         body: serializedMessage
                     }
                 )
-
     const json = await response.json();
 
-
-    if (response.status === 200) {
-        if(sessionStorage.getItem('userType').toLowerCase() === 'admin') {
+    if (response.status == 200) {
+        if(sessionStorage.getItem('userType').toLowerCase() == 'admin') {
             window.location.href = "/admin";
         }
         else {
@@ -35,14 +33,13 @@ async function addCredit(event) {
         }
     }
     else {
-        //const error = document.createElement('p');
-        //error.innerText = json;
-        document.getElementById('addCreditForm').innerHTML = "Error";
+        document.getElementById('addCreditForm').innerHTML = "~ you must log in or register to  add credit to your account ~";
     }
-
 }
-
-//Selects form element from form.html and adds a loginAttempt event listener
-
+//Remove credit form if not logged in
+if (!sessionStorage.email)
+{
+    document.getElementById('addCreditForm').innerHTML = "~ you must log in or register to  add credit to your account ~";
+}
 const form = document.querySelector('#addCreditForm');
 form.addEventListener('submit', addCredit);
