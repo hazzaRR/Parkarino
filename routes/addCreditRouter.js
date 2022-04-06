@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const { user } = require('pg/lib/defaults');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 const users_db = path.join(__dirname,'..','users_db.json');

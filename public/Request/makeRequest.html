@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parkerino</title>
     <link rel="stylesheet" href="../styles.css">
-    <script src="/Request/request.js" defer></script>
+    <script src="/Request/makeRequest.js" defer></script>
 </head>
 <body>
     <header>
@@ -29,12 +29,9 @@
 
         <h2>Create a new Parking Request</h2>
 
-        <form action="/request" method="POST">
+        <form id="requestForm" action="/request" method="POST">
             <fieldset>
                 <legend>Make a Parking Request</legend>
-
-                <input type="hidden" id="driverId" name="driverId" value="3487">
-                <input type="hidden" id="regPlate" name="regPlate" value="fl43 mzo">
 
                 <label for="location">Preferred location:</label>
 
@@ -47,16 +44,20 @@
 
                 <br>
 
-                <label for="date">Date:</label>
-                <input type="date" name="date" id="date">
+                <label for="arrivalDate">Arrival Date:</label>
+                <input type="date" name="arrivalDate" id="arrivalDate" required>
                 <br>
 
-                <label for="arrivial">Arrival Time:</label>
-                <input type="time" name="arrivial", id="arrivial" accesskey="T" required>
+                <label for="arrivialTime">Arrival Time:</label>
+                <input type="time" name="arrivalTime", id="arrivalTime" required>
                 <br>
 
-                <label for="departure">Departure Time:</label>
-                <input type="time" name="departure" id="departure", required>
+                <label for="departureDate">Departure Date:</label>
+                <input type="date" name="departureDate" id="departureDate">
+                <br>
+
+                <label for="departureTime">Departure Time:</label>
+                <input type="time" name="departureTime" id="departureTime", required>
                 <br>
 
                 <input type="submit" id="submit" value="Make Request">

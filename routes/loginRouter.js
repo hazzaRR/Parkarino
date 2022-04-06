@@ -15,39 +15,30 @@ router.get('/', (req, res) => {
 
 
 router.post('/',jsonParser, (req, res) => {
-
-    console.log(req.body.email);
-    console.log(req.body.password);
-
       let userDetails = {};
       let isValid = false;
 
-      const data = fs.readFileSync(path.join(__dirname,'..','db.csv'), {encoding: 'utf8', flag:'r'});
+      const data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
+      
+      const users = JSON.parse(data);
 
-      const users = data.split('\r');
-
-      for(i = 1; i < users.length; i++) {
-        const user = users[i].split(',');
-        if (user[1] === req.body.email && user[4] === req.body.password) {
+      for(let i = 0; i < users.user.length; i++) {
+          console.log(users.user[i]);
+          console.log(users.user[i].email)
+          if (users.user[i].email === req.body.email && users.user[i].password == req.body.password ) {
 
             userDetails = {
-                id: user[0],
-                email: user[1],
-                name: user[3],
-                userType: user[9],
-                wallet: user[10]
+              id: users.user[i]._id,
+              email: users.user[i].email,
+              name: users.user[i].name,
+              userType: users.user[i].user_Type,
+              wallet: users.user[i].wallet
             }
-            isValid = true;
-            break;
-        }
-    }
-    
-      if (isValid === true) {
-        return res.status(200).json(userDetails);
+            
+            return res.status(200).json(userDetails);
+          }
       }
-      else {
-        return res.status(401).json("Incorrect username or password");
-    }
+      return res.status(401).json("Incorrect username or password");
 });
 
 

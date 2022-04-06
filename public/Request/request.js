@@ -3,19 +3,21 @@ class Request {
     id;
     driverId;
     location;
-    date;
-    arrivialTime;
+    arrivalDate;
+    departureDate;
+    arrivalTime;
     departureTime;
     approved;
 
 
 
-    constructor(id, driverId, location,  date, arrivialTime, departureTime) {
+    constructor(id, driverId, location,  arrivalDate, departureDate, arrivalTime, departureTime) {
         this.id = id;
         this.driverId = driverId;
         this.location = location;
-        this.date = date;
-        this.arrivialTime = arrivialTime;
+        this.arrivalDate = arrivialDate;
+        this.departureDate = departureDate;
+        this.arrivalTime = arrivialTime;
         this.departureTime = departureTime;
         this.approved = null;
     
@@ -43,18 +45,24 @@ class Request {
         this.location = value;
     }
 
-    get date() {
-        return this.date;
+    get arrivalDate() {
+        return this.arrivalDate;
     }
-    set date(value) {
-        this.date = value;
+    set arrivalDate(value) {
+        this.arrivalDate = value;
+    }
+    get departureDate() {
+        return this.departureDate;
+    }
+    set departureDate(value) {
+        this.departureDate = value;
     }
 
-    get arrivialTime() {
-        return this.arrivialTime;
+    get arrivalTime() {
+        return this.arrivalTime;
     }
-    set arrivialTime(value) {
-        this.arrivialTime = value;
+    set arrivalTime(value) {
+        this.arrivalTime = value;
     }
 
     get departureTime() {
