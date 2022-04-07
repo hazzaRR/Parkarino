@@ -1,12 +1,22 @@
 [
-    {
-        "_id": 0,
-        "driverId": 1,
-        "location": "NannieCasey990",
-        "arrivalDate": "Nannie Casey",
-        "arrivalTime": "Ramos123",
-        "departureDate": "gr11wer",
-        "departureTime": "Nassau Avenue",
-        "approved": "Bellfountain"
-    }
+	{
+		"id": 0,
+		"driverId": "0",
+		"location": "New Science",
+		"arrivalDate": "2022-04-14",
+		"arrivalTime": "15:47",
+		"departureDate": "2022-04-25",
+		"departureTime": "17:51",
+		"approved": null
+	},
+	{
+		"id": 1,
+		"driverId": "0",
+		"location": "Main Car Park",
+		"arrivalDate": "2022-04-15",
+		"arrivalTime": "17:47",
+		"departureDate": "2022-04-16",
+		"departureTime": "16:51",
+		"approved": null
+	}
 ]

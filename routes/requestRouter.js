@@ -18,14 +18,17 @@ router.get('/', (req, res) => {
 router.post('/',jsonParser, (req, res) => {
 
     console.log(req.body);
-    // console.log(req.body.driverId);
-    // console.log(req.body.location);
-    // console.log(req.body.arrivalDate);
-    // console.log(req.body.arrivalTime);
-    // console.log(req.body.departureDate);
-    // console.log(req.body.departureTime);
 
-    const data = fs.readFileSync(path.join(__dirname,'..','db.csv'), {encoding: 'utf8', flag:'r'});
+    let data = fs.readFileSync(path.join(__dirname,'..','requests.json'), {encoding: 'utf8', flag:'r'});
+    let requests = JSON.parse(data);
+
+
+    req.body.id = requests.length;
+
+    requests.push(req.body);
+    data = JSON.stringify(requests,null, '\t');
+    fs.writeFileSync(path.join(__dirname,'..','requests.json'), data,"utf-8");
+    return res.status(200);
 
     res.status(200).json("success!");
 });
