@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','viewCarpark.html'));
 });
 
+//for specific carpark - not done yet
 router.get('/carpark-info',jsonParser, (req, res) => {
     
     var carpark = req.body.carpark
@@ -43,23 +44,14 @@ router.get('/carpark-info',jsonParser, (req, res) => {
     }
 });
 
+//for returning all carparks (for html select form options)
 router.get('/all-carparks',jsonParser, (req, res) => {
     let complete = false;
     let data = fs.readFileSync(carpark_db, {encoding: 'utf8', flag:'r'});
     let carparks = JSON.parse(data);
     carparksData = [];
-    console.log(carparks.locations.length);
     for(i = 0; i < carparks.locations.length; i++) {
         carparksData.push((carparks.locations[i].location));
-        /*
-        if (carpark_db.locations[i].email == email){
-            complete = true;
-            console.log("found " + email + " setting credit to " + parseInt(users.user[i].wallet) + " " + credit);
-            users.user[i].wallet = parseInt(users.user[i].wallet) + credit;
-            newData.push((users.user[i]));
-            complete = true;
-        }
-        */
     }
     complete = true
     data = JSON.stringify(carparksData,null, '\t');
