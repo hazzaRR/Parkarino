@@ -18,5 +18,15 @@
 		"departureDate": "2022-04-16",
 		"departureTime": "16:51",
 		"approved": null
+	},
+	{
+		"id": 2,
+		"driverId": "1",
+		"location": "Main Car Park",
+		"arrivalDate": "2022-04-12",
+		"arrivalTime": "23:00",
+		"departureDate": "2022-04-27",
+		"departureTime": "11:59",
+		"approved": null
 	}
 ]
