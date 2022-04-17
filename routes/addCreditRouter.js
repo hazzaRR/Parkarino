@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 const users_db = path.join(__dirname,'..','users_db.json');
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','addCredit.html'));
+    res.sendFile(path.join(__dirname,'..','public','Driver','addCredit.html'));
 });
 
 router.post('/add-credit',jsonParser, (req, res) => {

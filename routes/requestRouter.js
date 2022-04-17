@@ -11,7 +11,7 @@ const jsonParser = bodyParser.json();
 
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','Request','makeRequest.html'));
+    res.sendFile(path.join(__dirname,'..','public','Driver','makeRequest.html'));
 });
 
 

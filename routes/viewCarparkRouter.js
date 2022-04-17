@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 const carpark_db = path.join(__dirname,'..','carpark_db.json');
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','viewCarpark.html'));
+    res.sendFile(path.join(__dirname,'..','public','Driver','viewCarpark.html'));
 });
 
 //for specific carpark - not done yet

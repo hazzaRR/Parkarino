@@ -5,7 +5,7 @@ const router = express.Router();
 
 //payment routes
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','payment.html'));
+    res.sendFile(path.join(__dirname,'..','public','Driver','payment.html'));
 });
 
 module.exports = router;

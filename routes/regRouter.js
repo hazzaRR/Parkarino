@@ -6,7 +6,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','registration.html'));
+    res.sendFile(path.join(__dirname,'..','public','Account','registration.html'));
 });
 
 router.post('/',jsonParser, (req, res) => {

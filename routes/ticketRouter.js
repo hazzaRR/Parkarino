@@ -5,7 +5,7 @@ const router = express.Router();
 
 //tickets routes
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','ticket.html'));
+    res.sendFile(path.join(__dirname,'..','public','Driver','ticket.html'));
 });
 
 module.exports = router;
