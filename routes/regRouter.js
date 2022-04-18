@@ -16,7 +16,7 @@ router.post('/',jsonParser, (req, res) => {
     for(let i = 0; i < users.user.length; i++) {
         console.log(users.user[i]);
         console.log(users.user[i].email)
-        if (users.user[i].email === req.body.email || users.user[i].username ==req.body.username ){
+        if (users.user[i].email === req.body.email || users.user[i].username ===req.body.username ){
             console.log("Already exists");
             return res.status(300);
         }

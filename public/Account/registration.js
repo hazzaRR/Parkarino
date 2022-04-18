@@ -16,9 +16,7 @@ async function register(event) {
         password: getForm.elements.namedItem('password').value,
     };
 
-    // turns loginCreds object into JSON string
     const serializedMessage = JSON.stringify(registrat);
-    // posts JSON string to the server at the end point /login
     const response = await fetch('/register', { method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
