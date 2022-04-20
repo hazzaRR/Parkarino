@@ -37,8 +37,7 @@ router.get('/requests/manageRequests', (req, res) => {
 
 router.patch('/requests/response', jsonParser, (req, res) => {
 
-    console.log(req.body.requestId);
-    console.log(req.body.approved);
+    let request;
 
     let data = fs.readFileSync(path.join(__dirname,'..','requests.json'), {encoding: 'utf8', flag:'r'});
     let requests = JSON.parse(data);
@@ -46,13 +45,14 @@ router.patch('/requests/response', jsonParser, (req, res) => {
     for(i = 0; i < requests.length; i++) {
         if (requests[i].id === req.body.requestId) {
             requests[i].approved = req.body.approved;
+            request = requests[i];
             break;
         }
     }
     data = JSON.stringify(requests,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','requests.json'), data,"utf-8");
 
-    res.status(200).json("success");;
+    res.status(200).json(request);;
 });
 
 

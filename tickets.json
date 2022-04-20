@@ -1,35 +1,35 @@
 [
 	{
-		"id": 0,
+		"ticketId": 0,
 		"driverId": "0",
-		"registration": "gr11wer",
-		"location": "Main Car Park",
 		"arrivalDate": "2022-04-16",
 		"arrivalTime": "13:25",
 		"departureDate": "2022-04-23",
 		"departureTime": "15:25",
-		"approved": true
+		"carPark": null,
+		"parkingSpace": null,
+		"chargePrice": null
 	},
 	{
-		"id": 1,
+		"ticketId": 1,
 		"driverId": "0",
-		"registration": "gr11wer",
-		"location": "Main Car Park",
 		"arrivalDate": "2022-04-29",
 		"arrivalTime": "15:25",
 		"departureDate": "2022-05-03",
 		"departureTime": "15:25",
-		"approved": true
+		"carPark": null,
+		"parkingSpace": null,
+		"chargePrice": null
 	},
 	{
-		"id": 2,
+		"ticketId": 2,
 		"driverId": "1",
-		"registration": "ht35acw",
-		"location": "Main Car Park",
 		"arrivalDate": "2022-04-17",
 		"arrivalTime": "14:27",
 		"departureDate": "2022-04-23",
 		"departureTime": "13:27",
-		"approved": true
+		"carPark": null,
+		"parkingSpace": null,
+		"chargePrice": null
 	}
 ]

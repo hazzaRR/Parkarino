@@ -31,6 +31,7 @@ async function loginAttempt(event) {
         sessionStorage.setItem('id', json.id);
         sessionStorage.setItem('email', json.email);
         sessionStorage.setItem('name', json.name);
+        sessionStorage.setItem('registration', json.registration);
         sessionStorage.setItem('userType', json.userType);
         sessionStorage.setItem('wallet', json.wallet);
 

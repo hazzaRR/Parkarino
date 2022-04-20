@@ -10,6 +10,7 @@ async function makeRequest(event) {
     const parkingRequest = {
         id: null,
         driverId: sessionStorage.getItem('id'),
+        registration: sessionStorage.getItem('registration'),
         location: formData.elements.namedItem('location').value,
         arrivalDate: formData.elements.namedItem('arrivalDate').value,
         arrivalTime: formData.elements.namedItem('arrivalTime').value,

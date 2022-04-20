@@ -12,9 +12,11 @@ requestsList.addEventListener('click', updateRequest);
 
 async function updateRequest(event) {
 
+    //gets the requestObject that was just clicked on
     const item = event.target;
     const request = item.parentElement;
 
+    //if the accept or decline button was selected, the  request id is fetched from the request object
     if (item.classList[0] == "accept-button" || item.classList[0] == "decline-button") {
 
         const requestId = request.childNodes[0].childNodes[0].innerText;
@@ -35,10 +37,10 @@ async function updateRequest(event) {
             approved: approved
         };
 
-        // turns loginCreds object into JSON string
+        // turns requestDetails object into JSON string
         const serializedMessage = JSON.stringify(requestDetails);
 
-        // posts JSON string to the server at the end point /login
+        // posts JSON string to the server at the end point /admin/requests/response
         const response = await fetch('/admin/requests/response', { method: 'PATCH',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -47,13 +49,51 @@ async function updateRequest(event) {
                         }
                     )
 
-        const json = await response.json();
+        //gets the request that was just updated
+        const ticketToCreate = await response.json();
 
-        console.log(json);
+        //if the request was approved, a ticket is generated for that request
+        if(ticketToCreate.approved === true) {
+            await createTicket(ticketToCreate);
+        }
 
+        //removes the requestObject from the DOM
         request.remove();
 
     }
+}
+
+async function createTicket(ticketRequest) {
+
+
+    //creates a new ticket object
+    const newTicket = {
+        ticketId: null,
+        driverId: ticketRequest.driverId,
+        arrivalDate: ticketRequest.arrivalDate,
+        arrivalTime: ticketRequest.arrivalTime,
+        departureDate: ticketRequest.departureDate,
+        departureTime: ticketRequest.departureTime,
+        carPark: null,
+        parkingSpace: null,
+        chargePrice: null
+    };
+
+        // turns ticket object into JSON string
+        const serializedMessage = JSON.stringify(newTicket);
+        
+
+        // posts JSON string to the server at the end point ticket/createTicket
+        const response = await fetch('/ticket/createTicket', { method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            body: serializedMessage
+                        }
+                    )
+    
+        const json = await response.json();
+
 }
 
 function filterTodo(event) {

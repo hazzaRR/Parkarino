@@ -31,6 +31,7 @@ router.post('/',jsonParser, (req, res) => {
               id: users.user[i]._id,
               email: users.user[i].email,
               name: users.user[i].name,
+              registration: users.user[i].registration,
               userType: users.user[i].user_Type,
               wallet: users.user[i].wallet
             }
