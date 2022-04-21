@@ -1,19 +1,6 @@
 {
 	"user": [
 		{
-			"_id": 0,
-			"email": "NannieCasey@recognia.com",
-			"username": "NannieCasey990",
-			"name": "Nannie Casey",
-			"password": "Ramos123",
-			"registration": "gr11wer",
-			"street": "Nassau Avenue",
-			"city": "Bellfountain",
-			"postcode": "GY6085",
-			"user_Type": "Driver",
-			"wallet": 100
-		},
-		{
 			"_id": 1,
 			"email": "MonroeLane@cosmosis.com",
 			"username": "MonroeLane_9869",
@@ -52,5 +39,8 @@
 			"user_Type": "Driver",
 			"wallet": 100
 		}
+	],
+	"blacklist": [
+		"NannieCasey@recognia.com"
 	]
 }

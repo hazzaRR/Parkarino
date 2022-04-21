@@ -24,12 +24,14 @@ const messageRouter = require('./routes/messagesRouter');
 const paymentRouter = require('./routes/paymentRouter');
 const adminRouter = require('./routes/adminRouter');
 const addCreditRouter = require('./routes/addCreditRouter');
+const accountManRouter = require('./routes/accountManRouter');
 const viewCarparkRouter = require('./routes/viewCarparkRouter');
 
 app.use('/login', loginRouter);
 app.use('/register', regRouter);
 app.use('/request', requestRouter);
 app.use('/ticket', ticketRouter);
+app.use('/accountMan', accountManRouter);
 app.use('/ManagerPark', managerRouter);
 app.use('/messages', messageRouter);
 app.use('/payment', paymentRouter);

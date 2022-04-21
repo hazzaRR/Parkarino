@@ -1,10 +1,10 @@
 {
-	"locations":[
+	"locations": [
 		{
 			"_id": 0,
 			"location": "UEA Big Car Park",
-			"num_Spaces" : 32,
-			"freeSpaces" : 32,
+			"num_Spaces": 32,
+			"freeSpaces": 32,
 			"space": [
 				{
 					"_id": 0,
@@ -203,8 +203,8 @@
 		{
 			"_id": 0,
 			"location": "UEA West Car Park",
-			"num_Spaces" : 32,
-			"freeSpaces" : 32,
+			"num_Spaces": 32,
+			"freeSpaces": 32,
 			"space": [
 				{
 					"_id": 0,
@@ -397,6 +397,50 @@
 					"available": true,
 					"occupier": null,
 					"location": "UEA West Car Park"
+				}
+			]
+		},
+		{
+			"_id": 2,
+			"location": "test car park",
+			"num_spaces": "6",
+			"freespaces": "6",
+			"space": [
+				{
+					"ID": 0,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
+				},
+				{
+					"ID": 1,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
+				},
+				{
+					"ID": 2,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
+				},
+				{
+					"ID": 3,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
+				},
+				{
+					"ID": 4,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
+				},
+				{
+					"ID": 5,
+					"available": true,
+					"occupier": null,
+					"location": "test car park"
 				}
 			]
 		}
