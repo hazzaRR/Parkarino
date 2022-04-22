@@ -16,7 +16,7 @@ router.get('/manageAccount', (req, res) => {
     res.status(200).json(data.user);
 });
 
-router.patch('/ban', jsonParser, (req, res) => {
+router.post('/ban', jsonParser, (req, res) => {
     let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
     let users = JSON.parse(data);
     for(i = 0; i < users.user.length; i++) {
