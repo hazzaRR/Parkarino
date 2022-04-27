@@ -14,12 +14,14 @@ router.post('/',jsonParser, (req, res) => {
     let parks = JSON.parse(data);
     console.log(req.body);
     for(let i = 0; i < parks.locations.length; i++) {
-        if (parks.locations[i].location === req.body.location){
+        if (parks.locations[i].name === req.body.name){
             console.log("Already exists");
             return res.status(300);
         }
     }
-
+    if(!req.body.location){
+        return res.status(400)
+    }
     req.body._id = parks.locations.length;
     parks.locations.push(req.body);
     data = JSON.stringify(parks,null, '\t');

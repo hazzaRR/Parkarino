@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <title>Manage Car Parks</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="manager.js" defer></script>
+    <script src="parkManager.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="./maps/style.css" />
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCzUVNr8Omhr8BT-41g3SZAsGSStWv4iQ&callback=initMap&v=weekly"
+            defer
+    ></script>
 </head>
 
 <body>
@@ -18,6 +23,7 @@
             <input class="u-full-width" type="number" name="spaces" placeholder="Spaces" id="Spaces">
             <br>
             <input type="submit" id="create" value="create">
+            <div id="map"></div>
         </form>
     </div>
     <br>
