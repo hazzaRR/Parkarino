@@ -70,13 +70,11 @@ async function createTicket(ticketRequest) {
     const newTicket = {
         ticketId: null,
         driverId: ticketRequest.driverId,
-        arrivalDate: ticketRequest.arrivalDate,
         arrivalTime: ticketRequest.arrivalTime,
-        departureDate: ticketRequest.departureDate,
         departureTime: ticketRequest.departureTime,
         carPark: null,
         parkingSpace: null,
-        chargePrice: calculateParkingCharge(ticketRequest.arrivalDate, ticketRequest.arrivalTime, ticketRequest.departureDate, ticketRequest.departureTime)
+        chargePrice: calculateParkingCharge(ticketRequest.arrivalTime, ticketRequest.departureTime)
     };
 
         // turns ticket object into JSON string
@@ -96,10 +94,10 @@ async function createTicket(ticketRequest) {
 
 }
 
-function calculateParkingCharge(arrivalDate, arrivalTime, departureDate, departureTime) {
+function calculateParkingCharge(arrivalTime, departureTime) {
     //create two date objects and calculate the difference in time in hours
-    const startTime = new Date(`${arrivalDate} ${arrivalTime}`);
-    const endTime = new Date(`${departureDate} ${departureTime}`);
+    const startTime = new Date(arrivalTime);
+    const endTime = new Date(departureTime);
 
     differenceInHours = (endTime - startTime)/ 60 / 60 / 1000;
 
@@ -205,12 +203,12 @@ async function getRequests(event) {
         requestDetails.appendChild(requestId);
 
         const arrivalDate = document.createElement('li');
-        arrivalDate.innerText = "Arrival Date: " + request.arrivalDate + ", Arrival Time: " + request.arrivalTime;
+        arrivalDate.innerText = "Arrival Time: " + request.arrivalTime;
         arrivalDate.classList.add('request-item');
         requestDetails.appendChild(arrivalDate);
 
         const departureDate = document.createElement('li');
-        departureDate.innerText = "Departure Date: " + request.departureDate + ", Departure Time: " + request.departureTime;
+        departureDate.innerText = "Departure Time: " + request.departureTime;
         departureDate.classList.add('request-item');
         requestDetails.appendChild(departureDate);
         

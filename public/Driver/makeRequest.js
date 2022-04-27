@@ -12,9 +12,7 @@ async function makeRequest(event) {
         driverId: sessionStorage.getItem('id'),
         registration: sessionStorage.getItem('registration'),
         location: formData.elements.namedItem('location').value,
-        arrivalDate: formData.elements.namedItem('arrivalDate').value,
         arrivalTime: formData.elements.namedItem('arrivalTime').value,
-        departureDate: formData.elements.namedItem('departureDate').value,
         departureTime: formData.elements.namedItem('departureTime').value,
         approved: null
     };
@@ -37,9 +35,38 @@ async function makeRequest(event) {
 
 }
 
+
+function getMaxDepartureDate() {
+
+    //get the  date value stored in the arrival time ipnput
+    const formData = document.querySelector('#requestForm');
+    const arrivalDateValue = formData.elements.namedItem('arrivalTime').value;
+
+    //make the arrival date value into a date object and create a date object
+    //add 10 days onto that date object to get the max stay date
+    let maxStay = new Date(arrivalDateValue);
+    maxStay.setDate(maxStay.getDate() + 10);
+    
+
+    //put a constraint on the departure date input of a min date of the arrival date and max date of 10 days later
+    const DepartureTimeInput = document.querySelector('#departureTime');
+    DepartureTimeInput.setAttribute("min", arrivalDateValue);
+    DepartureTimeInput.setAttribute("max", maxStay.toISOString().slice(0, 16));
+}
+
 //Selects form element from form.html and adds a loginAttempt event listener
 
 const form = document.querySelector('#requestForm');
 form.addEventListener('submit', makeRequest);
+
+
+//everytime a new date is selected in the arrival input the getMaxDepartureDate is called
+const arrivalTimeInput = document.querySelector('#arrivalTime');
+arrivalTimeInput.addEventListener('change', getMaxDepartureDate);
+
+//sets the minimum date picked by the users to today
+arrivalTimeInput.setAttribute("min", new Date().toISOString().slice(0, 16));
+
+
 
 
