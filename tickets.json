@@ -8,7 +8,7 @@
 		"departureTime": "15:25",
 		"carPark": null,
 		"parkingSpace": null,
-		"chargePrice": null
+		"chargePrice": 5500
 	},
 	{
 		"ticketId": 1,
@@ -19,7 +19,7 @@
 		"departureTime": "15:25",
 		"carPark": null,
 		"parkingSpace": null,
-		"chargePrice": null
+		"chargePrice": 3500
 	},
 	{
 		"ticketId": 2,
@@ -30,6 +30,6 @@
 		"departureTime": "13:27",
 		"carPark": null,
 		"parkingSpace": null,
-		"chargePrice": null
+		"chargePrice": 4500
 	}
 ]

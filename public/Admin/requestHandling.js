@@ -76,7 +76,7 @@ async function createTicket(ticketRequest) {
         departureTime: ticketRequest.departureTime,
         carPark: null,
         parkingSpace: null,
-        chargePrice: null
+        chargePrice: calculateParkingCharge(ticketRequest.arrivalDate, ticketRequest.arrivalTime, ticketRequest.departureDate, ticketRequest.departureTime)
     };
 
         // turns ticket object into JSON string
@@ -93,6 +93,63 @@ async function createTicket(ticketRequest) {
                     )
     
         const json = await response.json();
+
+}
+
+function calculateParkingCharge(arrivalDate, arrivalTime, departureDate, departureTime) {
+    //create two date objects and calculate the difference in time in hours
+    const startTime = new Date(`${arrivalDate} ${arrivalTime}`);
+    const endTime = new Date(`${departureDate} ${departureTime}`);
+
+    differenceInHours = (endTime - startTime)/ 60 / 60 / 1000;
+
+    let parkingPrice;
+    
+    //gets a parkingPrice based off the number of hours you are parked in the car park
+    if (differenceInHours <= 2) {
+        parkingPrice = 200;
+    }
+    else if (differenceInHours <= 5) {
+        parkingPrice = 500;
+    }
+    else if (differenceInHours <= 8) {
+        parkingPrice = 800;
+    }
+    else if (differenceInHours <= 12) {
+        parkingPrice = 1000;
+    }
+    else if (differenceInHours <= 24) {
+        parkingPrice = 2000;
+    }
+    else if (differenceInHours <= 48) {
+        parkingPrice = 2500;
+    }
+    else if (differenceInHours <= 72) {
+        parkingPrice = 3000;
+    }
+    else if (differenceInHours <= 96) {
+        parkingPrice = 3500;
+    }
+    else if (differenceInHours <= 120) {
+        parkingPrice = 4000;
+    }
+    else if (differenceInHours <= 144) {
+        parkingPrice = 4500;
+    }
+    else if (differenceInHours <= 168) {
+        parkingPrice = 5000;
+    }
+    else if (differenceInHours <= 192) {
+        parkingPrice = 5500;
+    }
+    else if (differenceInHours <= 216) {
+        parkingPrice = 6000;
+    }
+    else {
+        parkingPrice = 6500;
+    }
+
+    return parkingPrice;
 
 }
 
