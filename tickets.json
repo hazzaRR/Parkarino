@@ -1,35 +1,38 @@
 [
 	{
 		"ticketId": 0,
-		"driverId": "0",
-		"arrivalDate": "2022-04-16",
-		"arrivalTime": "13:25",
-		"departureDate": "2022-04-23",
-		"departureTime": "15:25",
+		"driverId": "1",
+		"arrivalTime": "2022-04-29T13:05",
+		"departureTime": "2022-05-09T11:05",
+		"carPark": null,
+		"parkingSpace": null,
+		"chargePrice": 6500
+	},
+	{
+		"ticketId": 1,
+		"driverId": "1",
+		"arrivalTime": "2022-05-02T18:05",
+		"departureTime": "2022-05-12T14:05",
+		"carPark": null,
+		"parkingSpace": null,
+		"chargePrice": 6500
+	},
+	{
+		"ticketId": 2,
+		"driverId": "2",
+		"arrivalTime": "2022-05-11T13:06",
+		"departureTime": "2022-05-19T13:06",
 		"carPark": null,
 		"parkingSpace": null,
 		"chargePrice": 5500
 	},
 	{
-		"ticketId": 1,
-		"driverId": "0",
-		"arrivalDate": "2022-04-29",
-		"arrivalTime": "15:25",
-		"departureDate": "2022-05-03",
-		"departureTime": "15:25",
+		"ticketId": 3,
+		"driverId": "2",
+		"arrivalTime": "2022-05-25T13:06",
+		"departureTime": "2022-05-30T13:06",
 		"carPark": null,
 		"parkingSpace": null,
-		"chargePrice": 3500
-	},
-	{
-		"ticketId": 2,
-		"driverId": "1",
-		"arrivalDate": "2022-04-17",
-		"arrivalTime": "14:27",
-		"departureDate": "2022-04-23",
-		"departureTime": "13:27",
-		"carPark": null,
-		"parkingSpace": null,
-		"chargePrice": 4500
+		"chargePrice": 4000
 	}
 ]
