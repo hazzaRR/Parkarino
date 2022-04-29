@@ -1,3 +1,50 @@
+async function messageHistory(event)
+{
+    userInfo = {email : sessionStorage.getItem('email')}
+    const serializedMessage = JSON.stringify(userInfo);
+    // load message history (user -> driver)
+    const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
+
+    const messageHistory_json = await messageHistory_res.json();
+    //messageHistory_str = messageHistory_json.replace(/[^a-zA-Z, ]/g, ""); // strip all specials except comma,spaces
+    //const options = carparks_str.split(",");
+    //console.log(carparks_str);
+
+    const conversation = new Messaging(1);
+    const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
+    let messageHistory = JSON.parse(messageHistory_json)
+
+    if(messageHistory_res.status == 200)
+    {
+        if (messageHistory.alert != "no history")
+        {
+            console.log(messageHistory)
+            for(i = 0; i < messageHistory.length; i++) 
+            {
+                message = messageHistory[i]
+                //console.log(messageHistory_json[i])
+                var date = new Date(message.date * 1000);
+                if(message.type == "driver"){sender = sessionStorage.getItem("name"); recipient = "Admin"}
+                else{sender = "Admin"; recipient = sessionStorage.getItem("name")}
+                raw_str = message.id + " " + message.message + " " + String(date.toLocaleDateString(undefined, options)) + " " + String(date.toLocaleTimeString('en-UK')) + " " + true + " " + sender + " " + recipient
+                console.log(raw_str)
+                msg = new Message(message.id, message.message, date.toLocaleDateString("en-UK", options), date.toLocaleTimeString('en-UK'), true, sender, recipient)
+                conversation.sendMessage(message);
+            }
+        }
+        else
+        {
+            document.getElementById('alert_box').innerHTML = "You must be logged in to view the message page!";
+        }
+    }
+    else{
+        para = document.createElement("p");
+        para.innerText = "Start a conversation...";
+        var element = document.getElementById("alert_box");
+        element.appendChild(para);
+    }
+    displayMessages(conversation);
+}
 
 /* messaging class that stores all the messages between one driver and the admin */
 class Messaging {
@@ -148,7 +195,7 @@ const createMessage = (message) => {
     message_div.append(messsage_time);
 
 
-    if (message.sender == "user") {
+    if (message.sender != "admin") {
         message_div.className = "message-box darker";
         message_avatar.className = "right"
         messsage_time.className = "time-left";
@@ -159,28 +206,6 @@ const createMessage = (message) => {
     }
 
     chat_box.appendChild(message_div);
-
 }
 
-const conversation1 = new Messaging(1);
-
-
-const message1 = new Message(1, "hi can i book a spot pls?", "19/03/2022", "12:01", true, "user", 12);
-const message2 = new Message(2, "yeah sure", "19/03/2022", "12:21", true, "admin", 1);
-const message3 = new Message(3, "okay thank you", "19/03/2022", "12:23", true, "user", 12);
-const message4 = new Message(4, "can i got a spot in sports park", "19/03/2022", "12:30", true, "user", 12);
-const message5 = new Message(5, "Yes, i can do that, what time would u like that for?", "19/03/2022", "12:34", true, "admin", 1);
-const message6 = new Message(6, "could that be for 7pm pls","19/03/2022", "13:01", true, "user", 12);
-const message7 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "admin", 1);
-
-
-conversation1.sendMessage(message1);
-conversation1.sendMessage(message2);
-conversation1.sendMessage(message3);
-conversation1.sendMessage(message4);
-conversation1.sendMessage(message5);
-conversation1.sendMessage(message6);
-conversation1.sendMessage(message7);
-
-
-displayMessages(conversation1);
+window.addEventListener('load', messageHistory);

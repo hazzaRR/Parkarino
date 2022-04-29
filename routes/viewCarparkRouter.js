@@ -51,7 +51,7 @@ router.get('/all-carparks',jsonParser, (req, res) => {
     let carparks = JSON.parse(data);
     carparksData = [];
     for(i = 0; i < carparks.locations.length; i++) {
-        carparksData.push((carparks.locations[i].location));
+        carparksData.push((carparks.locations[i].name));
     }
     complete = true
     data = JSON.stringify(carparksData,null, '\t');
