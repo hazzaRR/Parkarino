@@ -1,7 +1,7 @@
 {
 	"user": [
 		{
-			"_id": 1,
+			"_id": 0,
 			"email": "MonroeLane@cosmosis.com",
 			"username": "MonroeLane_9869",
 			"name": "Monroe Lane",
@@ -14,7 +14,7 @@
 			"wallet": 228
 		},
 		{
-			"_id": 2,
+			"_id": 1,
 			"email": "ballerbetty@quonk.com",
 			"username": "BettyLancaster5980",
 			"name": "Betty Lancaster",
@@ -27,7 +27,7 @@
 			"wallet": 300
 		},
 		{
-			"_id": 3,
+			"_id": 2,
 			"email": "BlancaGeorge@geekmosis.com",
 			"username": "BlancaGeorge655",
 			"name": "Blanca George",
@@ -37,6 +37,19 @@
 			"city": "Tyro",
 			"postcode": "JP2410",
 			"user_Type": "Driver",
+			"wallet": 100
+		},
+		{
+			"_id": 3,
+			"email": "admin@parkerino.co.uk",
+			"username": "John_smith_2022",
+			"name": "John Smith",
+			"password": "imtheadmin",
+			"registration": "testr3g",
+			"street": "1 Main Street",
+			"city": "Norwich",
+			"postcode": "NR1 1NI",
+			"user_Type": "Admin",
 			"wallet": 100
 		}
 	],
