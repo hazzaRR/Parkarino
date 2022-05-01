@@ -42,6 +42,6 @@
 		"location": "Sports Park",
 		"arrivalTime": "2022-04-30T20:02",
 		"departureTime": "2022-05-06T20:02",
-		"approved": null
+		"approved": true
 	}
 ]

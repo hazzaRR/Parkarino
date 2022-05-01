@@ -74,12 +74,14 @@ async function addMessage(event)
 
     if(add_message_res.status == 200)
     {
-        window.location.href = "/messages";
+        //window.location.href = "/messages";
+        messageHistory
     }
     else
     {
         console.log("Add-message was unsuccessful!")
-        window.location.href = "/messages";
+        //window.location.href = "/messages";
+        messageHistory
     }
 }
 
@@ -233,7 +235,7 @@ const createMessage = (message) => {
     const messsage_time = document.createElement("span");
     messsage_time.className = "message_time";
     if (message.read){readText = "read";}else{readText="delivered"}
-    messsage_time.textContent = message.time +" - " + readText;
+    messsage_time.textContent = message.sender + " ~ " + message.time +" ~ " + readText;
 
     message_div.append(message_avatar);
     message_div.append(message_text);
