@@ -4,7 +4,7 @@
 		"driverId": "1",
 		"arrivalTime": "2022-04-29T13:05",
 		"departureTime": "2022-05-09T11:05",
-		"carPark": null,
+		"carPark": "UEA Test",
 		"parkingSpace": null,
 		"chargePrice": 6500
 	},
@@ -13,7 +13,7 @@
 		"driverId": "1",
 		"arrivalTime": "2022-05-02T18:05",
 		"departureTime": "2022-05-12T14:05",
-		"carPark": null,
+		"carPark": "UEA Test",
 		"parkingSpace": null,
 		"chargePrice": 6500
 	},
@@ -22,7 +22,7 @@
 		"driverId": "2",
 		"arrivalTime": "2022-05-11T13:06",
 		"departureTime": "2022-05-19T13:06",
-		"carPark": null,
+		"carPark": "UEA West",
 		"parkingSpace": null,
 		"chargePrice": 5500
 	},
@@ -31,7 +31,7 @@
 		"driverId": "2",
 		"arrivalTime": "2022-05-25T13:06",
 		"departureTime": "2022-05-30T13:06",
-		"carPark": null,
+		"carPark": "UEA East",
 		"parkingSpace": null,
 		"chargePrice": 4000
 	}
