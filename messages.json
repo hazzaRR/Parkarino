@@ -1,52 +1,82 @@
 {
-    "conversations" : [
-        {
-            "user": "MonroeLane@cosmosis.com",
-            "history":
-            [
-                {
-                    "id" : 2,
-                    "type" : "admin",
-                    "date" : "1659609273",
-                    "message" : "Yes there are 15 disabled parking spaces in the south car park. all of which are free."
-                },
-                {   
-                    "id" : 1,
-                    "type" : "driver",
-                    "date" : "1659607960",
-                    "message" : "Hello is there disabled parking at the South car park?"
-                },
-                {
-                    "id" : 3,
-                    "type" : "driver",
-                    "date" : "1659609419",
-                    "message" : "Good, thank you very much."
-                }
-            ]
-        },
-        {
-            "user": "BlancaGeorge@geekmosis.com",
-            "history":
-            [
-                {
-                    "id" : 1,
-                    "type" : "driver",
-                    "date" : "1662365474",
-                    "message" :"Good morning, how far is the walk from the west car park to the new science building"
-                },
-                {
-                    "id" : 2,
-                    "type" : "admin",
-                    "date" : "1662365735",
-                    "message" : "it takes about 8 mins to walk from that car park to new sci building"
-                },
-                {
-                    "id" : 3,
-                    "type" : "driver",
-                    "date" : "1662367055",
-                    "message" : "Okay, much appreciated! thank you"
-                }
-            ]
-        }
-    ]
+	"conversations": [
+		{
+			"user": "MonroeLane@cosmosis.com",
+			"history": [
+				{
+					"id": 2,
+					"type": "admin",
+					"date": "1651353471",
+					"read": true,
+					"message": "Yes there are 15 disabled parking spaces in the south car park. all of which are free."
+				},
+				{
+					"id": 1,
+					"type": "driver",
+					"date": "1651353393",
+					"read": true,
+					"message": "Hello is there disabled parking at the South car park?"
+				},
+				{
+					"id": 3,
+					"type": "driver",
+					"date": "1651353550",
+					"read": true,
+					"message": "Good, thank you very much."
+				},
+				{
+					"id": 4,
+					"type": "driver",
+					"date": "1651353700",
+					"read": true,
+					"message": ":)"
+				},
+				{
+					"id": 5,
+					"type": "driver",
+					"date": "1651354931",
+					"read": false,
+					"message": "cheers"
+				}
+			]
+		},
+		{
+			"user": "BlancaGeorge@geekmosis.com",
+			"history": [
+				{
+					"id": 1,
+					"type": "driver",
+					"date": "1662365474",
+					"read": true,
+					"message": "Good morning, how far is the walk from the west car park to the new science building"
+				},
+				{
+					"id": 2,
+					"type": "admin",
+					"date": "1662365735",
+					"read": true,
+					"message": "it takes about 8 mins to walk from that car park to new sci building"
+				},
+				{
+					"id": 3,
+					"type": "driver",
+					"date": "1662367055",
+					"read": true,
+					"message": "Okay, much appreciated! thank you"
+				}
+			]
+		},
+		{
+			"user": "ballerbetty@quonk.com",
+			"history": [
+				{
+					"id": 0,
+					"type": "Driver",
+					"date": "1651353937",
+					"read": false,
+					"message": "I currently ride a scooter, is there parking for me?? and my dogs, 8"
+				}
+			]
+		}
+	]
 }

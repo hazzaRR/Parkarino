@@ -28,6 +28,9 @@ async function register(event) {
     if (response.status === 200) {
         console.log("Email got saved");
     }
+    if (response.status === 500) {
+        console.log("User is banned");
+    }
     else {
         document.getElementById('test').innerHTML = "Email or username already exists!";
     }

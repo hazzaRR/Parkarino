@@ -15,4 +15,9 @@ router.get('/getPins', (req, res) => {
     res.status(200).json(data.locations);
 });
 
+router.get('/getTicks', (req, res) => {
+    let data = fs.readFileSync(path.join(__dirname,'..','tickets.json'), {encoding: 'utf8', flag:'r'});
+    data = JSON.parse(data);
+    res.status(200).json(data);
+});
 module.exports = router;

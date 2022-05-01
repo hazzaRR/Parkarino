@@ -1,15 +1,12 @@
+// retrieve message history on load of page
 async function messageHistory(event)
 {
     userInfo = {email : sessionStorage.getItem('email')}
     const serializedMessage = JSON.stringify(userInfo);
     // load message history (user -> driver)
     const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
-
     const messageHistory_json = await messageHistory_res.json();
-    //messageHistory_str = messageHistory_json.replace(/[^a-zA-Z, ]/g, ""); // strip all specials except comma,spaces
-    //const options = carparks_str.split(",");
-    //console.log(carparks_str);
-
+    
     const conversation = new Messaging(1);
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
     let messageHistory = JSON.parse(messageHistory_json)
@@ -24,26 +21,66 @@ async function messageHistory(event)
                 message = messageHistory[i]
                 //console.log(messageHistory_json[i])
                 var date = new Date(message.date * 1000);
-                if(message.type == "driver"){sender = sessionStorage.getItem("name"); recipient = "Admin"}
-                else{sender = "Admin"; recipient = sessionStorage.getItem("name")}
-                raw_str = message.id + " " + message.message + " " + String(date.toLocaleDateString(undefined, options)) + " " + String(date.toLocaleTimeString('en-UK')) + " " + true + " " + sender + " " + recipient
+                if(message.type == "driver")
+                {
+                    sender = sessionStorage.getItem("name"); 
+                    recipient = "admin";
+                }
+                else
+                {
+                    sender = "admin"; 
+                    recipient = sessionStorage.getItem("name");
+                }
+                raw_str = message.id + " " + message.message + " " + String(date.toLocaleDateString(undefined, options)) + " " + String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })) + " " + message.read + " " + sender + " " + recipient
                 console.log(raw_str)
-                msg = new Message(message.id, message.message, date.toLocaleDateString("en-UK", options), date.toLocaleTimeString('en-UK'), true, sender, recipient)
-                conversation.sendMessage(message);
+                msg = new Message(message.id, message.message, String(date.toLocaleDateString(undefined, options)), String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })), message.read, sender, recipient)
+                conversation.sendMessage(msg);
             }
         }
         else
         {
-            document.getElementById('alert_box').innerHTML = "You must be logged in to view the message page!";
+            para = document.createElement("p");
+            para.innerText = "Start a conversation...";
+            var element = document.getElementById("alert_box");
+            element.appendChild(para);
         }
     }
-    else{
-        para = document.createElement("p");
-        para.innerText = "Start a conversation...";
-        var element = document.getElementById("alert_box");
-        element.appendChild(para);
+    else
+    {
+        document.getElementById('alert_box').innerHTML = "You must be logged in to view the message page!";
     }
+    //const message1 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "user", 1);
+
+
+    //conversation.sendMessage(message1);
+
     displayMessages(conversation);
+
+}
+// send a new message/add it to db
+async function addMessage(event)
+{
+    const msgData = document.querySelector('#send_message_box');
+    if (sessionStorage.getItem("userType") == "admin")
+    {
+        messageInfo = {email : sessionStorage.getItem("email"), }
+    }
+    currentDate = new Date()  
+    messageInfo = {sender : sessionStorage.getItem("email"), recipient : "admin", id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
+    const serializedMessage = JSON.stringify(messageInfo);
+    // save to db ~ send message
+    const add_message_res = await fetch('/messages/add-message', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
+    const add_message_json = await  add_message_res.json();
+
+    if(add_message_res.status == 200)
+    {
+        window.location.href = "/messages";
+    }
+    else
+    {
+        console.log("Add-message was unsuccessful!")
+        window.location.href = "/messages";
+    }
 }
 
 /* messaging class that stores all the messages between one driver and the admin */
@@ -183,12 +220,20 @@ const createMessage = (message) => {
     const message_div = document.createElement("div")
     
     const message_avatar = document.createElement("img");
-    message_avatar.src = "Messaging/default-avatar.png";
+    if (message.sender == "admin")
+    {
+        message_avatar.src = "Messaging/admin.png";
+    }
+    else
+    {
+        message_avatar.src = "Messaging/default-avatar.png";
+    }
     const message_text = document.createElement("p");
     message_text.textContent = message.message
     const messsage_time = document.createElement("span");
     messsage_time.className = "message_time";
-    messsage_time.textContent = message.time;
+    if (message.read){readText = "read";}else{readText="delivered"}
+    messsage_time.textContent = message.time +" - " + readText;
 
     message_div.append(message_avatar);
     message_div.append(message_text);
@@ -207,5 +252,6 @@ const createMessage = (message) => {
 
     chat_box.appendChild(message_div);
 }
-
+const form = document.querySelector('#send_message_box');
+form.addEventListener('submit', addMessage);
 window.addEventListener('load', messageHistory);
