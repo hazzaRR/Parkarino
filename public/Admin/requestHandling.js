@@ -203,12 +203,12 @@ async function getRequests(event) {
         requestDetails.appendChild(requestId);
 
         const arrivalDate = document.createElement('li');
-        arrivalDate.innerText = "Arrival Time: " + request.arrivalTime;
+        arrivalDate.innerText = "Arrival Time: " + request.arrivalTime.replace('T', ' ');
         arrivalDate.classList.add('request-item');
         requestDetails.appendChild(arrivalDate);
 
         const departureDate = document.createElement('li');
-        departureDate.innerText = "Departure Time: " + request.departureTime;
+        departureDate.innerText = "Departure Time: " + request.departureTime.replace('T', ' ');
         departureDate.classList.add('request-item');
         requestDetails.appendChild(departureDate);
         
