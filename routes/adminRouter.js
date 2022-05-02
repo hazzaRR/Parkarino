@@ -17,6 +17,10 @@ router.get('/requests', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','Admin','manageRequest.html'));
 
 });
+router.get('/inbox', (req, res) => {
+    res.sendFile(path.join(__dirname,'..','public','Admin','inbox.html'));
+
+});
 
 router.get('/requests/manageRequests', (req, res) => {
 

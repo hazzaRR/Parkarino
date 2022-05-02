@@ -5,10 +5,49 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 const _db = path.join(__dirname,'..','messages.json');
+const users_db = path.join(__dirname,'..','users_db.json');
 
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'..','public','Messaging','message.html'));
+});
+
+
+router.get('/get-users', (req, res) => {
+    //let complete = false;
+    // message history database
+    let msg_data = fs.readFileSync(_db, {encoding: 'utf8', flag:'r'});
+    let msgHist = JSON.parse(msg_data);
+    //registered users database
+    let user_data = fs.readFileSync(users_db, {encoding: 'utf8', flag:'r'});
+    let allUsers = JSON.parse(user_data);
+
+    let msgHistUsers = []
+    //compile active users (i.e. with a conversation history)
+    for (let i = 0; i < msgHist.conversations.length; i++)
+    {
+        // see if user has unread messages - append to push as a notif
+        details = ""
+        
+        for (let j = 0; j < msgHist.conversations[i].history.length; j++)
+        {
+            console.log(msgHist.conversations[i].history[j].read)
+            if(msgHist.conversations[i].history[j].read == false){details = " ~ new unread messages"; break}
+        }
+        msgHistUsers.push((msgHist.conversations[i].user + details));
+    }
+    for (let i = 0; i < allUsers.user.length; i++)
+    {
+        if(!hasMessageHist(allUsers.user[i].email))
+        {
+            msgHistUsers.push(allUsers.user[i].email + "~ no message history")
+        }
+    }
+
+    //return a combined json of users
+    data = JSON.stringify(msgHistUsers, null, '\t');
+    console.log(data)
+    return res.status(200).json(data);
 });
 
 //add a message to a database
@@ -101,6 +140,20 @@ router.post('/message-history',jsonParser, (req, res) => {
         return res.status(401).json(data);
     }
 });
+
+function hasMessageHist(email)
+{
+    let msg_data = fs.readFileSync(_db, {encoding: 'utf8', flag:'r'});
+    let msgHist = JSON.parse(msg_data);
+
+    msgHistUsers = {}
+    //compile active users (i.e. with a conversation history)
+    for (let i = 0; i < msgHist.conversations.length; i++)
+    {
+       if(msgHist.conversations[i].user == email){return true}
+    }
+    return false;
+}
 
 function getDateOrder(prop)
 {
