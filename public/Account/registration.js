@@ -6,14 +6,15 @@ async function register(event) {
     const registrat = {
         _id: 0,
         email: getForm.elements.namedItem('email').value,
-        name: getForm.elements.namedItem('Name').value,
         username: getForm.elements.namedItem('Username').value,
+        name: getForm.elements.namedItem('Name').value,
+        password: getForm.elements.namedItem('password').value,
         registration: getForm.elements.namedItem('Registration').value,
         street: getForm.elements.namedItem('Street').value,
         city:getForm.elements.namedItem('City').value,
         postcode: getForm.elements.namedItem('Postcode').value,
-        userType: "Driver",
-        password: getForm.elements.namedItem('password').value,
+        user_Type: "Driver",
+        wallet:500,
     };
 
     const serializedMessage = JSON.stringify(registrat);
