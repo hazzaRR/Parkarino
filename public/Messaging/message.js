@@ -4,18 +4,27 @@ async function messageHistory(event)
     userInfo = {email : sessionStorage.getItem('email')}
     const serializedMessage = JSON.stringify(userInfo);
     // load message history (user -> driver)
-    const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
+    const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage});
     const messageHistory_json = await messageHistory_res.json();
     
     const conversation = new Messaging(1);
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
-    let messageHistory = JSON.parse(messageHistory_json)
+    console.log(sessionStorage.getItem('name'))
+    let messageHistory = messageHistory_json;
 
     if(messageHistory_res.status == 200)
     {
-        if (messageHistory.alert != "no history")
+        if(messageHistory.alert == "not logged in")
         {
-            console.log(messageHistory)
+            para = document.createElement("p");
+            para.innerText = "You must be logged in to view the message page!";
+            var element = document.getElementById("alert_box");
+            element.appendChild(para);
+        }
+        else if (messageHistory.alert != "no history") // If legitimate user and has a history
+        {
+            let messageHistory = JSON.parse(messageHistory_json);
+            //console.log(messageHistory)
             for(i = 0; i < messageHistory.length; i++) 
             {
                 message = messageHistory[i]
@@ -37,7 +46,7 @@ async function messageHistory(event)
                 conversation.sendMessage(msg);
             }
         }
-        else
+        else if(messageHistory.alert == "no history")
         {
             para = document.createElement("p");
             para.innerText = "Start a conversation...";
@@ -45,17 +54,9 @@ async function messageHistory(event)
             element.appendChild(para);
         }
     }
-    else
-    {
-        document.getElementById('alert_box').innerHTML = "You must be logged in to view the message page!";
-    }
     //const message1 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "user", 1);
-
-
     //conversation.sendMessage(message1);
-
     displayMessages(conversation);
-
 }
 // send a new message/add it to db
 async function addMessage(event)
