@@ -68,17 +68,23 @@ router.patch('/requests/response', jsonParser, (req, res) => {
 router.patch('/updateSpace',jsonParser, (req, res) => {
 
 
-    console.log(req.body.carpark);
-
     let data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
     let carparks = JSON.parse(data);
     for(i = 0; i < carparks.locations.length; i++) {
         if (carparks.locations[i].name == req.body.carpark) {
             for (j = 0 ; j < carparks.locations[i].space.length; j++) {
+                //changes the carpark to either available or unavailable
                 if (carparks.locations[i].space[j].ID == req.body.parkingSpaceID) {
                     carparks.locations[i].space[j].available = req.body.available;
                     carparks.locations[i].space[j].occupier = req.body.occupier;
                 }
+            }
+
+            if(req.body.available) {
+                carparks.locations[i].freespaces++;
+            }
+            else {
+                carparks.locations[i].freespaces--; 
             }
         }
     }

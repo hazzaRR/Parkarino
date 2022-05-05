@@ -4,7 +4,7 @@
 			"_id": 0,
 			"name": "UEA West",
 			"num_spaces": "15",
-			"freespaces": "15",
+			"freespaces": 15,
 			"location": {
 				"lat": 52.621520155003786,
 				"lng": 1.2324725290527239
