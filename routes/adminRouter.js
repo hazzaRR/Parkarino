@@ -22,6 +22,10 @@ router.get('/inbox', (req, res) => {
 
 });
 
+router.get('/carparks', (req, res) => {
+    res.sendFile(path.join(__dirname,'..','public','Admin','blockSpace.html'));
+});
+
 router.get('/requests/manageRequests', (req, res) => {
 
     let requests = [];
@@ -57,6 +61,31 @@ router.patch('/requests/response', jsonParser, (req, res) => {
     fs.writeFileSync(path.join(__dirname,'..','requests.json'), data,"utf-8");
 
     res.status(200).json(request);;
+});
+
+
+//returns all the free spaces in the carpark
+router.patch('/updateSpace',jsonParser, (req, res) => {
+
+
+    console.log(req.body.carpark);
+
+    let data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
+    let carparks = JSON.parse(data);
+    for(i = 0; i < carparks.locations.length; i++) {
+        if (carparks.locations[i].name == req.body.carpark) {
+            for (j = 0 ; j < carparks.locations[i].space.length; j++) {
+                if (carparks.locations[i].space[j].ID == req.body.parkingSpaceID) {
+                    carparks.locations[i].space[j].available = req.body.available;
+                    carparks.locations[i].space[j].occupier = req.body.occupier;
+                }
+            }
+        }
+    }
+    data = JSON.stringify(carparks,null, '\t');
+    fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data,"utf-8");
+
+    res.status(200).json("Space has been Blocked");
 });
 
 

@@ -97,19 +97,19 @@ select {
   /* Admin request styles */
 
 
-  .requests-container {
+  .requests-container, .OccupiedSpaces-Container {
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
-.requests-list {
+.requests-list, .OccupiedSpaces-list {
     min-width: 30%;
     list-style: none;
 }
 
-.request {
+.request, .occupiedSpace {
     margin: 0.5rem;
     background: white;
     color: black;
@@ -119,7 +119,7 @@ select {
     transition: all 0.5s ease;
 }
 
-.request ul {
+.request ul, .occupiedSpace ul {
     flex: 1;
     list-style: none;
 }
@@ -137,7 +137,7 @@ select {
     background: rgb(36, 240, 36);
 }
 
-.request-item {
+.request-item, .occupiedSpace-item {
     padding: 0rem 0.5rem;
     font-size: 20px;
 }

@@ -49,7 +49,7 @@ async function getCarparks() {
         options.forEach(item => addOptions(item)); // add new select option for each car park
     }
     else {
-        document.getElementById('viewCarparkForm').innerHTML = "~ apparently there are no car parks available :( ~";
+        document.getElementById('requestForm').innerHTML = "~ apparently there are no car parks available :( ~";
     }
 }
 

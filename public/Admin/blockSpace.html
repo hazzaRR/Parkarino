@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkerino</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="/Admin/blockSpace.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Parkerino</h1>
+    </header>
+
+    <main>
+
+        <h2>Block a car park Space</h2>
+
+        <form class="hey" id="blockSpaceForm">
+            <fieldset>
+                <legend>Block a car park Space</legend>
+
+                <label for="carpark">Car Park:</label>
+                <select name="carpark" id="carpark"></select>
+
+                <br>
+
+                <label for="parkingSpace">Parking Space:</label>
+                <select name="parkingSpace" id="parkingSpace"></select>
+
+                <br>
+
+                <input type="submit" class="block-btn" id="block" value="Block">
+            </fieldset>
+
+        </form>
+
+        <h2>Manage Occupied Spaces</h2>
+
+        <div class="OccupiedSpaces-Container" id="OccupiedSpacesContainer">
+            <ul class="OccupiedSpaces-list"></ul>
+        </div>
+
+
+    </main>
+
+    
+</body>
+</html>
