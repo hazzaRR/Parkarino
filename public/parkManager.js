@@ -6,8 +6,8 @@ async function newPark(event) {
     let newPark = {
         _id: 0,
         name: getForm.elements.namedItem('name').value,
-        num_spaces: getForm.elements.namedItem('spaces').value,
-        freespaces: getForm.elements.namedItem('spaces').value,
+        num_spaces: parseInt(getForm.elements.namedItem('spaces').value),
+        freespaces: parseInt(getForm.elements.namedItem('spaces').value),
         location: marker.position,
         space:0
     };
