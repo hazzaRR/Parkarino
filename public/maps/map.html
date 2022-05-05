@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/maps/style.css" />
     <script type="module" src="/maps/modifier.js"></script>
     <script
-            src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=&libraries=geometry&callback=initMap&v=weekly"
             defer
     ></script>
 
@@ -19,6 +19,12 @@
 
 <div class="requests-container">
     <ul class="all-lists"></ul>
+</div>
+
+<div class="nearest_park">
+    <h4>Closest car park to you</h4>
+<div id="map2"></div>
+    <input type="button" onclick="window.location.href = '/requests';" value="Make a request to here">
 </div>
 </body>
 </html>

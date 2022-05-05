@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 router.get('/getPins', (req, res) => {
     let data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
     data = JSON.parse(data);
-    res.status(200).json(data.locations);
+    res.status(200).json(data);
 });
 
 router.get('/getTicks', (req, res) => {
