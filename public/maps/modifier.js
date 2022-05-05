@@ -25,9 +25,9 @@ async function initMap() {
     const infoWindow = new google.maps.InfoWindow();
 
     for(let i =0;i<pins.length;i++){
-        console.log(pins[i].name);
+        console.log(pins[i].location);
         marker.push(new google.maps.Marker({
-            position: pins[i].location,
+            position: new google.maps.LatLng(pins[i].location.lat,pins[i].location.lng),
             title:pins[i].name,
             label:pins[i].name,
             map: map,
@@ -35,19 +35,14 @@ async function initMap() {
         }));
 
     }
+    console.log(marker);
     // marker.addListener("click",() =>{
     //     infoWindow.close();
     //     infoWindow.setContent(marker.getTitle());
     //     infoWindow.open(marker.getMap(), marker);
     // });
-
-
     directionsRenderer.setMap(map);
-
-    //console.log(currentPosition.lat);
-    for (let i =1;i<marker.length;i++) {
-        console.log(google.maps.geometry.spherical.computeDistanceBetween(marker[i].position,marker[i-1].position));
-    }
+    await getClosest();
 }
 async function dropper(){
     let dropdown = document.getElementById('ticket-dropdown');
@@ -59,11 +54,13 @@ async function dropper(){
     const response = await fetch('/viewMap/getTicks')
     const data = await response.json();
     data.forEach(tickets => {
-        let option;
-        option = document.createElement('option');
-        option.text = tickets.arrivalTime;
-        option.value = tickets.ticketId;
-        dropdown.add(option);
+        if (tickets.driverId === sessionStorage.getItem("id")) {
+            let option;
+            option = document.createElement('option');
+            option.text = tickets.arrivalTime;
+            option.value = tickets.ticketId;
+            dropdown.add(option);
+        }
     });
 }
 
@@ -110,16 +107,11 @@ async function showPos(position){
 async function getDir(test){
     await mapDirection();
     let dest;
-
     for (let i = 0; i < marker.length; i++) {
-        console.log("HERE"+i+marker[i].title +test + marker[i].position);
-        if(marker[i].title = test){
-            console.log("HERE"+i+marker[i].title+test +marker[i].position);
-            dest = marker[i].position;
-            break;
+        if(marker[i].title == test){
+            dest = marker[i].getPosition();
         }
     }
-
     let request = {
         origin:currentPosition,
         destination:dest,
@@ -133,8 +125,16 @@ async function getDir(test){
 }
 
 
+async function getClosest(){
+    //console.log(currentPosition.getCurrentPosition());
+    for (let i =1;i<marker.length;i++) {
+        console.log(google.maps.geometry.spherical.computeDistanceBetween(marker[i].position,marker[i-1].position));
+    }
+
+}
 window.initMap = initMap;
 document.addEventListener('DOMContentLoaded', dropper);
 document.addEventListener('DOMContentLoaded', mapDirection);
+
 const allList = document.querySelector('.all-lists');
 document.getElementById('ticket-dropdown').addEventListener('change', function() { loadTicket(this.value);});
