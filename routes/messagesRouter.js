@@ -44,6 +44,8 @@ router.get('/get-users', (req, res) => {
         }
     }
 
+    //msgHistUsers.sort(getActivityOrder(msgHistUsers));
+
     //return a combined json of users
     data = JSON.stringify(msgHistUsers, null, '\t');
     console.log(data)
@@ -52,6 +54,7 @@ router.get('/get-users', (req, res) => {
 
 //add a message to a database
 router.post('/add-message',jsonParser, (req, res) => {
+    if(req.body.sender == null){console.log(req.body.sender == null); msg = {alert : "not logged in"}; return res.status(200).json(msg);}
     let complete = false;
     let found = false;
     let data = fs.readFileSync(_db, {encoding: 'utf8', flag:'r'});
@@ -107,6 +110,7 @@ router.post('/add-message',jsonParser, (req, res) => {
 
 // retrieve message history of a given user and return them to be displayed in chat
 router.post('/message-history',jsonParser, (req, res) => {
+    if(req.body.email == null){console.log(req.body.email == null); msg = {alert : "not logged in"}; return res.status(200).json(msg);}
     let complete = false;
     let data = fs.readFileSync(_db, {encoding: 'utf8', flag:'r'});
     let messaging = JSON.parse(data);
@@ -160,6 +164,20 @@ function getDateOrder(prop)
     return function(a,b)
     {
         if (a[prop] > b[prop])
+        {
+            return 1;
+        } else if (a[prop] < b[prop])
+            {
+                return -1;
+            }
+            return 0;
+    }
+}
+function getActivityOrder(prop)
+{
+    return function(a,b)
+    {
+        if (a[prop].length > b[prop].length)
         {
             return 1;
         } else if (a[prop] < b[prop])
