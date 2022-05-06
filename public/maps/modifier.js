@@ -5,6 +5,7 @@ let map2;
 let directionsRenderer;
 let directionsService;
 let currentPosition;
+let closest;
 async function initMap() {
     const response = await fetch('/viewMap/getPins')
     let pins = await response.json();
@@ -35,14 +36,14 @@ async function initMap() {
         }));
 
     }
-    console.log(marker);
+    //console.log(marker);
     // marker.addListener("click",() =>{
     //     infoWindow.close();
     //     infoWindow.setContent(marker.getTitle());
     //     infoWindow.open(marker.getMap(), marker);
     // });
     directionsRenderer.setMap(map);
-    await getClosest();
+
 }
 async function dropper(){
     let dropdown = document.getElementById('ticket-dropdown');
@@ -102,7 +103,7 @@ async function mapDirection(){
     }
 }
 async function showPos(position){
-    currentPosition = {lat:position.coords.latitude,lng:position.coords.longitude};
+    currentPosition = {"lat":position.coords.latitude,"lng":position.coords.longitude};
 }
 async function getDir(test){
     await mapDirection();
@@ -126,10 +127,30 @@ async function getDir(test){
 
 
 async function getClosest(){
-    //console.log(currentPosition.getCurrentPosition());
-    for (let i =1;i<marker.length;i++) {
-        console.log(google.maps.geometry.spherical.computeDistanceBetween(marker[i].position,marker[i-1].position));
+    await mapDirection();
+
+    let smallest = marker[0];
+    let temp;
+    let temp2 = (google.maps.geometry.spherical.computeDistanceBetween(marker[0].position,currentPosition));
+
+    for (let i =0;i<marker.length;i++) {
+
+        temp = (google.maps.geometry.spherical.computeDistanceBetween(marker[i].position,currentPosition));
+        if(temp<temp2){
+            smallest = marker[i];
+        }
+        temp2 = temp;
     }
+
+    closest = new google.maps.Marker({
+        position: new google.maps.LatLng(smallest.position.lat,smallest.position.lng),
+        title:smallest.title,
+        label:smallest.label,
+        map: map2,
+        optimized: false,
+    });
+
+    console.log(smallest.title);
 
 }
 window.initMap = initMap;
@@ -138,3 +159,4 @@ document.addEventListener('DOMContentLoaded', mapDirection);
 
 const allList = document.querySelector('.all-lists');
 document.getElementById('ticket-dropdown').addEventListener('change', function() { loadTicket(this.value);});
+document.getElementById("calculate").addEventListener("click", getClosest);
