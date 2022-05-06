@@ -99,6 +99,11 @@ router.get('/spaces',jsonParser, (req, res) => {
     }
 });
 
+//returns all the free spaces in the carpark
+router.get('/Freespaces',jsonParser, (req, res) => {
+
+});
+
 //returns all the occupied spaces in the carpark
 router.get('/occupiedSpaces',jsonParser, (req, res) => {
 

@@ -30,8 +30,6 @@ async function updateRequest(event) {
             approved = true;
         }
 
-        console.log(parseInt(requestId.slice(-1)));
-
         const requestDetails = {
             requestId: parseInt(requestId.slice(-1)),
             approved: approved
@@ -65,6 +63,20 @@ async function updateRequest(event) {
 
 async function createTicket(ticketRequest) {
 
+    //need to add manual functionality. Currently can only autoAssign a space
+    const autoOrManual = confirm("Would you like to manually select a space? \nPress OK for Manual Selection or Cancel for Auto Assign")
+    if (autoOrManual) {
+        console.log("gui view")
+    }
+    
+    else {
+        console.log("autoAssigning space");
+    }
+
+    //finds a free space in the carpark to assign to the ticket
+    const autoAssignResponse = await fetch(`/admin/autoAssignSpace?carpark=${ticketRequest.location}&aTime=${ticketRequest.arrivalTime}&dTime=${ticketRequest.departureTime}`)
+    const parkingSpaceDetails = await autoAssignResponse.json()
+
 
     //creates a new ticket object
     const newTicket = {
@@ -72,8 +84,8 @@ async function createTicket(ticketRequest) {
         driverId: ticketRequest.driverId,
         arrivalTime: ticketRequest.arrivalTime,
         departureTime: ticketRequest.departureTime,
-        carPark: null,
-        parkingSpace: null,
+        carPark: parkingSpaceDetails.carpark,
+        parkingSpace: parkingSpaceDetails.parkingSpace,
         chargePrice: calculateParkingCharge(ticketRequest.arrivalTime, ticketRequest.departureTime)
     };
 
