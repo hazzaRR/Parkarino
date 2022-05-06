@@ -7,7 +7,7 @@
     <script src="parkManager.js" defer></script>
     <link rel="stylesheet" type="text/css" href="./maps/style.css" />
     <script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCzUVNr8Omhr8BT-41g3SZAsGSStWv4iQ&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
             defer
     ></script>
 </head>
@@ -20,7 +20,7 @@
             <input class="u-full-width" type="text" name="name" placeholder="Name" id="name">
             <br>
             <label for="Spaces">Spaces available</label>
-            <input class="u-full-width" type="number" name="spaces" placeholder="Spaces" id="Spaces">
+            <input class="u-full-width" type="number" name="spaces" placeholder="Spaces" id="Spaces" step="24" min="24">
             <br>
             <input type="submit" id="create" value="create">
             <div id="map"></div>

@@ -5,7 +5,7 @@
 		"arrivalTime": "2022-04-29T13:05",
 		"departureTime": "2022-05-09T11:05",
 		"carPark": "UEA West",
-		"parkingSpace": null,
+		"parkingSpace": 1,
 		"chargePrice": 6500
 	},
 	{
@@ -14,7 +14,7 @@
 		"arrivalTime": "2022-05-02T18:05",
 		"departureTime": "2022-05-12T14:05",
 		"carPark": "UEA South",
-		"parkingSpace": null,
+		"parkingSpace": 3,
 		"chargePrice": 6500
 	},
 	{
@@ -23,7 +23,7 @@
 		"arrivalTime": "2022-05-11T13:06",
 		"departureTime": "2022-05-19T13:06",
 		"carPark": "UEA West",
-		"parkingSpace": null,
+		"parkingSpace": 9,
 		"chargePrice": 5500
 	},
 	{
@@ -32,7 +32,7 @@
 		"arrivalTime": "2022-05-25T13:06",
 		"departureTime": "2022-05-30T13:06",
 		"carPark": "UEA East",
-		"parkingSpace": null,
+		"parkingSpace": 12,
 		"chargePrice": 4000
 	}
 ]

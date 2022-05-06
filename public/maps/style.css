@@ -12,3 +12,26 @@
     width: 20%;
     /* The width is the width of the web page */
 }
+
+ul{
+    padding: 10px;
+}
+#incorrect {
+    list-style: none;
+    width: 40px;
+    height: 40px;
+    float: left;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: red;
+}
+
+#correct{
+    list-style: none;
+    width: 40px;
+    height: 40px;
+    float: left;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: green;
+}

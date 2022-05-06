@@ -6,6 +6,7 @@ let directionsRenderer;
 let directionsService;
 let currentPosition;
 let closest;
+let currentSpace;
 async function initMap() {
     const response = await fetch('/viewMap/getPins')
     let pins = await response.json();
@@ -23,7 +24,6 @@ async function initMap() {
         zoom: 15,
         center: {lat:52.62237,lng:1.24139,}
     });
-    const infoWindow = new google.maps.InfoWindow();
 
     for(let i =0;i<pins.length;i++){
         console.log(pins[i].location);
@@ -36,12 +36,6 @@ async function initMap() {
         }));
 
     }
-    //console.log(marker);
-    // marker.addListener("click",() =>{
-    //     infoWindow.close();
-    //     infoWindow.setContent(marker.getTitle());
-    //     infoWindow.open(marker.getMap(), marker);
-    // });
     directionsRenderer.setMap(map);
 
 }
@@ -70,6 +64,8 @@ async function loadTicket(thing){
     const data = await response.json();
     data.forEach(tickets => {
         if (tickets.ticketId == thing) {
+            currentSpace = tickets.parkingSpace;
+            console.log(currentSpace);
             allList.innerHTML = "";
             const userDiv = document.createElement('div');
             const userDetails = document.createElement('ul');
@@ -126,7 +122,7 @@ async function getDir(test){
 }
 
 
-async function getClosest(){
+async function getClosest(test){
     await mapDirection();
 
     let smallest = marker[0];
@@ -153,10 +149,74 @@ async function getClosest(){
     console.log(smallest.title);
 
 }
+
+async function showSpace(parkingSpace){
+    let first_row = document.getElementById('row1')
+    let second_row = document.getElementById('row2')
+    let third_row = document.getElementById('row3')
+    let fourth_row = document.getElementById('row4')
+    first_row.innerHTML ="";
+    second_row.innerHTML ="";
+    third_row.innerHTML ="";
+    fourth_row.innerHTML ="";
+    for(let i =0;i<6;i++){
+        if (i==parkingSpace){
+            let perfect = document.createElement("li");
+            perfect.id = "correct"
+            first_row.appendChild(perfect)
+        }
+        else{
+            let li =document.createElement("li");
+            li.id = "incorrect"
+            first_row.appendChild(li);
+        }
+    }
+    for(let i =6;i<12;i++){
+        if (i==parkingSpace){
+            let perfect = document.createElement("li");
+            perfect.setAttribute('id','correct');
+            second_row.appendChild(perfect);
+        }
+        else{
+            let li =document.createElement("li");
+            li.id = "incorrect"
+            second_row.appendChild(li);
+
+        }
+    }
+    for(let i =12;i<18;i++){
+        if (i==parkingSpace){
+            let perfect = document.createElement("li");
+            perfect.id = "correct";
+            third_row.appendChild(perfect);
+        }
+        else{
+            let li =document.createElement("li");
+            li.id = "incorrect"
+            third_row.appendChild(li);
+        }
+    }
+    for(let i =18;i<24;i++){
+        if (i==parkingSpace){
+            let perfect = document.createElement("li");
+            perfect.id = "correct";
+            fourth_row.appendChild(perfect);
+        }
+        else{
+            let li =document.createElement("li");
+            li.id = "incorrect"
+            fourth_row.appendChild(li);
+        }
+    }
+    console.log("SPMSIENF")
+}
+
 window.initMap = initMap;
 document.addEventListener('DOMContentLoaded', dropper);
 document.addEventListener('DOMContentLoaded', mapDirection);
-
+document.addEventListener('DOMContentLoaded', showSpace);
 const allList = document.querySelector('.all-lists');
-document.getElementById('ticket-dropdown').addEventListener('change', function() { loadTicket(this.value);});
+document.getElementById('ticket-dropdown').addEventListener('change', function() {
+    loadTicket(this.value);
+    showSpace(this.value);});
 document.getElementById("calculate").addEventListener("click", getClosest);
