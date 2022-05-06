@@ -3,15 +3,16 @@
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="/maps/style.css" />
-    <script type="module" src="/maps/modifier.js"></script>
+    <script type="module" src="/maps/modifier.js" defer></script>
     <script
-            src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
+            src="https://maps.googleapis.com/maps/api/js?key=&libraries=geometry&callback=initMap&v=weekly"
             defer
     ></script>
 
 </head>
 <body>
 <h1>View Car Parks</h1>
+<div class="routes">
 <div id="map"></div>
 <select id="ticket-dropdown" name="tickets" >
 </select>
@@ -20,5 +21,23 @@
 <div class="requests-container">
     <ul class="all-lists"></ul>
 </div>
+<div class="block">
+    <ul id="row1"></ul>
+    <br>
+    <ul id="row2"></ul>
+    <br>
+    <ul id="row3"></ul>
+    <br>
+    <ul id="row4"></ul>
+    <br>
+</div>
+</div>
+<div class="nearest_park">
+    <h4>Closest car park to you</h4>
+<div id="map2"></div>
+    <input type="button" onclick="window.location.href = '/requests';" value="Make a request to here">
+    <button id = "calculate">Calculate closest car park</button>
+</div>
+
 </body>
 </html>

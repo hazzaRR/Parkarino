@@ -6,15 +6,19 @@ async function newPark(event) {
     let newPark = {
         _id: 0,
         name: getForm.elements.namedItem('name').value,
-        num_spaces: getForm.elements.namedItem('spaces').value,
-        freespaces: getForm.elements.namedItem('spaces').value,
+        num_spaces: parseInt(getForm.elements.namedItem('spaces').value),
+        freespaces: parseInt(getForm.elements.namedItem('spaces').value),
         location: marker.position,
         space:0
     };
 
     let test = [];
+    let block=1;
     for(let i = 0; i < newPark.freespaces; i++) {
-        let temp = {ID:i,available:true,occupier:null};
+        if(i%24 ==0){
+            block++;
+        }
+        let temp = {ID:i%24,available:true,occupier:null,block:block};
         test.push(temp);
     }
 
