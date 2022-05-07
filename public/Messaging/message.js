@@ -1,7 +1,7 @@
 // retrieve message history on load of page
 async function messageHistory(event)
-{
-    userInfo = {email : sessionStorage.getItem('email')}
+{   
+    let userInfo = {email : sessionStorage.getItem('email')}
     const serializedMessage = JSON.stringify(userInfo);
     // load message history (user -> driver)
     const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage});
@@ -9,14 +9,14 @@ async function messageHistory(event)
     
     const conversation = new Messaging(1);
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
-    console.log(sessionStorage.getItem('name'))
+    //console.log(sessionStorage.getItem('name'))
     let messageHistory = messageHistory_json;
 
     if(messageHistory_res.status == 200)
     {
         if(messageHistory.alert == "not logged in")
         {
-            para = document.createElement("p");
+            let para = document.createElement("p");
             para.innerText = "You must be logged in to view the message page!";
             var element = document.getElementById("alert_box");
             element.appendChild(para);
@@ -25,30 +25,30 @@ async function messageHistory(event)
         {
             let messageHistory = JSON.parse(messageHistory_json);
             //console.log(messageHistory)
-            for(i = 0; i < messageHistory.length; i++) 
+            for(let i = 0; i < messageHistory.length; i++) 
             {
-                message = messageHistory[i]
+                var message = messageHistory[i]
                 //console.log(messageHistory_json[i])
                 var date = new Date(message.date * 1000);
+                console.log(message.type)
+
+                var sender = "admin"; 
+                var recipient = sessionStorage.getItem("name");
                 if(message.type == "driver")
                 {
-                    sender = sessionStorage.getItem("name"); 
-                    recipient = "admin";
+                    var sender = sessionStorage.getItem("name"); 
+                    var recipient = "admin";
                 }
-                else
-                {
-                    sender = "admin"; 
-                    recipient = sessionStorage.getItem("name");
-                }
-                raw_str = message.id + " " + message.message + " " + String(date.toLocaleDateString(undefined, options)) + " " + String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })) + " " + message.read + " " + sender + " " + recipient
+                
+                let raw_str = message.id + " " + message.message + " " + String(date.toLocaleDateString(undefined, options)) + " " + String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })) + " " + message.read + " " + sender + " " + recipient
                 console.log(raw_str)
-                msg = new Message(message.id, message.message, String(date.toLocaleDateString(undefined, options)), String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })), message.read, sender, recipient)
+                let msg = new Message(message.id, message.message, String(date.toLocaleDateString(undefined, options)), String(date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })), message.read, sender, recipient)
                 conversation.sendMessage(msg);
             }
         }
         else if(messageHistory.alert == "no history")
         {
-            para = document.createElement("p");
+            let para = document.createElement("p");
             para.innerText = "Start a conversation...";
             var element = document.getElementById("alert_box");
             element.appendChild(para);
@@ -66,8 +66,8 @@ async function addMessage(event)
     {
         messageInfo = {email : sessionStorage.getItem("email"), }
     }
-    currentDate = new Date()  
-    messageInfo = {sender : sessionStorage.getItem("email"), recipient : "admin", id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
+    let currentDate = new Date()  
+    let messageInfo = {sender : sessionStorage.getItem("email"), recipient : "admin", id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
     const serializedMessage = JSON.stringify(messageInfo);
     // save to db ~ send message
     const add_message_res = await fetch('/messages/add-message', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
@@ -205,7 +205,7 @@ const displayMessages = (conversation) => {
     // });
 
 
-    for(index = 0; index < conversation.messages.length; index++) {
+    for(let index = 0; index < conversation.messages.length; index++) {
         console.log(conversation.messages[index].message)
         createMessage(conversation.messages[index]);
     }
@@ -235,7 +235,8 @@ const createMessage = (message) => {
     message_text.textContent = message.message
     const messsage_time = document.createElement("span");
     messsage_time.className = "message_time";
-    if (message.read){readText = "read";}else{readText="delivered"}
+    let readText="delivered"
+    if (message.read){let readText = "read";}
     messsage_time.textContent = message.sender + " ~ " + message.time +" ~ " + readText;
 
     message_div.append(message_avatar);
@@ -255,6 +256,19 @@ const createMessage = (message) => {
 
     chat_box.appendChild(message_div);
 }
+
+//export for use in inbox module
+const _Messaging = Messaging;
+export { _Messaging as Messaging };
+const _Message = Message;
+export { _Message as Message };
+const _displayMessages = displayMessages;
+export { _displayMessages as displayMessages };
+const _createMessage = createMessage;
+export { _createMessage as createMessage };
+const _messageHistory = messageHistory;
+export { _messageHistory as messageHistory };
+
 const form = document.querySelector('#send_message_box');
 form.addEventListener('submit', addMessage);
 window.addEventListener('load', messageHistory);
