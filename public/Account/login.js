@@ -39,7 +39,7 @@ async function loginAttempt(event) {
             window.location.href = "/admin";
         }
         else {
-            window.location.href = "/";
+            window.location.href = "/index";
         }
     }
     else {

@@ -1,0 +1,79 @@
+body {
+    background: #749DE8;
+}
+
+
+.meet_list {
+    list-style-type: none;
+}
+
+img{
+    max-width: 200px;
+}
+
+.menu-button{
+    width: 80%;
+    margin: auto;
+    top: 50px;
+    position: relative;
+}
+.flexnav,
+.flexnav ul {
+    list-style: none;
+    margin: 0;
+}
+
+.flexnav,
+.menu-button {
+    font-family: Lato, Helvetica, sans-serif;
+    line-height: 1;
+    background: #2b2f3a;
+}
+.flexnav {
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+.flexnav > li > a,
+.menu-button {
+    padding: 18px 22px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: none;
+    color: #7a8189;
+    cursor: pointer;
+}
+.flexnav:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#logo{
+    max-height:50px;
+    object-fit: cover;
+    float: left;
+}
+.flexnav > li{
+    float: left;
+    display: block;
+    position: relative;
+}
+
+.flexnav > li > a {
+    display: block;
+    font-weight: 300;
+    text-decoration: none;
+}
+.flexnav li a:hover {
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+

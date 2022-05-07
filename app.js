@@ -12,8 +12,13 @@ app.use(bodyParser.urlencoded( {extended: true}));
 
 //default end-point, where the webpage loads to.
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname,'public','landing.html'));
+});
+
+app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname,'public','Account','index.html'));
 });
+
 
 const loginRouter = require('./routes/loginRouter');
 const regRouter = require('./routes/regRouter');
