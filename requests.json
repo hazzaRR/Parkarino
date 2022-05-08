@@ -6,7 +6,7 @@
 		"location": "UEA West",
 		"arrivalTime": "2022-04-29T13:05",
 		"departureTime": "2022-05-09T11:05",
-		"approved": true
+		"approved": null
 	},
 	{
 		"id": 1,
@@ -15,7 +15,7 @@
 		"location": "UEA West",
 		"arrivalTime": "2022-05-02T18:05",
 		"departureTime": "2022-05-12T14:05",
-		"approved": true
+		"approved": null
 	},
 	{
 		"id": 2,
@@ -24,7 +24,7 @@
 		"location": "UEA West",
 		"arrivalTime": "2022-05-11T13:06",
 		"departureTime": "2022-05-19T13:06",
-		"approved": true
+		"approved": false
 	},
 	{
 		"id": 3,
@@ -33,6 +33,15 @@
 		"location": "UEA West",
 		"arrivalTime": "2022-05-25T13:06",
 		"departureTime": "2022-05-30T13:06",
-		"approved": true
+		"approved": null
+	},
+	{
+		"id": 12,
+		"driverId": "2",
+		"registration": "fr46hew",
+		"location": "UEA West",
+		"arrivalTime": "2022-05-25T13:06",
+		"departureTime": "2022-05-30T13:06",
+		"approved": null
 	}
 ]

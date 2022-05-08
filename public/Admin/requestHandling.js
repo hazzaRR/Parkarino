@@ -1,108 +1,153 @@
 
 //selectors
 const requestsList = document.querySelector('.requests-list');
-const filterOption = document.querySelector('.requestFilter')
+const selectorContainer = document.getElementById('spacePickerContainer');
 //event listeners
 
 document.addEventListener('DOMContentLoaded', getRequests);
-requestsList.addEventListener('click', updateRequest);
-// filterOption.addEventListener('click', filterTodo);
+requestsList.addEventListener('click', adminSelection);
+document.addEventListener('click', getSelectedSpace);
+
+
+let selectedRequest;
 
 
 
-async function updateRequest(event) {
+async function adminSelection(event) {
 
     //gets the requestObject that was just clicked on
     const item = event.target;
     const request = item.parentElement;
 
     //if the accept or decline button was selected, the  request id is fetched from the request object
-    if (item.classList[0] == "accept-button" || item.classList[0] == "decline-button") {
+    if (item.classList[0] == "accept-button") {
 
-        const requestId = request.childNodes[0].childNodes[0].innerText;
 
         let approved;
 
-        if(item.classList[0] == "decline-button") {
-            approved = false;
+        let requestId = request.childNodes[0].childNodes[0].innerText;
+
+        requestId = requestId.split(" ");
+        requestId = requestId[1];
+
+        //gets request details for the provided request id
+        const response = await fetch(`/admin/getRequest?requestId=${requestId}`)
+        const requestDetails = await response.json()
+
+        //need to add manual functionality. Currently can only autoAssign a space
+        const autoOrManual = confirm("Would you like to manually select a space? \nPress OK for Manual Selection or Cancel for Auto Assign")
+        
+        if (autoOrManual) {
+            selectedRequest = requestDetails;
+            await getCarparks();
+            //getCarparkSpaces(requestDetails.location, requestDetails.arrivalTime, requestDetails.departureTime);
+
+            // const spacesAvailability =  await fetch(`/view-carpark/FreeSpaces?carpark=${ticketRequest.location}&aTime=${ticketRequest.arrivalTime}&dTime=${ticketRequest.departureTime}`)
+            // const spaces = await spacesAvailability.json()
         }
         else {
-            approved = true;
-        }
+            
+            console.log("autoAssigning space");
 
-        const requestDetails = {
-            requestId: parseInt(requestId.slice(-1)),
-            approved: approved
+            //finds a free space in the carpark to assign to the ticket
+            
+            const autoAssignResponse = await fetch(`/admin/autoAssignSpace?carpark=${requestDetails.location}&aTime=${requestDetails.arrivalTime}&dTime=${requestDetails.departureTime}`)
+            const parkingSpaceDetails = await autoAssignResponse.json()
+
+
+            if(parkingSpaceDetails == null) {
+                approved = false;
+            }
+            else {
+
+                approved = true;
+
+                //creates a new ticket object
+                const newTicket = {
+                    ticketId: null,
+                    driverId: requestDetails.driverId,
+                    arrivalTime: requestDetails.arrivalTime,
+                    departureTime: requestDetails.departureTime,
+                    carPark: parkingSpaceDetails.carpark,
+                    parkingSpace: parkingSpaceDetails.parkingSpace,
+                    chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime)
+                };
+
+                await createTicket(newTicket);
+
+            }
+
+            const requestToUpdate = {
+                requestId: parseInt(requestId),
+                approved: approved
+            };
+
+            console.log(parseInt(requestId));
+    
+            await updateRequest(requestToUpdate);
+    
+            //removes the requestObject from the DOM
+            if (approved === false) {
+                alert("Request was Declined, there is no free spaces for that selected time");
+            }
+            else {
+                alert("Request was Accepted");
+            }
+            request.remove();
+        }
+    }
+
+    //if decline button was pressed then the request object is updated to be rejected
+    if (item.classList[0] == "decline-button") {
+
+        let requestId = request.childNodes[0].childNodes[0].innerText;
+        requestId = requestId.split(" ");
+
+        const requestToUpdate = {
+            requestId: parseInt(requestId[1]),
+            approved: false
         };
 
-        // turns requestDetails object into JSON string
-        const serializedMessage = JSON.stringify(requestDetails);
+        await updateRequest(requestToUpdate);
 
-        // posts JSON string to the server at the end point /admin/requests/response
-        const response = await fetch('/admin/requests/response', { method: 'PATCH',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                            body: serializedMessage
-                        }
-                    )
-
-        //gets the request that was just updated
-        const ticketToCreate = await response.json();
-
-        //if the request was approved, a ticket is generated for that request
-        if(ticketToCreate.approved === true) {
-            await createTicket(ticketToCreate);
-        }
-
-        //removes the requestObject from the DOM
+        alert("Request was Declined");
         request.remove();
-
     }
+}
+
+
+async function updateRequest(requestDetails) {
+    
+    // turns requestDetails object into JSON string
+    
+    const serializedMessage = JSON.stringify(requestDetails);
+
+    // posts JSON string to the server at the end point /admin/requests/response
+    const response = await fetch('/admin/requests/response', { method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        body: serializedMessage
+                        }
+                )      
 }
 
 async function createTicket(ticketRequest) {
 
-    //need to add manual functionality. Currently can only autoAssign a space
-    const autoOrManual = confirm("Would you like to manually select a space? \nPress OK for Manual Selection or Cancel for Auto Assign")
-    if (autoOrManual) {
-        console.log("gui view")
-    }
+    // turns ticket object into JSON string
+    const serializedMessage = JSON.stringify(ticketRequest);
     
-    else {
-        console.log("autoAssigning space");
-    }
 
-    //finds a free space in the carpark to assign to the ticket
-    const autoAssignResponse = await fetch(`/admin/autoAssignSpace?carpark=${ticketRequest.location}&aTime=${ticketRequest.arrivalTime}&dTime=${ticketRequest.departureTime}`)
-    const parkingSpaceDetails = await autoAssignResponse.json()
+    // posts JSON string to the server at the end point ticket/createTicket
+    const response = await fetch('/ticket/createTicket', { method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        body: serializedMessage
+                    }
+                )
 
-
-    //creates a new ticket object
-    const newTicket = {
-        ticketId: null,
-        driverId: ticketRequest.driverId,
-        arrivalTime: ticketRequest.arrivalTime,
-        departureTime: ticketRequest.departureTime,
-        carPark: parkingSpaceDetails.carpark,
-        parkingSpace: parkingSpaceDetails.parkingSpace,
-        chargePrice: calculateParkingCharge(ticketRequest.arrivalTime, ticketRequest.departureTime)
-    };
-
-        // turns ticket object into JSON string
-        const serializedMessage = JSON.stringify(newTicket);
-        
-
-        // posts JSON string to the server at the end point ticket/createTicket
-        const response = await fetch('/ticket/createTicket', { method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                            body: serializedMessage
-                        }
-                    )
-    
-        const json = await response.json();
+    const json = await response.json();
 
 }
 
@@ -163,36 +208,6 @@ function calculateParkingCharge(arrivalTime, departureTime) {
 
 }
 
-function filterTodo(event) {
-    const todos = todoList.childNodes;
-    todos.forEach(function(todo) {
-        switch(event.target.value) {
-            case "all":
-                todo.style.display = "flex";
-                break;
-            case "completed":
-                if(todo.classList.contains('completed')) {
-                    todo.style.display = "flex";
-                }
-                else {
-                    todo.style.display = "none";
-                }
-                break;
-            case "uncompleted":
-                if(!todo.classList.contains('completed')) {
-                    todo.style.display = "flex";
-                }
-                else {
-                    todo.style.display = "none";
-                }
-                break;
-
-        }
-    })
-
-}
-
-
 async function getRequests(event) {
     event.preventDefault();
 
@@ -243,4 +258,126 @@ async function getRequests(event) {
     })
 
 }
+
+//fetches all the carparks in the database and adds them to the select box for the driver to pick from
+async function getCarparks() {
+    const allCarparks_res = await fetch('/view-carpark/all-carparks');
+    const carparks_json = await allCarparks_res.json();
+
+    carparks_str = carparks_json.replace(/[^a-zA-Z, ]/g, ""); // strip all specials except comma,spaces
+    const options = carparks_str.split(",");
+    
+    if (allCarparks_res.status == 200)
+    {
+        const carparkSelector = document.createElement('select');
+        carparkSelector.classList.add("carpark-locations");
+        selectorContainer.appendChild(carparkSelector);
+
+        options.forEach(item => addOptions(item, carparkSelector)); // add new select option for each car park
+
+        carparkSelector.value = selectedRequest.location;
+        getSelector.addEventListener('change', getCarparkSpaces(carparkSelector.value, selectedRequest.arrivalTime, selectedRequest.departureTime));
+    }
+    else {
+        document.getElementById('blockSpaceForm').innerHTML = "~ apparently there are no car parks available :( ~";
+    }
+}
+
+//adds the carpark options to the select tag 
+function addOptions(item, selector)
+{
+    const option = document.createElement("option");
+    option.value = item;
+    option.text = item;
+    selector.add(option);
+}
+
+async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
+
+    try {
+        const carparkContainer = document.getElementById('carparkContainer');
+        carparkContainer.remove();
+        console.log("hi")
+    }
+
+    catch {
+        console.log("no carpark to remove");
+    }
+
+    requestsList.remove();
+
+    const spacesAvailability =  await fetch(`/view-carpark/FreeSpaces?carpark=${carpark}&aTime=${arrivalTime}&dTime=${departureTime}`)
+    const spaces = await spacesAvailability.json();
+    console.log(spaces);
+    console.log(spaces.length);
+
+    numberOfROws = Math.ceil(spaces.length / 12);
+    console.log(numberOfROws);
+
+    const carparkContainer =  document.createElement('div');
+    carparkContainer.setAttribute('id',`carparkContainer`);
+
+    selectorContainer.appendChild(carparkContainer);
+
+
+    for(let i = 0; i < numberOfROws; i++) {
+        const carparkRow =  document.createElement('div');
+        carparkRow.classList.add('carparkRow');
+        carparkRow.setAttribute('id',`row_${i}`);
+        carparkContainer.appendChild(carparkRow);
+    }
+
+    let addSpaceToRow = 0;
+    for (let i = 0; i < spaces.length; i++) {
+        if(i % 12 == 0 && i != 0) {
+            addSpaceToRow++;
+            console.log(addSpaceToRow);
+        }
+        const carparkSpace =  document.createElement('div');
+        carparkSpace.setAttribute('id',`space_${spaces[i].parkingSpace}`);
+        carparkSpace.classList.add('space');
+        carparkSpace.innerHTML = spaces[i].parkingSpace;
+
+        if (!spaces[i].available) {
+            carparkSpace.classList.add('occupied');
+        }
+
+        const rowToAddSpace = document.getElementById(`row_${addSpaceToRow}`);
+        rowToAddSpace.appendChild(carparkSpace);
+
+    }
+
+    const assignSpaceButton = document.createElement('button');
+    assignSpaceButton.innerHTML = "Assign";
+    const CancelButton = document.createElement('button');
+    CancelButton.innerHTML = "Cancel";
+
+    
+    selectorContainer.appendChild(assignSpaceButton);
+
+
+}
+
+
+function getSelectedSpace(event) {
+
+    try {
+        const selectedSeat = document.querySelector('.selected');
+        selectedSeat.classList.toggle('selected');
+    }
+    catch {
+    }
+
+    if (event.target.classList.contains('space') && !event.target.classList.contains('occupied')) {
+        event.target.classList.toggle('selected');
+
+        selectedSeat = event.target.id;
+        selectedSeat = selectedSeat.split("_");
+        console.log(selectedSeat[1]);
+        console.log(selectedRequest);
+
+    }
+}
+
+
 

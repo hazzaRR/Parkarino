@@ -43,11 +43,33 @@ router.get('/requests/manageRequests', (req, res) => {
     res.status(200).json(requests);
 });
 
+router.get('/getRequest', (req, res) => {
+
+    const requestId = req.query.requestId;
+
+    console.log(requestId)
+
+    let request;
+
+    let data = fs.readFileSync(path.join(__dirname,'..','requests.json'), {encoding: 'utf8', flag:'r'});
+    data = JSON.parse(data);
+
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].id == requestId) {
+            request = data[i];
+            break;
+        }
+    }
+
+    console.log(request);
+
+    res.status(200).json(request);
+});
+
 
 //updates drivers original request to either true or false. Depending on if it was approved.
 router.patch('/requests/response', jsonParser, (req, res) => {
-
-    let request;
 
     let data = fs.readFileSync(path.join(__dirname,'..','requests.json'), {encoding: 'utf8', flag:'r'});
     let requests = JSON.parse(data);
@@ -55,14 +77,13 @@ router.patch('/requests/response', jsonParser, (req, res) => {
     for(i = 0; i < requests.length; i++) {
         if (requests[i].id === req.body.requestId) {
             requests[i].approved = req.body.approved;
-            request = requests[i];
             break;
         }
     }
     data = JSON.stringify(requests,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','requests.json'), data,"utf-8");
 
-    res.status(200).json(request);;
+    res.status(200).json("Success");;
 });
 
 
@@ -74,11 +95,6 @@ router.get('/autoAssignSpace', jsonParser, (req,res) => {
     const ticketEndTime = req.query.dTime;
     const carpark = req.query.carpark;
 
-    console.log(ticketStartTime);
-    console.log(ticketEndTime);
-    console.log(carpark);
-
-
     let data = fs.readFileSync(path.join(__dirname,'..','tickets.json'), {encoding: 'utf8', flag:'r'});
     let tickets = JSON.parse(data);
 
@@ -88,7 +104,7 @@ router.get('/autoAssignSpace', jsonParser, (req,res) => {
     //finds all the taken spots in a car park for the given times
     for (i = 0; i < tickets.length; i++) {
 
-        if ((tickets[i].arrivalTime <= ticketEndTime) && (ticketStartTime <= tickets[i].departureTime) &&( tickets[i].carPark == carpark)) {
+        if ((tickets[i].arrivalTime <= ticketEndTime) && (ticketStartTime <= tickets[i].departureTime) && ( tickets[i].carPark == carpark)) {
             takenSpots.push(tickets[i].parkingSpace);
         }
     }

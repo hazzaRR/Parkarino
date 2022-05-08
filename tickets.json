@@ -9,30 +9,6 @@
 		"chargePrice": 6500
 	},
 	{
-		"ticketId": 1,
-		"driverId": "1",
-		"arrivalTime": "2022-05-02T18:05",
-		"departureTime": "2022-05-12T14:05",
-		"carPark": "UEA West",
-		"parkingSpace": 1,
-		"chargePrice": 6500
-	},
-	{
-		"ticketId": 2,
-		"driverId": "2",
-		"arrivalTime": "2022-05-11T13:06",
-		"departureTime": "2022-05-19T13:06",
-		"carPark": "UEA West",
-		"parkingSpace": 0,
-		"chargePrice": 5500
-	},
-	{
-		"ticketId": 3,
-		"driverId": "2",
-		"arrivalTime": "2022-05-25T13:06",
-		"departureTime": "2022-05-30T13:06",
-		"carPark": "UEA West",
-		"parkingSpace": 0,
-		"chargePrice": 4000
+		"ticketId": 1
 	}
 ]

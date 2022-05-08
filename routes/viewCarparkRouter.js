@@ -102,6 +102,61 @@ router.get('/spaces',jsonParser, (req, res) => {
 //returns all the free spaces in the carpark
 router.get('/Freespaces',jsonParser, (req, res) => {
 
+
+    const ticketStartTime = req.query.aTime;
+    const ticketEndTime = req.query.dTime;
+    const selectedCarpark = req.query.carpark;
+
+    console.log(ticketStartTime)
+    console.log(ticketEndTime)
+    console.log(selectedCarpark)
+
+    let data = fs.readFileSync(path.join(__dirname,'..','tickets.json'), {encoding: 'utf8', flag:'r'});
+    let tickets = JSON.parse(data);
+
+    //an array to store all the carpark spaces that are occupied during the new ticket time
+    let takenSpots = [];
+
+    //finds all the taken spots in a car park for the given times
+    for (i = 0; i < tickets.length; i++) {
+
+        if ((tickets[i].arrivalTime <= ticketEndTime) && (ticketStartTime <= tickets[i].departureTime) && ( tickets[i].carPark == selectedCarpark)) {
+            takenSpots.push(tickets[i].parkingSpace);
+        }
+    }
+    console.log(takenSpots);
+
+    data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
+    let carparks = JSON.parse(data);
+
+    carparkAvailablity = []
+    let SpaceAvailablity;
+
+    for(i = 0; i < carparks.locations.length; i++) {
+        if (carparks.locations[i].name == selectedCarpark) {
+            for (j = 0 ; j < carparks.locations[i].space.length; j++) {
+                if(!(takenSpots.includes(carparks.locations[i].space[j].ID) || (carparks.locations[i].space[j].occupier == "Blocked By Admin"))) {
+                    SpaceAvailablity = {
+                        parkingSpace: carparks.locations[i].space[j].ID,
+                        available: true
+                    }
+                }
+                else {
+                    SpaceAvailablity = {
+                        parkingSpace: carparks.locations[i].space[j].ID,
+                        available: false
+                    }
+
+                }
+
+                carparkAvailablity.push(SpaceAvailablity);
+            }
+
+            break;
+        }
+    }
+
+    res.json(carparkAvailablity)
 });
 
 //returns all the occupied spaces in the carpark

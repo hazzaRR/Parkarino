@@ -146,12 +146,39 @@ select {
     pointer-events: none;
 }
 
-.completed {
-    text-decoration: line-through;
-    opacity: 0.5;
+/* admin space gui space selector styles */
+
+.spacePickerContainer {
+  perspective: 1000px;
+  margin: 40px 0;
+  display: inline;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.fall {
-    transform: translateY(8rem) rotateZ(20deg);
-    opacity: 0;
+.space {
+  background-color: #7CFC00;
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+}
+
+.selected {
+  background-color: #0081cb;
+}
+
+.occupied {
+  background-color: #D2042D;
+}
+
+.space:not(.occupied):hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.carparkRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
