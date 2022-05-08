@@ -7,21 +7,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles.css">
     <script src="./requestHandling.js" defer></script>
+    <link rel="stylesheet" href="../landing_style.css">
     <title>Parkerino</title>
 </head>
 <body>
     
+
+
+    <header class="container">
+        <div class="menu-button">Home</div>
+        <ul class="flexnav">
+            <img id="logo" src="../images/company.png">
+            <li><a href="/admin">Home</a></li>
+            <li><a href="/admin/requests">Manage Requests</a></li>
+            <li><a href="/admin/carparks">Block spaces</a></li>
+            <li><a href="/admin/inbox">Message Inbox</a></li>
+            <li><a href="/accountMan">Account manager</a></li>
+            <li><a href="/ManagerPark">Manager parks</a></li>
+        </ul>
+    </header>
+
     <header>
         <h1>Driver Requests</h1>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="/admin">Home</a></li>
-            <li><a href="/admin/requests">Manage Requests</a></li>
-            <li><a href="/admin/inbox">Message Inbox</a></li>
-        </ul>
-    </nav>
 
     <div class="spacePickerContainer" id="spacePickerContainer">
 

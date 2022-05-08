@@ -26,10 +26,14 @@ async function register(event) {
         }
     )
 
-    if (response.status === 200) {
+    const json = await response.json();
+
+    if (response.status == 200) {
         console.log("Email got saved");
+        window.location.href = "/login";
+
     }
-    if (response.status === 500) {
+    if (response.status == 500) {
         console.log("User is banned");
     }
     else {
