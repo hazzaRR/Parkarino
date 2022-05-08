@@ -1,16 +1,16 @@
 [
 	{
 		"id": 0,
-		"driverId": "1",
+		"driverId": "0",
 		"registration": "ht35acw",
 		"location": "UEA West",
 		"arrivalTime": "2022-04-29T13:05",
 		"departureTime": "2022-05-09T11:05",
-		"approved": null
+		"approved": true
 	},
 	{
 		"id": 1,
-		"driverId": "1",
+		"driverId": "0",
 		"registration": "ht35acw",
 		"location": "UEA West",
 		"arrivalTime": "2022-05-02T18:05",
@@ -19,16 +19,16 @@
 	},
 	{
 		"id": 2,
-		"driverId": "2",
+		"driverId": "0",
 		"registration": "fr46hew",
 		"location": "UEA West",
 		"arrivalTime": "2022-05-11T13:06",
 		"departureTime": "2022-05-19T13:06",
-		"approved": false
+		"approved": null
 	},
 	{
 		"id": 3,
-		"driverId": "2",
+		"driverId": "0",
 		"registration": "fr46hew",
 		"location": "UEA West",
 		"arrivalTime": "2022-05-25T13:06",
@@ -37,7 +37,7 @@
 	},
 	{
 		"id": 12,
-		"driverId": "2",
+		"driverId": "0",
 		"registration": "fr46hew",
 		"location": "UEA West",
 		"arrivalTime": "2022-05-25T13:06",

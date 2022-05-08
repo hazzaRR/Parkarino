@@ -136,6 +136,8 @@ async function updateSpace(carParkValue, spaceValue, availableValue, occupierVal
 
 }
 
+
+
 function blockSpace(event) {
     event.preventDefault();
     const carParkValue = document.querySelector('#carpark');

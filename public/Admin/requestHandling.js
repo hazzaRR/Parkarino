@@ -10,6 +10,7 @@ document.addEventListener('click', getSelectedSpace);
 
 
 let selectedRequest;
+let ticketToCreate;
 
 
 
@@ -38,7 +39,22 @@ async function adminSelection(event) {
         const autoOrManual = confirm("Would you like to manually select a space? \nPress OK for Manual Selection or Cancel for Auto Assign")
         
         if (autoOrManual) {
-            selectedRequest = requestDetails;
+            selectedRequest = {
+                requestId: parseInt(requestId),
+                approved: true
+
+            }
+
+            ticketToCreate = {
+                ticketId: null,
+                driverId: requestDetails.driverId,
+                arrivalTime: requestDetails.arrivalTime,
+                departureTime: requestDetails.departureTime,
+                carPark: requestDetails.location,
+                parkingSpace: null,
+                chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime)
+            };
+
             await getCarparks();
             //getCarparkSpaces(requestDetails.location, requestDetails.arrivalTime, requestDetails.departureTime);
 
@@ -46,8 +62,6 @@ async function adminSelection(event) {
             // const spaces = await spacesAvailability.json()
         }
         else {
-            
-            console.log("autoAssigning space");
 
             //finds a free space in the carpark to assign to the ticket
             
@@ -73,7 +87,10 @@ async function adminSelection(event) {
                     chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime)
                 };
 
+                ticketToCreate = newTicket;
+
                 await createTicket(newTicket);
+                console.log("Why are we not here??");
 
             }
 
@@ -81,8 +98,6 @@ async function adminSelection(event) {
                 requestId: parseInt(requestId),
                 approved: approved
             };
-
-            console.log(parseInt(requestId));
     
             await updateRequest(requestToUpdate);
     
@@ -135,11 +150,11 @@ async function updateRequest(requestDetails) {
 async function createTicket(ticketRequest) {
 
     // turns ticket object into JSON string
-    const serializedMessage = JSON.stringify(ticketRequest);
+    let serializedMessage = JSON.stringify(ticketRequest);
     
 
     // posts JSON string to the server at the end point ticket/createTicket
-    const response = await fetch('/ticket/createTicket', { method: 'POST',
+    let response = await fetch('/ticket/createTicket', { method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
@@ -147,8 +162,29 @@ async function createTicket(ticketRequest) {
                     }
                 )
 
-    const json = await response.json();
+    let json = await response.json();
 
+
+    const accountToCharge = {
+        userId: parseInt(ticketToCreate.driverId),
+        ticketCost: ticketToCreate.chargePrice
+    }
+
+    serializedMessage = JSON.stringify(accountToCharge);
+
+    // posts JSON string to the server at the end point payment/chargeAccount
+    response = await fetch('/payment/chargeAccount', { method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        body: serializedMessage
+                    }
+                ) 
+
+    json = await response.json();
+
+    console.log("harry");
+    return;
 }
 
 function calculateParkingCharge(arrivalTime, departureTime) {
@@ -275,8 +311,9 @@ async function getCarparks() {
 
         options.forEach(item => addOptions(item, carparkSelector)); // add new select option for each car park
 
-        carparkSelector.value = selectedRequest.location;
-        getSelector.addEventListener('change', getCarparkSpaces(carparkSelector.value, selectedRequest.arrivalTime, selectedRequest.departureTime));
+        carparkSelector.value = ticketToCreate.carPark;
+        getCarparkSpaces(carparkSelector.value, ticketToCreate.arrivalTime, ticketToCreate.departureTime);
+        selectorContainer.addEventListener('change', changeCarPark);
     }
     else {
         document.getElementById('blockSpaceForm').innerHTML = "~ apparently there are no car parks available :( ~";
@@ -292,27 +329,36 @@ function addOptions(item, selector)
     selector.add(option);
 }
 
+function changeCarPark(event) {
+    event.preventDefault();
+
+    const carparkSelector = document.querySelector('.carpark-locations');
+    getCarparkSpaces(carparkSelector.value, ticketToCreate.arrivalTime, ticketToCreate.departureTime);
+
+}
+
 async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
 
     try {
         const carparkContainer = document.getElementById('carparkContainer');
         carparkContainer.remove();
-        console.log("hi")
+
+        const assignButton = document.getElementById('AssignSpace');
+        assignButton.remove();
+
+        const cancelButton = document.getElementById('CancelRequest');
+        cancelButton.remove();
     }
 
     catch {
-        console.log("no carpark to remove");
     }
 
     requestsList.remove();
 
     const spacesAvailability =  await fetch(`/view-carpark/FreeSpaces?carpark=${carpark}&aTime=${arrivalTime}&dTime=${departureTime}`)
     const spaces = await spacesAvailability.json();
-    console.log(spaces);
-    console.log(spaces.length);
 
     numberOfROws = Math.ceil(spaces.length / 12);
-    console.log(numberOfROws);
 
     const carparkContainer =  document.createElement('div');
     carparkContainer.setAttribute('id',`carparkContainer`);
@@ -331,7 +377,6 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
     for (let i = 0; i < spaces.length; i++) {
         if(i % 12 == 0 && i != 0) {
             addSpaceToRow++;
-            console.log(addSpaceToRow);
         }
         const carparkSpace =  document.createElement('div');
         carparkSpace.setAttribute('id',`space_${spaces[i].parkingSpace}`);
@@ -348,14 +393,34 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
     }
 
     const assignSpaceButton = document.createElement('button');
+    assignSpaceButton.setAttribute('id', 'AssignSpace');
     assignSpaceButton.innerHTML = "Assign";
-    const CancelButton = document.createElement('button');
-    CancelButton.innerHTML = "Cancel";
+    assignSpaceButton.addEventListener('click', AssignbuttonFunction);
+
+    const cancelButton = document.createElement('button');
+    cancelButton.innerHTML = "Cancel";
+    cancelButton.setAttribute('id', 'CancelRequest');
+    cancelButton.addEventListener('click', cancelButtonFunction);
+    
 
     
     selectorContainer.appendChild(assignSpaceButton);
+    selectorContainer.appendChild(cancelButton);
 
 
+}
+
+function AssignbuttonFunction(event) {
+    event.preventDefault();
+
+    createTicket(ticketToCreate);
+    updateRequest(selectedRequest);
+
+    window.location.reload();
+}
+
+function cancelButtonFunction(event) {
+    window.location.reload();
 }
 
 
@@ -373,8 +438,11 @@ function getSelectedSpace(event) {
 
         selectedSeat = event.target.id;
         selectedSeat = selectedSeat.split("_");
-        console.log(selectedSeat[1]);
-        console.log(selectedRequest);
+
+        const carparkSelector = document.querySelector('.carpark-locations');
+
+        ticketToCreate.carPark = carparkSelector.value;
+        ticketToCreate.parkingSpace = parseInt(selectedSeat[1]);
 
     }
 }
