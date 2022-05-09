@@ -13,12 +13,8 @@ async function newPark(event) {
     };
 
     let test = [];
-    let block=1;
     for(let i = 0; i < newPark.freespaces; i++) {
-        if(i%24 ==0){
-            block++;
-        }
-        let temp = {ID:i%24,available:true,occupier:null,block:block};
+        let temp = {ID:i,available:true,occupier:null};
         test.push(temp);
     }
 
