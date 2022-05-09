@@ -3,9 +3,7 @@
 <meta charset="UTF-8">
 <title>Add Credit</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<script src="addCredit.js" defer></script>
-
+<script type="module" src="/Driver/check_in.js" defer></script>
 <link rel="stylesheet" href="../landing_style.css">
 <header class="container">
 
@@ -22,11 +20,15 @@
 </header>
 <body>
 
+<select id="ticket-dropdown" name="tickets" >
+</select>
+<div class="requests-container">
+  <ul class="all-lists"></ul>
+</div>
 
 <div class="container" id="checker">
-  <button class="check_in">Check in</button>
-  <button class="check_out">Check out</button>
-
+  <button id="check_in">Check in</button>
+  <button id="check_out">Check out</button>
 </div>
 
 </body>

@@ -49,7 +49,7 @@ async function dropper(){
     const response = await fetch('/viewMap/getTicks')
     const data = await response.json();
     data.forEach(tickets => {
-        if (tickets.driverId === sessionStorage.getItem("id")) {
+        if (tickets.driverId === sessionStorage.getItem("id")&& !tickets.checked_out) {
             let option;
             option = document.createElement('option');
             option.text = tickets.arrivalTime;

@@ -31,7 +31,6 @@ async function register(event) {
     if (response.status == 200) {
         console.log("Email got saved");
         window.location.href = "/login";
-
     }
     if (response.status == 500) {
         console.log("User is banned");
