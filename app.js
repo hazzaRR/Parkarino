@@ -27,6 +27,7 @@ const ticketRouter = require('./routes/ticketRouter');
 const managerRouter = require('./routes/managerRouter');
 const messageRouter = require('./routes/messagesRouter');
 const paymentRouter = require('./routes/paymentRouter');
+const checkRouter = require('./routes/checkRouter');
 const adminRouter = require('./routes/adminRouter');
 const addCreditRouter = require('./routes/addCreditRouter');
 const mapRouter = require('./routes/mapRouter');
@@ -34,6 +35,7 @@ const accountManRouter = require('./routes/accountManRouter');
 const viewCarparkRouter = require('./routes/viewCarparkRouter');
 
 app.use('/login', loginRouter);
+app.use('/check_in',checkRouter)
 app.use('/register', regRouter);
 app.use('/request', requestRouter);
 app.use('/ticket', ticketRouter);

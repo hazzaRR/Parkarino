@@ -6,7 +6,9 @@
 		"departureTime": "2022-05-09T11:05",
 		"carPark": "UEA West",
 		"parkingSpace": 0,
-		"chargePrice": 6500
+		"chargePrice": 6500,
+		"checked_in": null,
+		"checked_out": null
 	},
 	{
 		"ticketId": 1,
@@ -15,6 +17,8 @@
 		"departureTime": "2022-05-12T14:05",
 		"carPark": "UEA West",
 		"parkingSpace": 1,
-		"chargePrice": 6500
+		"chargePrice": 6500,
+		"checked_in": true,
+		"checked_out": true
 	}
 ]
