@@ -66,37 +66,50 @@ router.get('/all-carparks',jsonParser, (req, res) => {
     }
 });
 
-
-//returns all the free spaces in the carpark
-router.get('/spaces',jsonParser, (req, res) => {
-
+//returns all the spaces in the carpark
+router.get('/manageSpaces',jsonParser, (req, res) => {
+    
     const selectedCarpark = req.query.carpark;
 
-    let complete = false;
-
-    let data = fs.readFileSync(carpark_db, {encoding: 'utf8', flag:'r'});
+    data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
     let carparks = JSON.parse(data);
-    carparkSpacesData = [];
+
+    carparkAvailablity = []
+
     for(i = 0; i < carparks.locations.length; i++) {
         if (carparks.locations[i].name == selectedCarpark) {
             for (j = 0 ; j < carparks.locations[i].space.length; j++) {
-                if (carparks.locations[i].space[j].available == true) {
-                    carparkSpacesData.push(carparks.locations[i].space[j].ID);
-                }
+                carparkAvailablity.push(carparks.locations[i].space[j]);
             }
+
+            break;
         }
     }
-    complete = true
-    data = JSON.stringify(carparkSpacesData);
+
+    res.json(carparkAvailablity)
+});
+
+//returns all the free spaces in the carpark
+router.get('/carpark-stats',jsonParser, (req, res) => {
     
-    if (complete == true) 
-    {
-        return res.status(200).json(data);
+    const selectedCarpark = req.query.carpark;
+
+    data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
+    let carparks = JSON.parse(data);
+
+    let carparkstats;
+
+    for(i = 0; i < carparks.locations.length; i++) {
+        if (carparks.locations[i].name == selectedCarpark) {
+            carparkstats = {
+                total: carparks.locations[i].num_spaces,
+                freespaces: carparks.locations[i].freespaces
+            }
+        }
+
     }
-    else 
-    {
-        return res.status(401).json(data);
-    }
+
+    res.json(carparkstats)
 });
 
 //returns all the free spaces in the carpark
@@ -124,7 +137,6 @@ router.get('/Freespaces',jsonParser, (req, res) => {
             takenSpots.push(tickets[i].parkingSpace);
         }
     }
-    console.log(takenSpots);
 
     data = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
     let carparks = JSON.parse(data);
@@ -157,32 +169,6 @@ router.get('/Freespaces',jsonParser, (req, res) => {
     }
 
     res.json(carparkAvailablity)
-});
-
-//returns all the occupied spaces in the carpark
-router.get('/occupiedSpaces',jsonParser, (req, res) => {
-
-    let data = fs.readFileSync(carpark_db, {encoding: 'utf8', flag:'r'});
-    let carparks = JSON.parse(data);
-
-    carparkSpacesData = [];
-
-    let parkingSpaceDetails;
-
-    for(i = 0; i < carparks.locations.length; i++) {
-        for (j = 0 ; j < carparks.locations[i].space.length; j++) {
-            if (carparks.locations[i].space[j].available == false) {
-                parkingSpaceDetails = {
-                    carparkName : carparks.locations[i].name,
-                    parkingSpaceID: carparks.locations[i].space[j].ID,
-                    occupiedBy: carparks.locations[i].space[j].occupier
-                }
-                carparkSpacesData.push(parkingSpaceDetails);
-            }
-        }
-    }
-
-    res.status(200).json(carparkSpacesData);
 });
 
 module.exports = router;

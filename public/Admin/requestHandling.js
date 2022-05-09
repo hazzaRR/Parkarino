@@ -427,8 +427,8 @@ function cancelButtonFunction(event) {
 function getSelectedSpace(event) {
 
     try {
-        const selectedSeat = document.querySelector('.selected');
-        selectedSeat.classList.toggle('selected');
+        const selectedSpace = document.querySelector('.selected');
+        selectedSpace.classList.toggle('selected');
     }
     catch {
     }
@@ -436,13 +436,13 @@ function getSelectedSpace(event) {
     if (event.target.classList.contains('space') && !event.target.classList.contains('occupied')) {
         event.target.classList.toggle('selected');
 
-        selectedSeat = event.target.id;
-        selectedSeat = selectedSeat.split("_");
+        selectedSpace = event.target.id;
+        selectedSpace = selectedSpace.split("_");
 
         const carparkSelector = document.querySelector('.carpark-locations');
 
         ticketToCreate.carPark = carparkSelector.value;
-        ticketToCreate.parkingSpace = parseInt(selectedSeat[1]);
+        ticketToCreate.parkingSpace = parseInt(selectedSpace[1]);
 
     }
 }

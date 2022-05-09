@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkerino</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../landing_style.css">
+    <script src="/Admin/manageCarpark.js" defer></script>
+</head>
+<body>
+
+<header class="container">
+    <div class="menu-button">Home</div>
+    <ul class="flexnav">
+        <img id="logo" src="../images/company.png">
+        <li><a href="/admin">Home</a></li>
+        <li><a href="/admin/requests">Manage Requests</a></li>
+        <li><a href="/admin/carparks">Manage Carpark</a></li>
+        <li><a href="/admin/inbox">Message Inbox</a></li>
+        <li><a href="/accountMan">Account manager</a></li>
+        <li><a href="/ManagerPark">Manager parks</a></li>
+    </ul>
+</header>
+
+    <main>
+
+        <h2>Manage Carpark</h2>
+
+        <select name="carpark" id="carpark"></select>
+
+        <div id="carpark-stats">
+            <span>Total Spaces:</span>
+            <span id="total-stat">48</span>
+            <br>
+            <span>Free Spaces:</span>
+            <span id="freespaces-stat">48</span>
+        </div>
+
+        <ul class="pickerKey">
+            <li>
+              <div class="spaceKey"></div>
+              <small>Avaliable Space</small>
+            </li>
+            <li>
+              <div class="spaceKey selectedKey"></div>
+              <small>Selected</small>
+            </li>
+            <li>
+              <div class="spaceKey driverBlock"></div>
+              <small>Taken by Driver</small>
+            </li>
+            <li>
+                <div class="spaceKey adminBlock"></div>
+                <small>Blocked by Admin</small>
+              </li>                 
+          </ul>
+
+        <div class="carpark-container" id="carpark-container">
+        </div>
+        
+        <div class="button-options" id="button-options">
+            <button disabled="true" id="blockSpace">Block Space</button>
+            <button disabled="true" id="freeSpace">Free Space</button>
+        </div>
+
+    </main>
+
+    
+</body>
+</html>

@@ -23,7 +23,7 @@ router.get('/inbox', (req, res) => {
 });
 
 router.get('/carparks', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','Admin','blockSpace.html'));
+    res.sendFile(path.join(__dirname,'..','public','Admin','manageCarpark.html'));
 });
 
 router.get('/requests/manageRequests', (req, res) => {
