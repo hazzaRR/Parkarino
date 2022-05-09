@@ -179,12 +179,24 @@ function blockSpace(event) {
 
     updateSpace(selectedCarpark, selectedSpaceID, false, "Blocked By Admin");
     getCarparkSpaces(selectedCarpark);
+
+    const blockBtn = document.querySelector('#blockSpace');
+    const freeBtn = document.querySelector('#freeSpace');
+
+    blockBtn.disabled = true;
+    freeBtn.disabled = true;
 }
 
 function unblockSpace(event) {
     event.preventDefault();
     updateSpace(selectedCarpark, selectedSpaceID, true, null);
     getCarparkSpaces(selectedCarpark);
+
+    const blockBtn = document.querySelector('#blockSpace');
+    const freeBtn = document.querySelector('#freeSpace');
+
+    blockBtn.disabled = true;
+    freeBtn.disabled = true;
 }
 
 document.addEventListener('DOMContentLoaded', getCarparks);
