@@ -25,7 +25,7 @@ router.post('/check1', jsonParser, (req, res) => {
     }
     for(j=0;j<parks.locations.length;j++){
         if (currentTicket.carPark==parks.locations[j].name){
-
+            parks.locations[j].freespaces--;
             for (z=0;z<parks.locations[j].space.length;z++)
                 if (parks.locations[j].space[z].ID == currentTicket.parkingSpace) {
                     parks.locations[j].space[z].occupier = currentTicket.driverId;
@@ -59,7 +59,7 @@ router.post('/check2', jsonParser, (req, res) => {
     }
     for(j=0;j<parks.locations.length;j++){
         if (currentTicket.carPark==parks.locations[j].name){
-
+            parks.locations[j].freespaces++;
             for (z=0;z<parks.locations[j].space.length;z++)
                 if (parks.locations[j].space[z].ID == currentTicket.parkingSpace) {
                     parks.locations[j].space[z].occupier = null;
