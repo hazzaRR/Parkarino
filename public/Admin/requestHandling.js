@@ -52,14 +52,13 @@ async function adminSelection(event) {
                 departureTime: requestDetails.departureTime,
                 carPark: requestDetails.location,
                 parkingSpace: null,
-                chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime)
+                chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime),
+                checked_in: false,
+                checked_out: false
+                
             };
 
             await getCarparks();
-            //getCarparkSpaces(requestDetails.location, requestDetails.arrivalTime, requestDetails.departureTime);
-
-            // const spacesAvailability =  await fetch(`/view-carpark/FreeSpaces?carpark=${ticketRequest.location}&aTime=${ticketRequest.arrivalTime}&dTime=${ticketRequest.departureTime}`)
-            // const spaces = await spacesAvailability.json()
         }
         else {
 
@@ -84,7 +83,9 @@ async function adminSelection(event) {
                     departureTime: requestDetails.departureTime,
                     carPark: parkingSpaceDetails.carpark,
                     parkingSpace: parkingSpaceDetails.parkingSpace,
-                    chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime)
+                    chargePrice: calculateParkingCharge(requestDetails.arrivalTime, requestDetails.departureTime),
+                    checked_in: false,
+                    checked_out: false
                 };
 
                 ticketToCreate = newTicket;

@@ -43,5 +43,14 @@
 		"arrivalTime": "2022-05-25T13:06",
 		"departureTime": "2022-05-30T13:06",
 		"approved": null
+	},
+	{
+		"id": 5,
+		"driverId": "0",
+		"registration": "ht54oop",
+		"location": "UEA West",
+		"arrivalTime": "2022-05-12T12:22",
+		"departureTime": "2022-05-20T12:22",
+		"approved": true
 	}
 ]
