@@ -13,15 +13,23 @@ router.post('/check1', jsonParser, (req, res) => {
     let data = fs.readFileSync(path.join(__dirname,'..','tickets.json'), {encoding: 'utf8', flag:'r'});
     let data2 = fs.readFileSync(path.join(__dirname,'..','carpark_db.json'), {encoding: 'utf8', flag:'r'});
     let tickets = JSON.parse(data);
+    const current = new Date();
     let i;
     let j;
     let parks = JSON.parse(data2);
     let currentTicket;
+    let test;
     for(i = 0; i < tickets.length; i++){
-        if (tickets[i].ticketId == req.body.ticket){
+        test = new Date(tickets[i].arrivalTime);
+        if (tickets[i].ticketId == req.body.ticket && test<=current){
             tickets[i].checked_in=true;
             currentTicket = tickets[i];
         }
+        else if(tickets[i].ticketId == req.body.ticket && test>current){
+            //console.log("Can't check ticket");
+            return res.status(300).json("Can't check ticket");
+        }
+
     }
     for(j=0;j<parks.locations.length;j++){
         if (currentTicket.carPark==parks.locations[j].name){
@@ -39,8 +47,7 @@ router.post('/check1', jsonParser, (req, res) => {
     fs.writeFileSync(path.join(__dirname,'..','tickets.json'), data,"utf-8");
     fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data2,"utf-8");
 
-    console.log("Hello anyone");
-    res.status(200);
+    res.status(200).json("Check in successful");
 });
 
 router.post('/check2', jsonParser, (req, res) => {
@@ -52,9 +59,13 @@ router.post('/check2', jsonParser, (req, res) => {
     let parks = JSON.parse(data2);
     let currentTicket;
     for(i = 0; i < tickets.length; i++){
-        if (tickets[i].ticketId == req.body.ticket){
+        if (tickets[i].ticketId == req.body.ticket && tickets[i].checked_in==true){
             tickets[i].checked_out=true;
             currentTicket = tickets[i];
+        }
+        else if(tickets[i].ticketId == req.body.ticket && tickets[i].checked_in==null){
+            console.log("Can't check ticket");
+            return res.status(400).json("Check in has to be completed first");
         }
     }
     for(j=0;j<parks.locations.length;j++){
@@ -73,7 +84,7 @@ router.post('/check2', jsonParser, (req, res) => {
     fs.writeFileSync(path.join(__dirname,'..','tickets.json'), data,"utf-8");
     fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data2,"utf-8");
     console.log("Hello anyone");
-    res.status(200);
+    res.status(200).json("Check out successful");
 });
 
 module.exports = router;

@@ -63,8 +63,19 @@ async function changeCheck(){
             },
             body: serializedMessage
         }
-    )
-    await response.json();
+    );
+    const json = await response.json;
+
+    if (response.status==300){
+        console.log("It is not yet the correct time");
+        const incorrectDetails = document.createElement('p');
+        incorrectDetails.innerText = json;
+    }
+    else if(response.status==200){
+        console.log("Check in successful");
+        const incorrectDetails = document.createElement('p');
+        incorrectDetails.innerText = json;
+    }
 }
 async function changeCheckout(){
 
@@ -75,8 +86,16 @@ async function changeCheckout(){
             },
             body: serializedMessage
         }
-    )
+    );
+
+
     await response.json();
+    if (response.status==400){
+        console.log("User has not yet logged in")
+    }
+    else if(response.status==200){
+        console.log("Check out successful")
+    }
 }
 const allList = document.querySelector('.all-lists');
 let currentTick;
