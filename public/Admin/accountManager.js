@@ -5,14 +5,19 @@ async function banUser(event) {
     let ban_email = ban.childNodes[0].childNodes[2].innerText;
     ban_email = ban_email.slice(7)
 
-    await fetch('/accountMan/ban', { method: 'POST',
+    const response = await fetch('/accountMan/ban', { method: 'POST',
             headers: {
         'Content-Type': 'application/json'
             },
             body: JSON.stringify({the_ban_email:ban_email})
             }
         );
-    ban.remove();
+    const json = response.json();
+    if(response.status=200){
+        console.log("this email was removed" + json);
+        ban.remove();
+    }
+
 
 
 }
