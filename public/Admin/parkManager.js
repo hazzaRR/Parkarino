@@ -1,4 +1,4 @@
-var marker
+var marker;
 async function newPark(event) {
     event.preventDefault();
     const getForm = document.querySelector('#parkForm');
@@ -53,7 +53,7 @@ async function initMap() {
         marker = new google.maps.Marker({
             position: event.latLng,
             map: map,
-            label:"park location"
+            label:"Park location"
         });
     });
 
