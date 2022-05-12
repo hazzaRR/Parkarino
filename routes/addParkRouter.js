@@ -6,7 +6,7 @@ const router = express.Router();
 const jsonParser = bodyParser.json();
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,'..','public','Admin','managerPark.html'));
+    res.sendFile(path.join(__dirname,'..','public','Admin','addPark.html'));
 });
 
 router.post('/',jsonParser, (req, res) => {
@@ -16,17 +16,17 @@ router.post('/',jsonParser, (req, res) => {
     for(let i = 0; i < parks.locations.length; i++) {
         if (parks.locations[i].name === req.body.name){
             console.log("Already exists");
-            return res.status(300);
+            return res.status(300).json("Already exists");
         }
     }
     if(!req.body.location){
-        return res.status(400)
+        return res.status(400).json("No location given");
     }
     req.body._id = parks.locations.length;
     parks.locations.push(req.body);
     data = JSON.stringify(parks,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data,"utf-8");
-    return res.status(200);
+    return res.status(200).json("Successfully created");
 
 });
 module.exports = router;
