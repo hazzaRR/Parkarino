@@ -32,7 +32,7 @@ router.get('/get-users', (req, res) => {
         for (let j = 0; j < msgHist.conversations[i].history.length; j++)
         {
             console.log(msgHist.conversations[i].history[j].read)
-            if(msgHist.conversations[i].history[j].read == false){details = " ~ new unread messages"; break}
+            if(msgHist.conversations[i].history[j].read == false){details = "~~ new unread messages"; break}
         }
         msgHistUsers.push((msgHist.conversations[i].user + details));
     }
@@ -40,7 +40,7 @@ router.get('/get-users', (req, res) => {
     {
         if(!hasMessageHist(allUsers.user[i].email))
         {
-            msgHistUsers.push(allUsers.user[i].email + "~ no message history")
+            msgHistUsers.push(allUsers.user[i].email + "~~ no message history")
         }
     }
 
@@ -84,6 +84,7 @@ router.post('/add-message',jsonParser, (req, res) => {
             data = JSON.stringify(messaging,null, '\t');
             fs.writeFileSync(path.join(__dirname,'..','messages.json'), data,"utf-8");
             found = true
+            complete = true
         }
     }
     if(!found) // no history found so start a history for this user(destination)
@@ -96,6 +97,7 @@ router.post('/add-message',jsonParser, (req, res) => {
             delete req.body.recipient
             data = JSON.stringify(messaging,null, '\t');
             fs.writeFileSync(path.join(__dirname,'..','messages.json'), data,"utf-8");
+            complete = true
         }
     console.log(data)
     if (complete) 
