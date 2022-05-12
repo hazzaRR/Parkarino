@@ -3,6 +3,7 @@
     <title>Add Map</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" type="text/css" href="/maps/style.css" />
+    <link rel="stylesheet" href="../styles.css">
     <script type="module" src="/maps/modifier.js" defer></script>
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtyN-Q3afXZqeL6i4bH-wdVbyYIvxtJTo&libraries=geometry&callback=initMap&v=weekly"
@@ -34,24 +35,20 @@
 <div class="requests-container">
     <ul class="all-lists"></ul>
 </div>
-<div class="block">
-    <ul id="row1"></ul>
-    <br>
-    <ul id="row2"></ul>
-    <br>
-    <ul id="row3"></ul>
-    <br>
-    <ul id="row4"></ul>
-    <br>
-</div>
+
 </div>
 <div class="nearest_park">
     <h4>Closest car park to you</h4>
 <div id="map2"></div>
-    <input type="button" onclick="window.location.href = '/requests';" value="Make a request to here">
-    <button id = "calculate">Calculate closest car park</button>
+    <input type="button" onclick="window.location.href = '/request';" value="Make a request to here">
+    <input type="button" id="calculate" value="Refresh closest car park">
     <h4 class="show_park">The closest car park to you is: </h4>
     <h5 id="closest_park"></h5>
+</div>
+
+<h2>Local car park</h2>
+
+<div class="carpark-container" id="carpark-container">
 </div>
 
 </body>

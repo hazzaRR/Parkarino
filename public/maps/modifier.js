@@ -23,7 +23,6 @@ async function initMap() {
 
 
     for(let i =0;i<pins.length;i++){
-        console.log(pins[i].location);
         marker.push(new google.maps.Marker({
             position: new google.maps.LatLng(pins[i].location.lat,pins[i].location.lng),
             title:pins[i].name,
@@ -62,7 +61,8 @@ async function loadTicket(thing){
     data.forEach(tickets => {
         if (tickets.ticketId == thing) {
             currentSpace = tickets.parkingSpace;
-            console.log(currentSpace);
+            currentPark = tickets.carPark;
+            showSpace(currentPark,currentSpace);
             allList.innerHTML = "";
             const userDiv = document.createElement('div');
             const userDetails = document.createElement('ul');
@@ -70,6 +70,9 @@ async function loadTicket(thing){
             const ticketId = document.createElement('li');
             ticketId.innerText = "Ticket ID: " + tickets.ticketId;
             userDetails.appendChild(ticketId);
+            const spaceId = document.createElement('li');
+            spaceId.innerText = "Space ID: " + tickets.parkingSpace;
+            userDetails.appendChild(spaceId);
             const arrivalTime = document.createElement('li');
             arrivalTime.innerText = "Arrival time: " + tickets.arrivalTime;
             userDetails.appendChild(arrivalTime);
@@ -82,6 +85,7 @@ async function loadTicket(thing){
             const location = document.createElement('li');
             location.innerText = "Car park: " + tickets.carPark;
             getDir(tickets.carPark)
+
             userDetails.appendChild(location);
             allList.appendChild(userDiv);
         }
@@ -119,7 +123,7 @@ async function getDir(test){
 }
 
 
-async function getClosest(test){
+async function getClosest(){
     await mapDirection();
 
     let smallest = marker[0];
@@ -140,73 +144,71 @@ async function getClosest(test){
     console.log(smallest.title);
 }
 
-async function showSpace(parkingSpace){
-    let first_row = document.getElementById('row1')
-    let second_row = document.getElementById('row2')
-    let third_row = document.getElementById('row3')
-    let fourth_row = document.getElementById('row4')
-    first_row.innerHTML ="";
-    second_row.innerHTML ="";
-    third_row.innerHTML ="";
-    fourth_row.innerHTML ="";
-    for(let i =0;i<6;i++){
-        if (i==parkingSpace){
-            let perfect = document.createElement("li");
-            perfect.id = "correct"
-            first_row.appendChild(perfect)
-        }
-        else{
-            let li =document.createElement("li");
-            li.id = "incorrect"
-            first_row.appendChild(li);
-        }
-    }
-    for(let i =6;i<12;i++){
-        if (i==parkingSpace){
-            let perfect = document.createElement("li");
-            perfect.setAttribute('id','correct');
-            second_row.appendChild(perfect);
-        }
-        else{
-            let li =document.createElement("li");
-            li.id = "incorrect"
-            second_row.appendChild(li);
 
+async function showSpace(){
+    let carpark = currentPark;
+
+        try {
+            const carparkSpacesContainer = document.getElementById('carparkContainer');
+            carparkSpacesContainer.remove();
         }
-    }
-    for(let i =12;i<18;i++){
-        if (i==parkingSpace){
-            let perfect = document.createElement("li");
-            perfect.id = "correct";
-            third_row.appendChild(perfect);
+
+        catch {
         }
-        else{
-            let li =document.createElement("li");
-            li.id = "incorrect"
-            third_row.appendChild(li);
+
+        const spacesAvailability =  await fetch(`/view-carpark/manageSpaces?carpark=${carpark}`)
+        const spaces = await spacesAvailability.json();
+
+        let numberOfROws = Math.ceil(spaces.length / 12);
+
+        const carparkSpacesContainer =  document.createElement('div');
+        carparkSpacesContainer.setAttribute('id',`carparkContainer`);
+
+        const selectorContainer = document.querySelector('#carpark-container');
+        selectorContainer.appendChild(carparkSpacesContainer);
+
+
+        for(let i = 0; i < numberOfROws; i++) {
+            const carparkRow =  document.createElement('div');
+            carparkRow.classList.add('carparkRow');
+            carparkRow.setAttribute('id',`row_${i}`);
+            carparkSpacesContainer.appendChild(carparkRow);
         }
-    }
-    for(let i =18;i<24;i++){
-        if (i==parkingSpace){
-            let perfect = document.createElement("li");
-            perfect.id = "correct";
-            fourth_row.appendChild(perfect);
+
+        let addSpaceToRow = 0;
+        for (let i = 0; i < spaces.length; i++) {
+            if(i % 12 == 0 && i != 0) {
+                addSpaceToRow++;
+            }
+            if(i===currentSpace){
+                const carparkSpace =  document.createElement('div');
+                carparkSpace.setAttribute('id',`space_${spaces[i].ID}`);
+                carparkSpace.classList.add('space');
+                carparkSpace.classList.add('occupied');
+                carparkSpace.innerHTML = spaces[i].ID;
+                const rowToAddSpace = document.getElementById(`row_${addSpaceToRow}`);
+                rowToAddSpace.appendChild(carparkSpace);
+            }
+            else {
+                const carparkSpace = document.createElement('div');
+                carparkSpace.setAttribute('id', `space_${spaces[i].ID}`);
+                carparkSpace.classList.add('space');
+                carparkSpace.innerHTML = spaces[i].ID;
+
+                const rowToAddSpace = document.getElementById(`row_${addSpaceToRow}`);
+                rowToAddSpace.appendChild(carparkSpace);
+            }
         }
-        else{
-            let li =document.createElement("li");
-            li.id = "incorrect"
-            fourth_row.appendChild(li);
-        }
-    }
-    console.log("SPMSIENF")
+
 }
-
+let currentPark;
 window.initMap = initMap;
 document.addEventListener('DOMContentLoaded', dropper);
 document.addEventListener('DOMContentLoaded', mapDirection);
-document.addEventListener('DOMContentLoaded', showSpace);
+document.addEventListener('DOMContentLoaded', getClosest);
 const allList = document.querySelector('.all-lists');
 document.getElementById('ticket-dropdown').addEventListener('change', function() {
     loadTicket(this.value);
-    showSpace(this.value);});
+
+});
 document.getElementById("calculate").addEventListener("click", getClosest);
