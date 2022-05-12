@@ -20,10 +20,7 @@ async function initMap() {
         zoom: 15,
         center: {lat:52.62237,lng:1.24139,}
     });
-    map2 = new google.maps.Map(document.getElementById("map2"), {
-        zoom: 15,
-        center: {lat:52.62237,lng:1.24139,}
-    });
+
 
     for(let i =0;i<pins.length;i++){
         console.log(pins[i].location);
@@ -137,17 +134,10 @@ async function getClosest(test){
         }
         temp2 = temp;
     }
-
-    closest = new google.maps.Marker({
-        position: new google.maps.LatLng(smallest.position.lat,smallest.position.lng),
-        title:smallest.title,
-        label:smallest.label,
-        map: map2,
-        optimized: false,
-    });
-
+    temp = document.getElementById("closest_park");
+    temp.innerHTML = smallest.title;
+    sessionStorage.setItem('closest', smallest.title);
     console.log(smallest.title);
-
 }
 
 async function showSpace(parkingSpace){
