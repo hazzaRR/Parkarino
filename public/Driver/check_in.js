@@ -96,6 +96,7 @@ async function changeCheckout(){
     else if(response.status==200){
         console.log("Check out successful")
     }
+    location.reload();
 }
 const allList = document.querySelector('.all-lists');
 let currentTick;
