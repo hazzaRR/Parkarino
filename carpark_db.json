@@ -4,7 +4,7 @@
 			"_id": 0,
 			"name": "UEA West",
 			"num_spaces": 48,
-			"freespaces": 39,
+			"freespaces": 48,
 			"location": {
 				"lat": 52.621520155003786,
 				"lng": 1.2324725290527239
@@ -17,8 +17,8 @@
 				},
 				{
 					"ID": 1,
-					"available": false,
-					"occupier": "0"
+					"available": true,
+					"occupier": null
 				},
 				{
 					"ID": 2,

@@ -28,7 +28,6 @@ router.post('/',jsonParser, (req, res) => {
     requests.push(req.body);
     data = JSON.stringify(requests,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','requests.json'), data,"utf-8");
-    return res.status(200);
 
     res.status(200).json("success!");
 });

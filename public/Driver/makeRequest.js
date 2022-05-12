@@ -30,8 +30,11 @@ async function makeRequest(event) {
                 )
 
     const json = await response.json();
-
     console.log(json);
+
+    alert("Request has successfully been made");
+    form.reset();
+
 
 }
 
