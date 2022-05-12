@@ -67,10 +67,53 @@ img{
 .flexnav li a:hover {
     color: #fff;
 }
+.opening_section{
+    display: table;
+    font-family: Arial;
+    position:relative;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.opening_section .textbox{
+    position: relative;
+    max-width: 600px;
+}
+.opening_section .textbox h1{
+    color: black;
+    font-size: 4em;
+    line-height: 1.5em;
+    font-weight: 900;
+}
+
+/*Meeting team*/
+.meet_section{
+    text-align:center;
+}
+#meet_title{
+    font-size: 200%;
+
+}
+.meet_list{
+    display: table;
+    margin: 0 auto;
+}
+
+.meet_zak,.meet_fin,.meet_harry{
+    display:inline-block;
+    padding: 30px;
+    font-size: 150%;
+}
 
 
-
-
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #2b2f3a;
+    color: white;
+    width: 100%;
+    left: 0px;
+}
 
 
 

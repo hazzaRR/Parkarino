@@ -24,21 +24,29 @@ async function register(event) {
             },
             body: serializedMessage
         }
-    )
+    );
 
     const json = await response.json();
 
-    if (response.status == 200) {
-        console.log("Email got saved");
+    if (response.status === 200) {
+        console.log(json);
         window.location.href = "/login";
     }
-    if (response.status == 500) {
-        console.log("User is banned");
+    if (response.status === 500) {
+        incorrectDetails = document.getElementById('exist');
+        incorrectDetails.innerText = json;
+        document.getElementById('regContainer').appendChild(incorrectDetails);
+        document.getElementById('email').value = '';
     }
     else {
-        document.getElementById('test').innerHTML = "Email or username already exists!";
+        incorrectDetails = document.getElementById('exist');
+        incorrectDetails.innerText = json;
+        document.getElementById('regContainer').appendChild(incorrectDetails);
+        document.getElementById('email').value = '';
+        document.getElementById('Username').value = '';
     }
-}
 
+}
+let incorrectDetails;
 const form = document.querySelector('#regForm');
 form.addEventListener('submit', register);

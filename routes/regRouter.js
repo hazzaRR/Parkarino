@@ -15,11 +15,10 @@ router.post('/',jsonParser, (req, res) => {
 
     for(let i = 0; i < users.user.length; i++) {
         if (users.user[i].email === req.body.email || users.user[i].username ===req.body.username ){
-            console.log("Already exists");
-            return res.status(300);
+            return res.status(300).json("Details already exist");
         }
         if (req.body.email in users.blacklist){
-            return res.status(500);
+            return res.status(500).json("In blacklist");
         }
     }
 
@@ -27,7 +26,7 @@ router.post('/',jsonParser, (req, res) => {
     users.user.push(req.body);
     data = JSON.stringify(users,null, '\t');
     fs.writeFileSync(path.join(__dirname,'..','users_db.json'), data,"utf-8");
-    return res.status(200);
+    return res.status(200).json("Saved correctly");
 
 
 });
