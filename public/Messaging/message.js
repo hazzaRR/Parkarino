@@ -1,7 +1,20 @@
 // retrieve message history on load of page
 async function messageHistory(event)
 {   
-    let userInfo = {email : sessionStorage.getItem('email')}
+    event.preventDefault();
+    var userInfo = {email : sessionStorage.getItem('email')}
+    if (sessionStorage.getItem("userType").toLowerCase() == "admin")
+    {
+        const selection = document.querySelector('#messageUserForm');
+        let selected_email = selection.elements.namedItem('select_user').value
+        var formatEmail = selected_email
+        if (selected_email.includes("~"))
+        {
+            var formatEmail = selected_email.substring(0, selected_email.indexOf("~"));
+            //console.log(formatEmail);
+        }
+        var userInfo = {email : formatEmail}
+    }
     const serializedMessage = JSON.stringify(userInfo);
     // load message history (user -> driver)
     const messageHistory_res = await fetch('/messages/message-history', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage});
@@ -11,6 +24,11 @@ async function messageHistory(event)
     const options = {year: 'numeric', month: 'numeric', day: 'numeric' };
     //console.log(sessionStorage.getItem('name'))
     let messageHistory = messageHistory_json;
+    console.log(messageHistory);
+
+    // clearing chat div in order to reload new messageHistory
+    const chat_box_div = document.getElementById('chat_box');
+    chat_box_div.textContent='';
 
     if(messageHistory_res.status == 200)
     {
@@ -54,6 +72,7 @@ async function messageHistory(event)
             element.appendChild(para);
         }
     }
+    console.log("displaying messages");
     //const message1 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "user", 1);
     //conversation.sendMessage(message1);
     displayMessages(conversation);
@@ -61,13 +80,24 @@ async function messageHistory(event)
 // send a new message/add it to db
 async function addMessage(event)
 {
+    event.preventDefault();
     const msgData = document.querySelector('#send_message_box');
-    if (sessionStorage.getItem("userType") == "admin")
-    {
-        messageInfo = {email : sessionStorage.getItem("email"), }
-    }
     let currentDate = new Date()  
-    let messageInfo = {sender : sessionStorage.getItem("email"), recipient : "admin", id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
+    var messageInfo = {sender : sessionStorage.getItem("email"), recipient : "admin", id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
+    // if message is from admin, flip the sender and recipient
+    if (sessionStorage.getItem("userType").toLowerCase() == "admin")
+    {
+        const selection = document.querySelector('#messageUserForm');
+        let selected_email = selection.elements.namedItem('select_user').value
+        var formatEmail = selected_email
+        if (selected_email.includes("~"))
+        {
+            var formatEmail = selected_email.substring(0, selected_email.indexOf("~"));
+            //console.log(formatEmail);
+        }
+        var messageInfo = {sender : sessionStorage.getItem("email"), recipient : formatEmail, id :"", type : sessionStorage.getItem("userType").toLowerCase(), date : String(Math.round(currentDate.getTime() / 1000)), read : false, message : msgData.elements.namedItem('newMessage').value}
+    }
+    console.log(messageInfo);
     const serializedMessage = JSON.stringify(messageInfo);
     // save to db ~ send message
     const add_message_res = await fetch('/messages/add-message', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
@@ -75,14 +105,16 @@ async function addMessage(event)
 
     if(add_message_res.status == 200)
     {
+        console.log("returning success");
         //window.location.href = "/messages";
-        messageHistory
+        messageHistory(event)
+        //return add_message_res.status
     }
     else
     {
         console.log("Add-message was unsuccessful!")
         //window.location.href = "/messages";
-        messageHistory
+        messageHistory(event)
     }
 }
 
@@ -214,9 +246,6 @@ const displayMessages = (conversation) => {
 
 
 /*create a message box */
-
-
-
 const createMessage = (message) => {
 
     const chat_box = document.getElementById("chat_box");
@@ -225,11 +254,11 @@ const createMessage = (message) => {
     const message_avatar = document.createElement("img");
     if (message.sender == "admin")
     {
-        message_avatar.src = "Messaging/admin.png";
+        message_avatar.src ='Messaging/admin.png';
     }
     else
     {
-        message_avatar.src = "Messaging/default-avatar.png";
+        message_avatar.src = 'Messaging/default-avatar.png';
     }
     const message_text = document.createElement("p");
     message_text.textContent = message.message
@@ -237,7 +266,7 @@ const createMessage = (message) => {
     messsage_time.className = "message_time";
     let readText="delivered"
     if (message.read){let readText = "read";}
-    messsage_time.textContent = message.sender + " ~ " + message.time +" ~ " + readText;
+    messsage_time.textContent = message.sender + " ~ " + message.time;// +" ~ " + readText;
 
     message_div.append(message_avatar);
     message_div.append(message_text);
@@ -268,6 +297,8 @@ const _createMessage = createMessage;
 export { _createMessage as createMessage };
 const _messageHistory = messageHistory;
 export { _messageHistory as messageHistory };
+const _addMessage = addMessage;
+export { _addMessage as addMessage };
 
 const form = document.querySelector('#send_message_box');
 form.addEventListener('submit', addMessage);

@@ -1,10 +1,11 @@
 //const path = require('path');
 //const messagePath = path.join(__dirname,'..','public','Messaging','message.js')
 //import {Messaging, Message, displayMessages, createMessage} from './Messaging/message.js' // used for presenting messages
-import { Messaging, Message, displayMessages, createMessage } from '/Messaging/message.js';
+import { Messaging, Message, displayMessages, addMessage, createMessage } from '/Messaging/message.js';
 
 async function loadUsers(event)
 {
+    event.preventDefault();
     const activeUsers_res = await fetch('/messages/get-users', { method: 'GET'});
     const activeUsers_json = await activeUsers_res.json();
 
@@ -25,11 +26,19 @@ async function loadUsers(event)
 
 async function messageUser(event)
 {
+    event.preventDefault();
     const selection = document.querySelector('#messageUserForm');
-    let info = {
-        email: selection.elements.namedItem('select_user').value
+    let selected_email = selection.elements.namedItem('select_user').value
+    var formatEmail = selected_email
+    if (selected_email.includes("~"))
+    {
+        var formatEmail = selected_email.substring(0, selected_email.indexOf("~"));
+        console.log(formatEmail);
     }
-    console.log("trying to reach user : " + selection.elements.namedItem('select_user').value)
+    var info = {
+        email: formatEmail
+    }
+    console.log("trying to reach user : " + formatEmail)
     const serializedMessage = JSON.stringify(info);
 
     // posts to server at given endpoint
@@ -48,6 +57,10 @@ async function messageUser(event)
     //console.log(sessionStorage.getItem('name'))
     let messageHistory = messageHistory_json;
     console.log(messageHistory);
+
+    const chat_box_div = document.getElementById('chat_box');
+    chat_box_div.textContent='';
+    
     if(messageHistory_res.status == 200)
     {
         if(messageHistory.alert == "not logged in")
@@ -91,6 +104,20 @@ async function messageUser(event)
     //const message1 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "user", 1);
     //conversation.sendMessage(message1);
     displayMessages(conversation);
+    var info = null;
+}
+
+function sendAndUpdateMessages(event)
+{   
+    console.log("good add message res");
+    event.preventDefault();
+    //const add_message = await 
+    //return addMessage(event).then(messageUser)
+    //if (add_message.status == 200)
+        //console.log("good add message res");
+        //messageUser(event);
+    addMessage(event);
+    chat.dispatchEvent(refresh);
 }
 
 function addOptions(item)
@@ -100,6 +127,12 @@ function addOptions(item)
     let option = document.createElement("option");
     option.text = item, ops.add(option);
 }
+
+const refresh = new Event('refresh');
 const form = document.querySelector('#messageUserForm');
+const chat = document.querySelector('#sendMessage');
 window.addEventListener('load', loadUsers);
 form.addEventListener('submit', messageUser);
+chat.addEventListener('submit', addMessage);
+//chat.addEventListener('change', messageUser);
+//chat.addEventListener('refresh', messageUser);
