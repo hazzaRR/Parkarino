@@ -395,6 +395,7 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
 
     const assignSpaceButton = document.createElement('button');
     assignSpaceButton.setAttribute('id', 'AssignSpace');
+    assignSpaceButton.disabled = true;
     assignSpaceButton.innerHTML = "Assign";
     assignSpaceButton.addEventListener('click', AssignbuttonFunction);
 
@@ -430,12 +431,17 @@ function getSelectedSpace(event) {
     try {
         const selectedSpace = document.querySelector('.selected');
         selectedSpace.classList.toggle('selected');
+        const assignBtn = document.getElementById('AssignSpace');
+        assignBtn.disabled = true;
     }
     catch {
     }
 
     if (event.target.classList.contains('space') && !event.target.classList.contains('occupied')) {
         event.target.classList.toggle('selected');
+
+        const assignBtn = document.getElementById('AssignSpace');
+        assignBtn.disabled = false;
 
         selectedSpace = event.target.id;
         selectedSpace = selectedSpace.split("_");
