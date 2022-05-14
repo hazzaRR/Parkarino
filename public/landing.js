@@ -23,11 +23,3 @@ function regular_map() {
     });
 }
 
-// Initialize maps
-google.maps.event.addDomListener(window, 'load', regular_map);
-
-// Carousel options
-
-$('.carousel').carousel({
-    interval: 3000,
-})

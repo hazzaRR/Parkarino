@@ -26,17 +26,38 @@
 				},
 				{
 					"id": 4,
-					"type": "admin",
-					"date": "1652569781",
-					"read": false,
-					"message": "You can book a place via the map and tickets page in the navigation bar"
+					"type": "driver",
+					"date": "1651353700",
+					"read": true,
+					"message": ":)"
 				},
 				{
 					"id": 5,
+					"type": "driver",
+					"date": "1651354931",
+					"read": true,
+					"message": "cheers"
+				},
+				{
+					"id": 6,
 					"type": "admin",
-					"date": "1652569817",
+					"date": "1652365808",
 					"read": false,
-					"message": "Enjoy your stay!"
+					"message": "You are very welcome sir!"
+				},
+				{
+					"id": 7,
+					"type": "driver",
+					"date": "1652366122",
+					"read": false,
+					"message": ":)"
+				},
+				{
+					"id": 8,
+					"type": "driver",
+					"date": "1652543820",
+					"read": false,
+					"message": "im sending a test message"
 				}
 			]
 		},
@@ -75,8 +96,22 @@
 					"id": 5,
 					"type": "driver",
 					"date": "1651441000",
-					"read": true,
+					"read": false,
 					"message": "Thank you for your help"
+				},
+				{
+					"id": 6,
+					"type": "driver",
+					"date": "1652102825",
+					"read": false,
+					"message": "hello"
+				},
+				{
+					"id": 7,
+					"type": "admin",
+					"date": "1652432870",
+					"read": false,
+					"message": "hi"
 				}
 			]
 		},

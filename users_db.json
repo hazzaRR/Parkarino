@@ -54,6 +54,7 @@
 		}
 	],
 	"blacklist": [
-		"NannieCasey@recognia.com"
+		"NannieCasey@recognia.com",
+		"ban@email.com"
 	]
 }

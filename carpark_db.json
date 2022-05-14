@@ -515,6 +515,258 @@
 					"occupier": null
 				}
 			]
+		},
+		{
+			"_id": 3,
+			"name": "test",
+			"num_spaces": 48,
+			"freespaces": 48,
+			"location": {
+				"lat": 52.62647365733916,
+				"lng": 1.2484730435788505
+			},
+			"space": [
+				{
+					"ID": 0,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 1,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 2,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 3,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 4,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 5,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 6,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 7,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 8,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 9,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 10,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 11,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 12,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 13,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 14,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 15,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 16,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 17,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 18,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 19,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 20,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 21,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 22,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 23,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 24,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 25,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 26,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 27,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 28,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 29,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 30,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 31,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 32,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 33,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 34,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 35,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 36,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 37,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 38,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 39,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 40,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 41,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 42,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 43,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 44,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 45,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 46,
+					"available": true,
+					"occupier": null
+				},
+				{
+					"ID": 47,
+					"available": true,
+					"occupier": null
+				}
+			]
 		}
 	]
 }

@@ -17,7 +17,7 @@ router.post('/',jsonParser, (req, res) => {
         if (users.user[i].email === req.body.email || users.user[i].username ===req.body.username ){
             return res.status(300).json("Details already exist");
         }
-        if (req.body.email in users.blacklist){
+        if (users.blacklist.includes(req.body.email)){
             return res.status(500).json("In blacklist");
         }
     }
