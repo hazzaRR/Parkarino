@@ -11,31 +11,31 @@ img{
     max-width: 200px;
 }
 
-.menu-button{
+.menu_div{
     width: 80%;
     margin: auto;
     top: 50px;
     position: relative;
 }
-.flexnav,
-.flexnav ul {
+.home_nav,
+.home_nav ul {
     list-style: none;
     margin: 0;
 }
 
-.flexnav,
-.menu-button {
+.home_nav,
+.menu_div {
     font-family: Lato, Helvetica, sans-serif;
     line-height: 1;
     background: #2b2f3a;
 }
-.flexnav {
+.home_nav {
     padding: 0;
     display: block;
     width: 100%;
 }
-.flexnav > li > a,
-.menu-button {
+.home_nav > li > a,
+.menu_div {
     padding: 18px 22px;
     font-size: 18px;
     text-transform: uppercase;
@@ -43,7 +43,7 @@ img{
     color: #7a8189;
     cursor: pointer;
 }
-.flexnav:after {
+.home_nav:after {
     content: "";
     display: table;
     clear: both;
@@ -53,18 +53,18 @@ img{
     object-fit: cover;
     float: left;
 }
-.flexnav > li{
+.home_nav > li{
     float: left;
     display: block;
     position: relative;
 }
 
-.flexnav > li > a {
+.home_nav > li > a {
     display: block;
     font-weight: 300;
     text-decoration: none;
 }
-.flexnav li a:hover {
+.home_nav li a:hover {
     color: #fff;
 }
 .opening_section{
