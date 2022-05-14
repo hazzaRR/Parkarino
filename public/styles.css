@@ -325,3 +325,16 @@ select {
   border: 2px solid black;
   border-radius: 10px;
 }
+#check_in,#check_out{
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 5px;
+    border: 2px solid blue;
+    border-radius: 10px;
+    height: 35px;
+}
+
+.all-lists ul{
+    list-style-type: none;
+    font-size: larger;
+}
