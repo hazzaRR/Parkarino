@@ -23,41 +23,6 @@
 					"date": "1651353550",
 					"read": true,
 					"message": "Good, thank you very much."
-				},
-				{
-					"id": 4,
-					"type": "driver",
-					"date": "1651353700",
-					"read": true,
-					"message": ":)"
-				},
-				{
-					"id": 5,
-					"type": "driver",
-					"date": "1651354931",
-					"read": true,
-					"message": "cheers"
-				},
-				{
-					"id": 6,
-					"type": "admin",
-					"date": "1652365808",
-					"read": false,
-					"message": "You are very welcome sir!"
-				},
-				{
-					"id": 7,
-					"type": "driver",
-					"date": "1652366122",
-					"read": false,
-					"message": ":)"
-				},
-				{
-					"id": 8,
-					"type": "driver",
-					"date": "1652543820",
-					"read": false,
-					"message": "im sending a test message"
 				}
 			]
 		},
@@ -84,34 +49,6 @@
 					"date": "1651440876",
 					"read": true,
 					"message": "Okay, much appreciated! thank you"
-				},
-				{
-					"id": 4,
-					"type": "driver",
-					"date": "1651440950",
-					"read": true,
-					"message": "Will book a space soon!"
-				},
-				{
-					"id": 5,
-					"type": "driver",
-					"date": "1651441000",
-					"read": false,
-					"message": "Thank you for your help"
-				},
-				{
-					"id": 6,
-					"type": "driver",
-					"date": "1652102825",
-					"read": false,
-					"message": "hello"
-				},
-				{
-					"id": 7,
-					"type": "admin",
-					"date": "1652432870",
-					"read": false,
-					"message": "hi"
 				}
 			]
 		},
