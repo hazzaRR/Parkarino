@@ -7,15 +7,6 @@ p {
     text-align: left;
 }
 
-label {
-	display: inline-block;
-    text-align: right;
-    width: 150px;
-    padding-right: 1px;
-	padding-left: 55px;
-	margin-bottom: 5px;
-}
-
 
 input, select {
 	display: inline-block;
@@ -97,21 +88,22 @@ select {
   /* Admin request styles */
 
 
-  .requests-container, .OccupiedSpaces-Container {
+  .requests-container {
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
-.requests-list, .OccupiedSpaces-list {
+.requests-list {
     min-width: 30%;
     list-style: none;
 }
 
-.request, .occupiedSpace {
+.request {
     margin: 0.5rem;
     background: white;
+    border: 2px solid black;
     color: black;
     font-size: 1rem;
     display: flex;
@@ -119,7 +111,7 @@ select {
     transition: all 0.5s ease;
 }
 
-.request ul, .occupiedSpace ul {
+.request ul {
     flex: 1;
     list-style: none;
 }
@@ -216,7 +208,88 @@ select {
 }
 
 .button-options {
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+/* login styles */
+
+#loginContainer {
+  margin: 0 auto;
+  width: 30%;
+  border: 3px solid black;
+  padding: 10px;
+  margin-top: 100px;
+}
+
+#email, #password {
+  width: 75%;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  border: 2px solid black;
+}
+
+.loginLabels {
+  margin-left: 55px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+#login {
+  width: 75%;
+  display: block;
+  margin: 0 auto;
+  background-color: lawngreen;
+  border: 2px solid black;
+  margin-top: 10px;
+}
+
+/* make request styles */
+
+.loginLabels {
+  margin-left: 55px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+#requestForm {
+  margin: 0 auto;
+  width: 40%;
+  border: 2px solid black;
+}
+
+#arrivalTime, #departureTime, #location {
+  width: 50%;
+  display: flex;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+
+.requestFormLabels {
+  margin-left: 155px;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+#submit {
+  height: 40px;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  background-color: grey;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+#AssignSpace, #CancelRequest, #blockSpace, #freeSpace {
+  height: 30px;
+  width: 100px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
 }

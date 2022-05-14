@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <script src="./Account/login.js" defer></script>
   <link rel="stylesheet" href="../landing_style.css">
+  <link rel="stylesheet" href="../styles.css">
   <header class="container">
     <div class="menu-button">Home</div>
     <ul class="flexnav">
@@ -20,10 +21,10 @@
 
 <div class="container" id="loginContainer">
   <form id="loginForm" action="" method="POST">
-    <label for="Email">Email</label>
+    <label for="Email" class="loginLabels">Email</label>
     <input class="u-full-width" type="email" name="email" placeholder="Email" id="email">
     <br>
-    <label for="Password">Password</label>
+    <label for="Password" class="loginLabels">Password</label>
     <input class="u-full-width" type="password" name="password" placeholder="Password" id="password">
     <br>
     <input type="submit" id="login" value="Log In">

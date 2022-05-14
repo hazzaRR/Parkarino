@@ -43,7 +43,16 @@ async function loginAttempt(event) {
         }
     }
     else {
+
+        try {
+            const incorrectDetails = document.getElementById('incorrectDetails');
+            incorrectDetails.remove();
+        }
+        catch {
+
+        }
         const incorrectDetails = document.createElement('p');
+        incorrectDetails.setAttribute('id', 'incorrectDetails');
         incorrectDetails.innerText = json;
         document.getElementById('loginContainer').appendChild(incorrectDetails);
 

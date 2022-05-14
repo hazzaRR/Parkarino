@@ -184,7 +184,6 @@ async function createTicket(ticketRequest) {
 
     json = await response.json();
 
-    console.log("harry");
     return;
 }
 
@@ -344,11 +343,8 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
         const carparkContainer = document.getElementById('carparkContainer');
         carparkContainer.remove();
 
-        const assignButton = document.getElementById('AssignSpace');
-        assignButton.remove();
 
-        const cancelButton = document.getElementById('CancelRequest');
-        cancelButton.remove();
+        const buttonOption = document.querySelector('.button-options');
     }
 
     catch {
@@ -393,6 +389,9 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
 
     }
 
+    const buttonDiv = document.createElement('div');
+    buttonDiv.setAttribute('class', 'button-options');
+    
     const assignSpaceButton = document.createElement('button');
     assignSpaceButton.setAttribute('id', 'AssignSpace');
     assignSpaceButton.disabled = true;
@@ -406,8 +405,9 @@ async function getCarparkSpaces(carpark, arrivalTime, departureTime) {
     
 
     
-    selectorContainer.appendChild(assignSpaceButton);
-    selectorContainer.appendChild(cancelButton);
+    buttonDiv.appendChild(assignSpaceButton);
+    buttonDiv.appendChild(cancelButton);
+    selectorContainer.appendChild(buttonDiv);
 
 
 }

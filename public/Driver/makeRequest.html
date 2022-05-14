@@ -32,25 +32,21 @@
         <h2>Create a new Parking Request</h2>
 
         <form id="requestForm" action="" method="POST">
-            <fieldset>
-                <legend>Make a Parking Request</legend>
 
-                <label for="location">Preferred location:</label>
+            <label for="location" class="requestFormLabels">Preferred location:</label>
+            <select name="location" id="location"></select>
 
-                <select name="location" id="location"></select>
+            <br>
 
-                <br>
+            <label for="arrivialTime" class="requestFormLabels">Arrival Time:</label>
+            <input type="datetime-local" name="arrivalTime", id="arrivalTime" required>
+            <br>
 
-                <label for="arrivialTime">Arrival Time:</label>
-                <input type="datetime-local" name="arrivalTime", id="arrivalTime" required>
-                <br>
+            <label for="departureTime" class="requestFormLabels">Departure Time:</label>
+            <input type="datetime-local" name="departureTime" id="departureTime", required>
+            <br>
 
-                <label for="departureTime">Departure Time:</label>
-                <input type="datetime-local" name="departureTime" id="departureTime", required>
-                <br>
-
-                <input type="submit" id="submit" value="Make Request">
-            </fieldset>
+            <input type="submit" id="submit" value="Make Request">
 
         </form>
 
