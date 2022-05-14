@@ -11,7 +11,7 @@ async function addCredit(event) {
         wallet: formInfo.elements.namedItem('credit').value,
     };
 
-    if (addCredit.wallet < 0)
+    if (addCredit.wallet < 0 || isNaN(addCredit.wallet))
     {
         const incorrectVal = document.createElement('p');
         incorrectVal.setAttribute('id', 'incorrectCreditValue');
