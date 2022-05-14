@@ -1,7 +1,7 @@
 //function runs whenever a form is submitted sends it to server to check/change credit of user
 async function addCredit(event) {
     event.preventDefault();
-
+    
     //selects the form element from form.hmtl
     const formInfo = document.querySelector('#addCreditForm');
 
@@ -11,29 +11,41 @@ async function addCredit(event) {
         wallet: formInfo.elements.namedItem('credit').value,
     };
 
-    // turns addCredit object into JSON string
-    const serializedMessage = JSON.stringify(addCredit);
+    if (addCredit.wallet < 0)
+    {
+        const incorrectVal = document.createElement('p');
+        incorrectVal.setAttribute('id', 'incorrectCreditValue');
+        incorrectVal.innerText = 'Invalid amount, must be a positive number...';
+        document.getElementById('addCreditContainer').appendChild(incorrectVal);
+    }
 
-    // posts JSON string to the server at the end point /login
-    const response = await fetch('/add-credit/add-credit', { method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                        body: serializedMessage
-                    }
-                )
-    const json = await response.json();
+    else
+    {
 
-    if (response.status == 200) {
-        if(sessionStorage.getItem('userType').toLowerCase() == 'admin') {
-            window.location.href = "/admin";
+        // turns addCredit object into JSON string
+        const serializedMessage = JSON.stringify(addCredit);
+
+        // posts JSON string to the server at the end point /login
+        const response = await fetch('/add-credit/add-credit', { method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                            body: serializedMessage
+                        }
+                    )
+        const json = await response.json();
+
+        if (response.status == 200) {
+            if(sessionStorage.getItem('userType').toLowerCase() == 'admin') {
+                window.location.href = "/admin";
+            }
+            else {
+                window.location.href = "/index";
+            }
         }
         else {
-            window.location.href = "/index";
+            document.getElementById('addCreditForm').innerHTML = "~ you must log in or register to  add credit to your account ~";
         }
-    }
-    else {
-        document.getElementById('addCreditForm').innerHTML = "~ you must log in or register to  add credit to your account ~";
     }
 }
 //Remove credit form if not logged in
