@@ -28,16 +28,18 @@
     <div class="alert" id = "alert_box">
 
     </div>
-    <div class="chat_box" id="chat_box">
-
+    <div id = chat_box_wrapper>
+        <div class="chat_box" id="chat_box">
     </div>
+    </div>
+    <div >
+        <form id = "send_message_box"action="">
 
-    <form id = "send_message_box"action="">
-
-        <textarea rows="4", cols="50", name="newMessage"></textarea>
-        <br>
-        <input type="submit" id="sendMessage" value="Send">
-    </form>
+            <textarea id = message_text_field rows="4", cols="100", maxlength=" = 250" name="newMessage"></textarea>
+            <br>
+            <input id = "send_chat" type="submit" id="sendMessage" value="Send">
+        </form>
+    </div>
     
 </body>
 </html>

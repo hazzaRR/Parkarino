@@ -26,11 +26,10 @@
 
     <div>
         <form id="messageUserForm" action="" method="POST">
-            <label for="getUsers">Choose a user:</label>
+            <label id = "send_chat" for="getUsers">Choose a user:</label>
             <select name="select_user" id="get_users">
             </select>
-            <br><br>
-            <input class = "getUserSubmit" type="submit" value="Submit" name = "choose_user">
+            <input id = "send_chat"class = "getUserSubmit" type="submit" value="View" name = "choose_user">
           </form>
     </div>
 
@@ -45,7 +44,7 @@
 
         <textarea rows="4", cols="50", name="newMessage"></textarea>
         <br>
-        <input type="submit" id="sendMessage" value="Send">
+        <input type="submit" id = "send_chat" value="Send">
     </form>
     
 </body>

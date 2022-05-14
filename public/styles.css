@@ -33,21 +33,126 @@ select {
     border-radius: 3px;
 }
 
+/*notifs, info and pop ups*/
+#info {
+  font: 1em sans-serif;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  background-color: rgba(217, 237, 247, 1);
+  color: rgba(49, 112, 143, 1);
+  border-color: rgba(126, 182, 193, 1);
+}
+
+#credit{
+  border-color: rgba(126, 182, 193, 1);
+  margin-left: auto;
+}
+
+#addCreditForm {
+  padding: 16px;
+	background-color:  rgba(217, 237, 247, 1);
+	border-radius: 10px;
+  
+}
+#addCreditContainer {
+  margin: auto;
+  width: 25%;
+  height: 50%;
+}
+#creditField {
+  padding: 16px;
+	background-color:  rgba(217, 237, 247, 1);
+	border-radius: 10px;
+  height: 35px;
+  margin: auto;
+  width: 50%;
+}
+.chat_box{
+  overflow: auto;
+  margin: auto;
+  width: 50%;
+  height: 500px;
+  display: flex;
+  flex-direction:column;
+}
+.chat_box::-webkit-scrollbar {
+  display: none;
+}
+#send_message_box {
+  padding: 16px;
+	background-color:  rgba(217, 237, 247, 1);
+	border-radius: 10px;
+  height: 50%;
+  margin: auto;
+  width: 50%;
+}
+
+#message_text_field{
+  height: 50%;
+  margin: auto;
+  width: 100%;
+}
+
+.addCreditButton{
+  border-color: rgba(126, 182, 193, 1);
+  margin-left: auto;
+}
+
+#send_chat{
+  border-color: rgba(126, 182, 193, 1);
+  margin-left: auto;
+  font: 1em sans-serif;
+  
+}
+#get_users{
+  border-color: rgba(126, 182, 193, 1);
+  margin-left: auto;
+  font: 1em sans-serif;
+}
+.enter_message_box{
+  margin: auto;
+}
+#messageUserForm{
+  padding: 16px;
+	background-color:  rgba(217, 237, 247, 1);
+	border-radius: 10px;
+  height: 35px;
+  margin: auto;
+  width: 50%;
+}
+textarea
+{
+  border:1px solid #999999;
+  width:100%;
+  margin:5px 0;
+  padding:3px;
+  resize: none;
+  font: 1em sans-serif;
+}
+
 
 /*chat box styles*/
 
 .message-box {
-    border: 2px solid #dedede;
-    background-color: #f1f1f1;
+    border: 2px solid rgba(49, 112, 143, 1);
+    background-color: rgba(217, 237, 247, 1);
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
+    align-content: right;
+    font: 1em sans-serif;
   }
   
   /* Darker chat container */
   .darker {
-    border-color: #ccc;
-    background-color: #ddd;
+    font: 1em sans-serif;
+    border-color: rgba(49, 112, 143, 1);;
+    background-color: rgb(150, 194, 255);
   }
   
   /* Clear floats */
@@ -76,13 +181,13 @@ select {
   /* Style time text */
   .time-right {
     float: right;
-    color: #aaa;
+    color: rgba(49, 112, 143, 1);
   }
   
   /* Style time text */
   .time-left {
     float: left;
-    color: #999;
+    color: rgba(49, 112, 143, 1);
   }
 
   /* Admin request styles */

@@ -76,6 +76,7 @@ async function messageHistory(event)
     //const message1 = new Message(7, "Thats all booked :)", "19/03/2022", "14:01", true, "user", 1);
     //conversation.sendMessage(message1);
     displayMessages(conversation);
+    updateScroll();
 }
 // send a new message/add it to db
 async function addMessage(event)
@@ -109,6 +110,7 @@ async function addMessage(event)
         //window.location.href = "/messages";
         messageHistory(event)
         //return add_message_res.status
+        updateScroll();
     }
     else
     {
@@ -249,7 +251,7 @@ const displayMessages = (conversation) => {
 const createMessage = (message) => {
 
     const chat_box = document.getElementById("chat_box");
-    const message_div = document.createElement("div")
+    const message_div = document.createElement("div");
     
     const message_avatar = document.createElement("img");
     if (message.sender == "admin")
@@ -272,18 +274,35 @@ const createMessage = (message) => {
     message_div.append(message_text);
     message_div.append(messsage_time);
 
-
-    if (message.sender != "admin") {
-        message_div.className = "message-box darker";
-        message_avatar.className = "right"
-        messsage_time.className = "time-left";
+    if (sessionStorage.getItem('userType').toLowerCase() == 'admin')
+    {
+        if (message.sender != "admin") {
+            message_div.className = "message-box";
+            messsage_time.className = "time-left";
+        }
+        else {
+            message_div.className = "message-box darker";
+            messsage_time.className = "time-right";
+            message_avatar.className = "right"
+        }
     }
-    else {
-        message_div.className = "message-box";
-        messsage_time.className = "time-right";
+    else
+    {
+        if (message.sender == "admin") {
+            message_div.className = "message-box darker";
+            messsage_time.className = "time-left";
+        }
+        else {
+            message_div.className = "message-box";
+            messsage_time.className = "time-right";
+            message_avatar.className = "right"
+        }
     }
-
     chat_box.appendChild(message_div);
+}
+function updateScroll(){
+    var element = document.getElementById("chat_box");
+    element.scrollTop = element.scrollHeight;
 }
 
 //export for use in inbox module
