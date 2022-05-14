@@ -47,7 +47,7 @@ router.post('/check1', jsonParser, (req, res) => {
     fs.writeFileSync(path.join(__dirname,'..','tickets.json'), data,"utf-8");
     fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data2,"utf-8");
 
-    res.status(200).json("Check in successful");
+    return res.status(200).json("Check in successful");
 });
 
 router.post('/check2', jsonParser, (req, res) => {
@@ -84,7 +84,7 @@ router.post('/check2', jsonParser, (req, res) => {
     fs.writeFileSync(path.join(__dirname,'..','tickets.json'), data,"utf-8");
     fs.writeFileSync(path.join(__dirname,'..','carpark_db.json'), data2,"utf-8");
     console.log("Hello anyone");
-    res.status(200).json("Check out successful");
+    return res.status(200).json("Check out successful");
 });
 
 module.exports = router;

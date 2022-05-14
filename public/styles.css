@@ -246,6 +246,38 @@ select {
   border: 2px solid black;
   margin-top: 10px;
 }
+/* register styles */
+#regContainer {
+    margin: 0 auto;
+    width: 30%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 20px;
+}
+.reg_input {
+    width: 75%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    border: 2px solid black;
+}
+.regForm {
+    margin-left: 55px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+#login {
+    width: 75%;
+    display: block;
+    margin: 0 auto;
+    background-color: lawngreen;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+
+
+
 
 /* make request styles */
 
