@@ -7,9 +7,7 @@ body {
     list-style-type: none;
 }
 
-img{
-    max-width: 200px;
-}
+
 
 .menu_div{
     width: 80%;
@@ -48,11 +46,7 @@ img{
     display: table;
     clear: both;
 }
-#logo{
-    max-height:50px;
-    object-fit: cover;
-    float: left;
-}
+
 .home_nav > li{
     float: left;
     display: block;
