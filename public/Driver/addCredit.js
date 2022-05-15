@@ -13,7 +13,7 @@ async function addCredit(event) {
 
     if (addCredit.wallet < 0 || isNaN(addCredit.wallet))
     {
-        const incorrectVal = document.createElement('p');
+        const incorrectVal = document.getElementById("incorrect_value");
         incorrectVal.setAttribute('id', 'incorrectCreditValue');
         incorrectVal.innerText = 'Invalid amount, must be a positive number...';
         document.getElementById('addCreditContainer').appendChild(incorrectVal);
