@@ -443,3 +443,43 @@ textarea
     list-style-type: none;
     font-size: larger;
 }
+
+
+
+
+
+/*Add parks*/
+/* register styles */
+#newParkContainer {
+    margin: 0 auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 20px;
+}
+.name_input {
+    width: 75%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    border: 2px solid black;
+}
+#parkForm {
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+#create  {
+    width: 75%;
+    display: block;
+    margin: 0 auto;
+    background-color: lawngreen;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+#map3{
+    height: 700px;
+    width: 100%;
+}

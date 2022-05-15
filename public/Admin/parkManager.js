@@ -58,7 +58,7 @@ async function initMap() {
     directionsRenderer = new google.maps.DirectionsRenderer();
 
 
-    map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map3"), {
         zoom: 15,
         center: {lat:52.62237,lng:1.24139,}
     });
