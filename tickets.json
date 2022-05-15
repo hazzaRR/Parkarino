@@ -7,8 +7,8 @@
 		"carPark": "UEA West",
 		"parkingSpace": 0,
 		"chargePrice": 6500,
-		"checked_in": null,
-		"checked_out": null
+		"checked_in": true,
+		"checked_out": true
 	},
 	{
 		"ticketId": 1,
