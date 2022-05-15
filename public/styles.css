@@ -607,3 +607,8 @@ textarea
 #ban:hover  {
     transform: scale(1.05) perspective(1px);
 }
+
+.carpark-stats {
+  font-size: 18px;
+  font-weight: bold;
+}
