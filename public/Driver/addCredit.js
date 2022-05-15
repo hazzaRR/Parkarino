@@ -21,7 +21,6 @@ async function addCredit(event) {
 
     else
     {
-
         // turns addCredit object into JSON string
         const serializedMessage = JSON.stringify(addCredit);
 

@@ -11,7 +11,7 @@
 			"city": "Spokane",
 			"postcode": "SA7279",
 			"user_Type": "Driver",
-			"wallet": 839
+			"wallet": 1000
 		},
 		{
 			"_id": 1,
@@ -24,7 +24,7 @@
 			"city": "Stockdale",
 			"postcode": "PL0371",
 			"user_Type": "Driver",
-			"wallet": 300
+			"wallet": 1000
 		},
 		{
 			"_id": 2,
@@ -37,7 +37,7 @@
 			"city": "Tyro",
 			"postcode": "JP2410",
 			"user_Type": "Driver",
-			"wallet": 100
+			"wallet": 1000
 		},
 		{
 			"_id": 3,
@@ -50,7 +50,7 @@
 			"city": "Norwich",
 			"postcode": "NR1 1NI",
 			"user_Type": "Admin",
-			"wallet": 100
+			"wallet": 1000
 		}
 	],
 	"blacklist": [

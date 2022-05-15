@@ -54,6 +54,10 @@ select {
   border-color: rgba(126, 182, 193, 1);
   margin-left: auto;
 }
+#credit_submit{
+  border-color: rgba(126, 182, 193, 1);
+  margin-left: auto;
+}
 
 #addCreditForm {
   padding: 16px;
@@ -102,7 +106,9 @@ select {
 
 .addCreditButton{
   border-color: rgba(126, 182, 193, 1);
-  margin-left: auto;
+  height: 50%;
+  margin: auto;
+  width: 100%;
 }
 
 #send_chat{
