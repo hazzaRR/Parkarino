@@ -1,4 +1,6 @@
-
+*{
+    font-family: Helvetica;
+}
 .ticketContainer {
     text-align: center;
 }
