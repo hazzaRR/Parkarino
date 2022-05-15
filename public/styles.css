@@ -309,7 +309,8 @@ textarea
 
 .pickerKey li small {
   margin-left: 2px;
-  color: cornsilk;
+  color: black;
+
 }
 
 .button-options {
@@ -484,7 +485,7 @@ textarea
     transform: scale(1.05) perspective(1px);
 }
 #map3{
-    height: 700px;
+    height: 500px;
     width: 100%;
 }
 
