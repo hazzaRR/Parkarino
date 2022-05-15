@@ -20,7 +20,7 @@ router.post('/ban', jsonParser, (req, res) => {
     let data = fs.readFileSync(path.join(__dirname,'..','users_db.json'), {encoding: 'utf8', flag:'r'});
     let data2 = fs.readFileSync(path.join(__dirname,'..','tickets.json'), {encoding: 'utf8', flag:'r'});
     let users = JSON.parse(data);
-    let ticks = json.parse(data2);
+    let ticks = JSON.parse(data2);
     let ban_user;
     for(i = 0; i < users.user.length; i++) {
         if (users.user[i].email === req.body.the_ban_email) {

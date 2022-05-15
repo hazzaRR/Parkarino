@@ -26,25 +26,27 @@ async function getAllUsers(event) {
     const response = await fetch('/accountMan/manageAccount')
     const users = await response.json();
     users.forEach(user => {
-        const userDiv = document.createElement('div');
-        const userDetails = document.createElement('ul');
-        userDiv.appendChild(userDetails);
-        const userID = document.createElement('li');
-        userID.innerText = "User ID: " + user._id;
-        userDetails.appendChild(userID);
-        const userName = document.createElement('li');
-        userName.innerText = "Username: " + user.username;
-        userDetails.appendChild(userName);
-        const email = document.createElement('li');
-        email.innerText = "Email: " + user.email
-        userDetails.appendChild(email);
-        const balance = document.createElement('li');
-        balance.innerText = "Current balance: " + user.wallet;
-        userDetails.appendChild(balance);
-        const banButton = document.createElement('button');
-        banButton.innerHTML = 'Ban';
-        userDiv.appendChild(banButton);
-        allList.appendChild(userDiv);
+        if (user.user_Type!="Admin"){
+            const userDiv = document.createElement('div');
+            const userDetails = document.createElement('ul');
+            userDiv.appendChild(userDetails);
+            const userID = document.createElement('li');
+            userID.innerText = "User ID: " + user._id;
+            userDetails.appendChild(userID);
+            const userName = document.createElement('li');
+            userName.innerText = "Username: " + user.username;
+            userDetails.appendChild(userName);
+            const email = document.createElement('li');
+            email.innerText = "Email: " + user.email
+            userDetails.appendChild(email);
+            const balance = document.createElement('li');
+            balance.innerText = "Current balance: " + user.wallet;
+            userDetails.appendChild(balance);
+            const banButton = document.createElement('button');
+            banButton.innerHTML = 'Ban';
+            userDiv.appendChild(banButton);
+            allList.appendChild(userDiv);
+        }
     })
 
 }
