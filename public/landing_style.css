@@ -1,7 +1,9 @@
 body {
     background: white;
 }
-
+*{
+    font-family: Helvetica;
+}
 
 .meet_list {
     list-style-type: none;
@@ -9,6 +11,7 @@ body {
 
 img{
     max-width: 200px;
+    padding:10px;
 }
 
 .menu_div{
@@ -48,11 +51,7 @@ img{
     display: table;
     clear: both;
 }
-#logo{
-    max-height:50px;
-    object-fit: cover;
-    float: left;
-}
+
 .home_nav > li{
     float: left;
     display: block;

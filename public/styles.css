@@ -1,4 +1,6 @@
-
+*{
+    font-family: Helvetica;
+}
 .ticketContainer {
     text-align: center;
 }
@@ -413,7 +415,7 @@ textarea
 }
 
 .requestFormLabels {
-  margin-left: 155px;
+  margin-left: 185px;
   margin-bottom: 5px;
   font-size: 18px;
 }
