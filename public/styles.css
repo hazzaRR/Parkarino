@@ -353,6 +353,7 @@ textarea
   background-color: lawngreen;
   border: 2px solid black;
   margin-top: 10px;
+    cursor: pointer;
 }
 /* register styles */
 #regContainer {
@@ -369,19 +370,9 @@ textarea
     flex-direction: column;
     border: 2px solid black;
 }
-.regForm {
-    margin-left: 55px;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
 
-#login {
-    width: 75%;
-    display: block;
-    margin: 0 auto;
-    background-color: lawngreen;
-    border: 2px solid black;
-    margin-top: 10px;
+#login:hover  {
+    transform: scale(1.05) perspective(1px);
 }
 
 

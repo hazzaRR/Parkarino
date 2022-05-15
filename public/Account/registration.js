@@ -1,7 +1,7 @@
 async function register(event) {
 
     event.preventDefault();
-    const getForm = document.querySelector('#regForm');
+    const getForm = document.querySelector('.regForm');
 
     const registrat = {
         _id: 0,
@@ -33,13 +33,13 @@ async function register(event) {
         window.location.href = "/login";
     }
     if (response.status === 500) {
-        incorrectDetails = document.getElementById('exist');
+        const incorrectDetails = document.getElementById('exist');
         incorrectDetails.innerText = json;
         document.getElementById('regContainer').appendChild(incorrectDetails);
         document.getElementById('email').value = '';
     }
     else {
-        incorrectDetails = document.getElementById('exist');
+        const incorrectDetails = document.getElementById('exist');
         incorrectDetails.innerText = json;
         document.getElementById('regContainer').appendChild(incorrectDetails);
         document.getElementById('email').value = '';
@@ -48,5 +48,5 @@ async function register(event) {
 
 }
 let incorrectDetails;
-const form = document.querySelector('#regForm');
+const form = document.querySelector('.regForm');
 form.addEventListener('submit', register);
