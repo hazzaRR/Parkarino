@@ -7,7 +7,10 @@ body {
     list-style-type: none;
 }
 
-
+img{
+    max-width: 200px;
+    padding:10px;
+}
 
 .menu_div{
     width: 80%;
@@ -101,7 +104,6 @@ body {
 
 
 footer {
-    position: fixed;
     bottom: 0;
     background-color: #2b2f3a;
     color: white;
