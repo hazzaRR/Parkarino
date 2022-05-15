@@ -30,23 +30,29 @@ async function loadTicket(thing){
         if (tickets.ticketId == thing) {
             allList.innerHTML = "";
             const userDiv = document.createElement('div');
+            userDiv.className = "check_container"
             const userDetails = document.createElement('ul');
             userDiv.appendChild(userDetails);
             const ticketId = document.createElement('li');
             ticketId.innerText = "Ticket ID: " + tickets.ticketId;
             ticketId.value = tickets.ticketId;
+            ticketId.className = "check_class";
             userDetails.appendChild(ticketId);
             const arrivalTime = document.createElement('li');
             arrivalTime.innerText = "Arrival time: " + tickets.arrivalTime;
+            arrivalTime.className = "check_class";
             userDetails.appendChild(arrivalTime);
             const departureTime = document.createElement('li');
             departureTime.innerText = "Departure Time: " + tickets.departureTime;
+            departureTime.className = "check_class";
             userDetails.appendChild(departureTime);
             const cost = document.createElement('li');
             cost.innerText = "Cost: " + tickets.chargePrice;
+            cost.className = "check_class";
             userDetails.appendChild(cost);
             const location = document.createElement('li');
             location.innerText = "Car park: " + tickets.carPark;
+            location.className = "check_class";
             userDetails.appendChild(location);
             allList.appendChild(userDiv);
         }
@@ -100,7 +106,7 @@ async function changeCheckout(){
     }
     location.reload();
 }
-const allList = document.querySelector('.all-lists');
+const allList = document.querySelector('.this-list');
 let currentTick;
 document.addEventListener('DOMContentLoaded', dropper);
 document.getElementById('ticket-dropdown').addEventListener('change', function() {

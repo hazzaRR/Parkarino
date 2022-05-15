@@ -28,22 +28,29 @@ async function getAllUsers(event) {
     users.forEach(user => {
         if (user.user_Type!="Admin"){
             const userDiv = document.createElement('div');
+            userDiv.className="banContainer";
             const userDetails = document.createElement('ul');
+            userDetails.className = "banForm";
             userDiv.appendChild(userDetails);
             const userID = document.createElement('li');
             userID.innerText = "User ID: " + user._id;
+            userID.className = "ban_class"
             userDetails.appendChild(userID);
             const userName = document.createElement('li');
             userName.innerText = "Username: " + user.username;
+            userName.className = "ban_class"
             userDetails.appendChild(userName);
             const email = document.createElement('li');
             email.innerText = "Email: " + user.email
+            email.className = "ban_class"
             userDetails.appendChild(email);
             const balance = document.createElement('li');
             balance.innerText = "Current balance: " + user.wallet;
+            balance.className = "ban_class"
             userDetails.appendChild(balance);
             const banButton = document.createElement('button');
             banButton.innerHTML = 'Ban';
+            banButton.id="ban";
             userDiv.appendChild(banButton);
             allList.appendChild(userDiv);
         }

@@ -483,3 +483,75 @@ textarea
     height: 700px;
     width: 100%;
 }
+
+
+
+/* register styles */
+.banContainer {
+    margin: 0 auto;
+    width: 100%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 10px;
+}
+.ban_class {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    left:0px;
+}
+.banForm {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+#ban {
+    width: 75%;
+    display: block;
+    margin: 0 auto;
+    background-color: #e85555;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+
+
+
+
+
+.check_container {
+    margin: 0 auto;
+    width: 50%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 10px;
+}
+.check_class {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    left:0px;
+}
+.this-list{
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+#check_out,#check_in  {
+    width: 75%;
+    height:50px;
+    display: block;
+    margin: 0 auto;
+    font-size: 25px;
+    background-color: lawngreen;
+    border: 2px solid black;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#check_in:hover,#check_out:hover  {
+    transform: scale(1.05) perspective(1px);
+}
+#check_out{
+    background-color: #e85555;
+}
