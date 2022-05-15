@@ -564,3 +564,46 @@ textarea
 #check_out{
     background-color: #e85555;
 }
+
+
+
+/*Map styles*/
+.routes {
+    margin: 0 auto;
+    width: 60%;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 10px;
+}
+#map {
+    height: 800px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+}
+
+.ban_class {
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    left:0px;
+}
+.banForm {
+    margin-left: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+#ban {
+    width: 75%;
+    display: block;
+    height:30px;
+    margin: 0 auto;
+    background-color: #e85555;
+    border: 2px solid black;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#ban:hover  {
+    transform: scale(1.05) perspective(1px);
+}
