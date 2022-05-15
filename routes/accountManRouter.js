@@ -32,6 +32,7 @@ router.post('/ban', jsonParser, (req, res) => {
     for(i = 0; i < ticks.length; i++) {
         if(ticks[i].driverId==ban_user._id) {
             ticks.splice(i,1);
+            i--;
         }
     }
 
