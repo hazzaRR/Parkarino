@@ -54,20 +54,34 @@ select {
   border-color: rgba(126, 182, 193, 1);
   margin-left: auto;
 }
+
+#credit::-webkit-outer-spin-button,
+#credit::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 #credit_submit{
   border-color: rgba(126, 182, 193, 1);
-  margin-left: auto;
+  margin: auto;
+  background-color: white;
+  color: rgba(49, 112, 143, 1);
+  
+}
+#credit_submit:hover  {
+  transform: scale(1.03) perspective(1px);
+  background-color: rgba(126, 182, 193, 1);
+  color: white;
 }
 
 #addCreditForm {
   padding: 16px;
 	background-color:  rgba(217, 237, 247, 1);
 	border-radius: 10px;
-  
 }
 #addCreditContainer {
-  margin: auto;
-  width: 25%;
+  margin:auto;
+  width: 50%;
   height: 50%;
 }
 #creditField {
@@ -90,12 +104,14 @@ select {
   display: none;
 }
 #send_message_box {
+  white-space: nowrap;
   padding: 16px;
 	background-color:  rgba(217, 237, 247, 1);
 	border-radius: 10px;
   height: 50%;
   margin: auto;
   width: 50%;
+  background-image: linear-gradient(to right, rgba(217, 237, 247, 1) , #ADD8E6);
 }
 
 #message_text_field{
@@ -113,9 +129,15 @@ select {
 
 #send_chat{
   border-color: rgba(126, 182, 193, 1);
-  margin-left: auto;
   font: 1em sans-serif;
-  
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}
+#send_chat:hover{
+  transform: scale(1.03) perspective(1px);
+  background-color: rgba(126, 182, 193, 1);
+  color: white;
 }
 #get_users{
   border-color: rgba(126, 182, 193, 1);
@@ -133,14 +155,49 @@ select {
   margin: auto;
   width: 50%;
 }
-textarea
-{
-  border:1px solid #999999;
+textarea{
+  border-color: rgba(126, 182, 193, 1);
+  border-width: 2px;
   width:100%;
-  margin:5px 0;
-  padding:3px;
+  padding:px;
   resize: none;
   font: 1em sans-serif;
+  border-radius: 10px;
+}
+
+.prompt-active {
+  padding-left: 10px;
+  opacity: 0; 
+  animation: opacityOnAndOff 5s normal forwards;
+  animation-delay: 0s;
+  display: inline-block;
+  font-style: italic;
+}
+@keyframes opacityOnAndOff {
+  0% {
+      opacity: 0;
+  }
+  25%{
+    opacity: 1;
+  }
+  75% {
+      opacity: 0;
+  }
+}
+.prompt-hidden{
+  visibility: hidden;
+  opacity: 0;
+  display: inline-block;
+}
+textarea:focus{
+  border-color: rgb(96, 178, 194);
+  border-width: 2px;
+  width:100%;
+  padding:px;
+  resize: none;
+  font: 1em sans-serif;
+  border-radius: 5px;
+  
 }
 
 
@@ -160,7 +217,7 @@ textarea
   .darker {
     font: 1em sans-serif;
     border-color: rgba(49, 112, 143, 1);;
-    background-color: rgb(150, 194, 255);
+    background-color: #699ebfb3;
   }
   
   /* Clear floats */

@@ -101,22 +101,36 @@ async function addMessage(event)
     console.log(messageInfo);
     const serializedMessage = JSON.stringify(messageInfo);
     // save to db ~ send message
-    const add_message_res = await fetch('/messages/add-message', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
-    const add_message_json = await  add_message_res.json();
-
-    if(add_message_res.status == 200)
-    {
-        console.log("returning success");
-        //window.location.href = "/messages";
-        messageHistory(event)
-        //return add_message_res.status
-        updateScroll();
+    if(messageInfo.message.length > 0){
+        const add_message_res = await fetch('/messages/add-message', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: serializedMessage})
+        const add_message_json = await  add_message_res.json();
+        if(add_message_res.status == 200)
+        {
+            console.log("returning success");
+            //window.location.href = "/messages";
+            messageHistory(event)
+            //return add_message_res.status
+            updateScroll();
+        }
+        else
+        {
+            
+            console.log("Add-message was unsuccessful!")
+            //window.location.href = "/messages";
+            messageHistory(event)
+            var element = document.getElementById("prompt_box_text");
+            element.innerText = "Please try again...";
+            element.setAttribute("class", "prompt-active");
+        }
     }
     else
     {
-        console.log("Add-message was unsuccessful!")
-        //window.location.href = "/messages";
+        console.log("message string empty")
+         //window.location.href = "/messages";
         messageHistory(event)
+        var element = document.getElementById("prompt_box_text");
+        element.innerText = "Type something first...";
+        element.setAttribute("class", "prompt-active");
     }
 }
 

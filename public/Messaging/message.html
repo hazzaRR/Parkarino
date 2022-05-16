@@ -34,11 +34,13 @@
     <div >
         <form id = "send_message_box"action="">
 
-            <textarea id = message_text_field rows="4", cols="100", maxlength=" = 250" name="newMessage"></textarea>
+            <textarea id = message_text_field rows="4", required, cols="100", maxlength=" = 250" name="newMessage"></textarea>
             <br>
-            <input id = "send_chat" type="submit" id="sendMessage" value="Send">
+            <input id = "send_chat" type="submit" id="sendMessage" value="Send"><p id = "prompt_box_text" class = "prompt-hidden"></p>
         </form>
     </div>
+    
+    
     
 </body>
 </html>
